@@ -14,8 +14,18 @@
  *= require_self
  */
 
+header {
+  div {
+    font-size: 32px;
+  }
+}
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+form {
+  .form-error {
+    color: red;
+  }
 }
