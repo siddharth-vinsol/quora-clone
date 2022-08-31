@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :password_digest
       t.integer :role, default: 1
-      t.boolean :verified, default: false
+      t.string :verified
 
       t.timestamps
     end
