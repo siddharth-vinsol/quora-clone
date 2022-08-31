@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  after_create_commit :send_verification_mail
+
   enum role: {
     'admin' => 0,
     'user' => 1
@@ -10,4 +12,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :email, format: { with: QuoraClone::EMAIL_REGEX }, allow_blank: true
 
+  private def send_verification_mail
+    UserMailer.verification(self).deliver_now
+  end
 end

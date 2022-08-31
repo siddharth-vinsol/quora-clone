@@ -1,9 +1,10 @@
 class UsersController < ApplicationController  
   def create
     @user = User.new(user_params)
+    @user.verified = SecureRandom.uuid
 
     if @user.save
-      redirect_to :signup, notice: 'Thank you for signing up'
+      redirect_to :signup, notice: 'Thank you for signing up, a verification email has been sent to your account.'
     else
       render :signup, status: :unprocessable_entity
     end
