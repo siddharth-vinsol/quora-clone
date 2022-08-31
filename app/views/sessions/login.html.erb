@@ -1,0 +1,13 @@
+<div class="form">
+  <%= form_with do |form| %>
+    <div>
+      <%= form.label :email, 'Enter Email' %>
+      <%= form.text_field :email %>
+    </div>
+
+    <div>
+      <%= form.label :password, 'Enter Password' %>
+      <%= form.password_field :password %>
+    </div>
+  <% end %>
+</div>

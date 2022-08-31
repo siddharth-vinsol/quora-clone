@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @user.verified = SecureRandom.uuid
 
     if @user.save
-      redirect_to :signup, notice: 'Thank you for signing up, a verification email has been sent to your account.'
+      redirect_to login_path, notice: 'Thank you for signing up, a verification email has been sent to your account.'
     else
       render :signup, status: :unprocessable_entity
     end

@@ -1,5 +1,5 @@
 <div class='form'>
-  <%= form_with(model: @user) do |form| %>
+  <%= form_with model: @user, url: user_path do |form| %>
     <% if @user.errors.any? %>
       <div class='form-error'>
         <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>

@@ -16,6 +16,9 @@
     </header>
 
     <main class="<%= controller.controller_name %>">
+      <div>
+        <%= notice if notice %>
+      </div>
       <%= yield %>
     </main>
   </body>
