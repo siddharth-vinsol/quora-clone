@@ -4,4 +4,8 @@ module QuoraClone
   module Mailer
     FROM_MAIL = 'admin@quora-clone.com'
   end
+
+  module Session
+    COOKIE_EXPIRATION_TIME = 1.day
+  end
 end
