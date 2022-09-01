@@ -1,5 +1,5 @@
 <div class="form">
-  <%= form_with do |form| %>
+  <%= form_with url: session_path do |form| %>
     <div>
       <%= form.label :email, 'Enter Email' %>
       <%= form.text_field :email %>
@@ -8,6 +8,10 @@
     <div>
       <%= form.label :password, 'Enter Password' %>
       <%= form.password_field :password %>
+    </div>
+
+    <div>
+      <%= form.submit 'Login' %>
     </div>
   <% end %>
 </div>

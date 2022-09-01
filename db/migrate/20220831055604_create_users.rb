@@ -5,7 +5,10 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :password_digest
       t.integer :role, default: 1
-      t.string :verified
+      t.string :confirmation_token
+      t.string :password_reset_token
+      t.timestamp :verified_at
+      t.timestamp :password_reset_at
 
       t.timestamps
     end

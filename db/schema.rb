@@ -16,7 +16,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_055604) do
     t.string "email"
     t.string "password_digest"
     t.integer "role", default: 1
-    t.string "verified"
+    t.string "confirmation_token"
+    t.string "password_reset_token"
+    t.datetime "verified_at", precision: nil
+    t.datetime "password_reset_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

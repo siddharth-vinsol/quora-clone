@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'signup', to: 'users#signup'
+  default_url_options({ host: '127.0.0.1', port: 3000 })
   
   controller :sessions do
     get 'login', action: :login
@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   end
 
   resource :session, only: [:create]
-  resource :user, only: [:show, :create]
+  resource :registration, path: 'signup', only: [:show, :create]
+  resource :user, only: [:show]
+  
+  get 'validate', to: 'registrations#validate'
 end
