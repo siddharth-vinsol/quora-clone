@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get 'logout', action: :logout
   end
 
-  resource :session, only: [:create]
+  resource :session, only: [:create, :destroy]
   resource :registration, path: 'signup', only: [:show, :create]
   resource :user, only: [:show]
   

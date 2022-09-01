@@ -17,4 +17,9 @@ class SessionsController < ApplicationController
       redirect_to login_url, notice: 'Wrong email and password combination. Please try again'
     end
   end
+
+  def destroy
+    reset_session
+    redirect_to login_path, notice: 'Logged out successfully'
+  end
 end
