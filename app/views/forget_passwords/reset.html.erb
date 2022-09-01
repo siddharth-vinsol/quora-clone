@@ -1,0 +1,30 @@
+<div>Reset your password here</div>
+
+<div class="form">
+  <%= form_with model: @user, url: forget_password_path, method: :patch do |form| %>
+    <% if @user.errors.any? %>
+      <div class='form-error'>
+        <ul>
+          <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= hidden_field_tag :password_reset_token, @user.password_reset_token %>
+    <div>
+      <%= form.label :password %>
+      <%= form.password_field :password %>
+    </div>
+
+    <div>
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation %>
+    </div>
+
+    <div>
+      <%= form.submit 'Reset password' %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,15 @@
+<div>Forget your password?</div>
+<div>Please enter your registered email and we'll send you password reset link</div>
+
+<div class="form" >
+  <%= form_with do |form| %>
+    <div>
+      <%= form.label :email, 'Enter your registered email' %>
+      <%= form.text_field :email %>
+    </div>
+
+    <div>
+      <%= form.submit 'Reset Password' %>
+    </div>
+  <% end %>
+</div>
