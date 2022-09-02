@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def authorize
     unless current_user
-      redirect_to login_path, notice: 'Please log in before continuing'
+      redirect_to login_path, notice: t('notice.session.login_before_continue')
     end
   end
 

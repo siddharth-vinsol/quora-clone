@@ -8,13 +8,12 @@ class PasswordsController < ApplicationController
   end
 
   def generate_reset_token
-    if current_user_by_email
-      @user.update_password_reset_token
-      message = 'Password reset mail sent to your email'
+    if current_user_by_email && @user.update_password_reset_token
+      redirect_to password_path, notice: t('notice.password.reset_mail_sent')
     else
-      message = 'No such registered email exists'
+      redirect_to password_path, notice: t('notice.password.email_not_found')
     end
-    redirect_to password_path, notice: message
+    
   end
 
   def reset
@@ -22,7 +21,7 @@ class PasswordsController < ApplicationController
 
   def update_user_password
     if @user.update_password(reset_password_params[:password], reset_password_params[:password_confirmation])
-      redirect_to login_path, notice: 'Password reset successfully'
+      redirect_to login_path, notice: t('notice.password.reset_success')
     else
       render :reset, status: :unprocessable_entity
     end
@@ -38,7 +37,7 @@ class PasswordsController < ApplicationController
 
   private def current_user_by_password_reset_token
     unless params[:password_reset_token].present? && @user = User.find_by(password_reset_token: params[:password_reset_token])
-      redirect_to password_path, notice: 'Invalid password reset request'
+      redirect_to password_path, notice: t('notice.password.invalid_reset_request')
     end
   end
 end

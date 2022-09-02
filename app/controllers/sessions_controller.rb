@@ -12,18 +12,17 @@ class SessionsController < ApplicationController
           value: @user.id,
           expires: params[:remember_me] == '1' ? QuoraClone::Session::COOKIE_EXPIRATION_TIME.from_now : nil
         }
-
         redirect_to user_path
       else
-        redirect_to login_url, notice: 'Please verify your account using link sent on your email before moving further'
+        redirect_to login_url, notice: t('notice.session.verify_before_continue')
       end
     else
-      redirect_to login_url, notice: 'Wrong email and password combination. Please try again'
+      redirect_to login_url, notice: t('notice.session.invalid_email_password')
     end
   end
 
   def destroy
     cookies.delete(:user_id)
-    redirect_to login_path, notice: 'Logged out successfully'
+    redirect_to login_path, notice: t('notice.session.logout_success')
   end
 end
