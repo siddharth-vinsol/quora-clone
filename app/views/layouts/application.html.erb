@@ -11,15 +11,15 @@
   </head>
 
   <body>
-    <header>
+    <header class="main">
       <div>Quora Clone App</div>
+      <%= button_to 'Logout', session_path, method: :delete, class: 'logout-button' if cookies.encrypted[:user_id] %>
     </header>
 
     <main class="<%= controller.controller_name %>">
       <div class="notice">
         <%= notice if notice %>
       </div>
-      <%= button_to 'Logout', session_path, method: :delete, class: 'logout-button' if cookies.encrypted[:user_id] %>
       <%= yield %>
     </main>
   </body>
