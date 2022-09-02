@@ -17,7 +17,7 @@ class RegistrationsController < ApplicationController
 
   def verify_email
     if current_user_by_confirmation_token
-      @user.update_columns(confirmation_token: nil, verified_at: Time.current)
+      @user.update(confirmation_token: nil, verified_at: Time.current)
       render :verify_email, notice: t('notice.registration.verification_success')
     else
       redirect_to login_path, notice: t('notice.registration.verification_failure')
