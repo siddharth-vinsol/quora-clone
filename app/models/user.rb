@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  before_create :generate_confirmation_token
   after_create_commit :send_verification_mail
 
   enum role: {
@@ -22,5 +23,9 @@ class User < ApplicationRecord
 
   private def send_verification_mail
     UserMailer.verification(self).deliver_now
+  end
+
+  private def generate_confirmation_token
+    self.confirmation_token = SecureRandom.uuid
   end
 end

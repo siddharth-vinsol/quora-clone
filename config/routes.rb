@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   end
 
   resource :session, only: [:create, :destroy]
-  resource :registration, path: 'signup', only: [:show, :create]
+  resource :registration, path: 'signup', only: [:create] do
+    get '/', action: 'new'
+  end
   resource :user, only: [:show]
   resource :password, only: [:show] do
     get :reset, path: 'reset_password'
@@ -15,6 +17,6 @@ Rails.application.routes.draw do
     patch '/', action: 'update_user_password'
   end
   
-  get 'validate', to: 'registrations#validate'
+  get 'verify_email', to: 'registrations#verify_email'
 
 end
