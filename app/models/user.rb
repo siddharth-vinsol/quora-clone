@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validates :email, format: { with: QuoraClone::EMAIL_REGEX }, allow_blank: true
 
   def update_password_reset_token
-    update_columns(password_reset_token: SecureRandom.uuid)
+    update_columns(password_reset_token: TokenGenerator.generate_token)
   end
 
   def update_password(password, password_confirmation)
@@ -26,6 +26,6 @@ class User < ApplicationRecord
   end
 
   private def generate_confirmation_token
-    self.confirmation_token = SecureRandom.uuid
+    self.confirmation_token = TokenGenerator.generate_token
   end
 end
