@@ -9,9 +9,12 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :destroy]
   resource :registration, path: 'signup', only: [:show, :create]
   resource :user, only: [:show]
-  resource :forget_password, only: [:show, :create, :update] do
-    get 'reset'
+  resource :password, only: [:show] do
+    get :reset, path: 'reset_password'
+    post '/', action: 'generate_reset_token'
+    patch '/', action: 'update_user_password'
   end
   
   get 'validate', to: 'registrations#validate'
+
 end
