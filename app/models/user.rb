@@ -8,6 +8,7 @@ class User < ApplicationRecord
   }
 
   has_secure_password
+  has_one_attached :profile_image, dependent: :destroy
 
   validates :name, :email, presence: true
   validates :password, :password_confirmation, presence: true, if: :setting_password?

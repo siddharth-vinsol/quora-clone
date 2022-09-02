@@ -1,0 +1,10 @@
+<div class="profile">
+  <%= image_tag 'default.jpeg', class: 'profile-img' %>
+  <%= form_with model: @user, url: image_user_profile_path, method: :post do |form| %>
+    <%= form.label :profile_image, 'Upload New Profile Picture' %>
+    <%= form.file_field :profile_image, accept: 'image/png, image/jpeg', onChange: 'this.form.submit()' %>
+  <% end %>
+
+  <div><%= @user.name %></div>
+  <div><%= @user.email %></div>
+</div>
