@@ -7,9 +7,9 @@ class Users::ProfilesController < ApplicationController
 
   def image
     if @user.change_profile_picture(params[:user][:profile_image])
-      redirect_to :show, notice: t('user.profile.profile_image_upload_success')
+      redirect_to user_profile_path, notice: t('user.profile.profile_image_upload_success')
     else
-      redirect_to :show, notice: t('user.profile.profile_image_upload_failed')
+      redirect_to user_profile_path, notice: t('user.profile.profile_image_upload_failed')
     end
   end
 end

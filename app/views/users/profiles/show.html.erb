@@ -1,5 +1,5 @@
 <div class="profile">
-  <%= image_tag 'default.jpeg', class: 'profile-img' %>
+  <%= image_tag rails_blob_path(@user.profile_image, disposition: 'attachment'), class: 'profile-img' %>
   <%= form_with model: @user, url: image_user_profile_path, method: :post do |form| %>
     <%= form.label :profile_image, 'Upload New Profile Picture' %>
     <%= form.file_field :profile_image, accept: 'image/png, image/jpeg', onChange: 'this.form.submit()' %>
