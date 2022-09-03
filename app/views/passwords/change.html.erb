@@ -1,0 +1,28 @@
+<div class="form">
+  <div class="form-header">Update Password</div>
+  <%= form_with model: @user, url: change_password_path, method: :patch do |form| %>
+    <% if @user.errors.any? %>
+      <div class='form-error'>
+        <ul>
+          <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-field" >
+      <%= form.label :password %>
+      <%= form.password_field :password %>
+    </div>
+
+    <div class="form-field" >
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation %>
+    </div>
+
+    <div class="submit-field">
+      <%= form.submit 'Change password' %>
+    </div>
+  <% end %>
+</div>
