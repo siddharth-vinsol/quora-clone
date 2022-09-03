@@ -7,4 +7,5 @@
 
   <div><%= @user.name %></div>
   <div><%= @user.email %></div>
+  <%= button_to 'Edit Profile', edit_user_profile_path, method: :get %>
 </div>

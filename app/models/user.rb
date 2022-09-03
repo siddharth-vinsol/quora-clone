@@ -37,6 +37,10 @@ class User < ApplicationRecord
     verified_at.present?
   end
 
+  def change_profile_details(name)
+    update(name: name)
+  end
+
   private def send_verification_mail
     UserMailer.verification(self).deliver_later
   end

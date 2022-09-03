@@ -1,0 +1,23 @@
+<div class="form">
+  <div class="form-header">Update Profile</div>
+  <%= form_with model: @user, url: user_profile_path do |form| %>
+    <% if @user.errors.any? %>
+      <div class='form-error'>
+        <ul>
+          <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-field">
+      <%= form.label :name, 'New name' %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="submit-field">
+      <%= form.submit 'Update Profile' %>
+    </div>
+  <% end %>
+</div>

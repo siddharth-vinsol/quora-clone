@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get '/', action: 'new'
   end
   resource :user, only: [:show, :update] do
-    resource :profile, module: :users, only: [:show, :update] do
+    resource :profile, module: :users, only: [:show, :update, :edit] do
       post 'image', on: :member
     end
   end
