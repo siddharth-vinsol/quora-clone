@@ -15,6 +15,13 @@
     <div class="upload-button">
       <%= form.label :attachment, 'Attach PDF file' %>
       <%= form.file_field :attachment, accept: 'application/pdf' %>
+
+      <div class="uploaded-file">
+        <% if question.attachment.signed_id && question.persisted? %>
+          <div>File attached: <%= filename_from_file(question.attachment) %></div>
+          <%= render_filelink_if_exists(question.attachment) %>
+        <% end %>
+      </div>
     </div>
 
     <div>

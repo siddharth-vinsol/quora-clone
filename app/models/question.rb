@@ -13,6 +13,11 @@ class Question < ApplicationRecord
     update(published_at: Time.current, permalink: TokenGenerator.generate_permalink)
   end
 
+  def update_attachment(new_attachment)
+    attachment.purge_later
+    self.attachment = new_attachment
+  end
+
   private def assign_default_values
     self.total_downvotes = 0
     self.total_upvotes = 0
