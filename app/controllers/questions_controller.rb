@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_product, only: [:publish]
+  before_action :set_question, only: [:publish]
 
   def index
     @questions = Question.where(user: current_user)
@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.questions.build(question_params)
-    @question.published_at = Time.current if params[:draft].blank?
+    @question.publish if params[:draft].blank?
 
     if @question.save
       message = @question.published_at? ? t('notice.user.question.publish_success') : t('notice.user.question.draft_success')
@@ -29,11 +29,14 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   private def question_params
     params.require(:question).permit(:title, :content, :attachment)
   end
 
-  private def set_product
+  private def set_question
     @product = Question.find(params[:id])
   end
 end
