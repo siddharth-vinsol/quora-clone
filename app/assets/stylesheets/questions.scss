@@ -1,0 +1,18 @@
+.questions {
+  .field {
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+    input {
+      font-size: 28px;
+      background-color: white;
+    }
+    textarea {
+      width: 75vw;
+    }
+    .trix-content {
+      background-color: white;
+      font-size: 18px;
+    }
+  }
+}

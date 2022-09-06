@@ -1,0 +1,25 @@
+<div class="form">
+  <div class="form-header">Ask a question</div>
+  <%= form_with(model: @question) do |form| %>
+    <%= render partial: 'shared/form_errors', locals: { model_object: @question } %>
+    
+    <div class="field">
+      <%= form.label :title, 'Title' %>
+      <%= form.text_area :title %>
+    </div>
+
+    <div class="field">
+      <%= form.label :content, 'Content' %>
+      <%= form.rich_text_area :content %>
+    </div>
+
+    <div>
+      <%= check_box_tag :draft %>
+      <%= label_tag :draft, 'Save as Draft?' %>
+    </div>
+
+    <div class="submit-field">
+      <%= form.submit 'Create Question' %>
+    </div>
+  <% end %>
+</div>
