@@ -58,6 +58,9 @@ body {
     margin-right: 20px;
     font-size: 20px;
   }
+  .hidden {
+    display: none;
+  }
 }
 a {
   color: rgb(173, 68, 19);
@@ -92,6 +95,14 @@ a {
     display: flex;
     width: 100%;
     justify-content: center;
+  }
+  .upload-button {
+    border: 2px solid black;
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+    width: 30%;
+    font-size: 24px;
   }
   input[type='submit'] {
     display: inline-block;

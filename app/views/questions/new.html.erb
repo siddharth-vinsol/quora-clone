@@ -13,6 +13,11 @@
       <%= form.rich_text_area :content %>
     </div>
 
+    <div class="upload-button">
+      <%= form.label :attachment, 'Attach PDF file' %>
+      <%= form.file_field :attachment, accept: 'application/pdf' %>
+    </div>
+
     <div>
       <%= check_box_tag :draft %>
       <%= label_tag :draft, 'Save as Draft?' %>
