@@ -1,1 +1,17 @@
-<h1>Questions Homepage</h1>
+<h1 class="page-heading">Your Questions</h1>
+<div class="questions-container">
+  <% @questions.each do |question| %>
+    <div class="question-container">
+      <div class="question-container-left">
+        <div>Title: <%= question.title %></div>
+        <div>Content: <%= truncate_action_text(question.content, 100) %></div>
+        <%= render_filelink_if_exists question.attachment %>
+      </div>
+      <div class="question-container-right">
+        <% unless question.published_at? %>
+          <%= button_to 'Publish', publish_user_question_path(question), method: :post %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

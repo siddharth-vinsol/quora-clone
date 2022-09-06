@@ -9,6 +9,10 @@ class Question < ApplicationRecord
   validates :total_upvotes, :total_downvotes, numericality: { greater_than_or_equal_to: 0 }
   validates :title, :permalink, uniqueness: true
 
+  def publish
+    update(published_at: Time.current)
+  end
+
   private def assign_default_values
     self.total_downvotes = 0
     self.total_upvotes = 0
