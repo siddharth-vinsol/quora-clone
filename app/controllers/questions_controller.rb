@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:publish]
+  before_action :set_question, only: [:publish, :edit]
 
   def index
     @questions = Question.where(user: current_user)
@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
   end
 
   def publish
-    if validate_current_user_resource(@product) && @product.publish
+    if validate_current_user_resource(@question) && @question.publish
       redirect_to user_questions_path, notice: t('notice.user.question.publish_success')
     else
       render :index, status: :unprocessable_entity
@@ -30,6 +30,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    p @question
   end
 
   private def question_params
@@ -37,6 +38,6 @@ class QuestionsController < ApplicationController
   end
 
   private def set_question
-    @product = Question.find(params[:id])
+    @question = Question.find(params[:id])
   end
 end
