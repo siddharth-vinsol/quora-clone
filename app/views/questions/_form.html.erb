@@ -24,10 +24,12 @@
       </div>
     </div>
 
-    <div>
-      <%= check_box_tag :draft %>
-      <%= label_tag :draft, 'Save as Draft?' %>
-    </div>
+    <% unless question.published_at? %>
+      <div>
+        <%= check_box_tag :draft %>
+        <%= label_tag :draft, 'Save as Draft?' %>
+      </div>
+    <% end %>
 
     <div class="submit-field">
       <%= form.submit submit_button_text %>

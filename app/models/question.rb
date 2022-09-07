@@ -4,6 +4,8 @@ class Question < ApplicationRecord
   has_one_attached :attachment
   
   before_validation :assign_default_values, on: :create
+  before_update :disallow_if_answered, if: :answered_at_was
+  before_destroy :disallow_if_answered, if: :answered_at?
 
   validates :title, :content, presence: true
   validates :total_upvotes, :total_downvotes, numericality: { greater_than_or_equal_to: 0 }
@@ -21,5 +23,9 @@ class Question < ApplicationRecord
   private def assign_default_values
     self.total_downvotes = 0
     self.total_upvotes = 0
+  end
+
+  private def disallow_if_answered
+    throw :abort
   end
 end

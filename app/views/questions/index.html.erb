@@ -12,6 +12,8 @@
         <% unless question.answered_at? %>
           <%= button_to 'Edit', edit_user_question_path(question), method: :get%>
           <%= button_to 'Delete', user_question_path(question), method: :delete %>
+        <% end %>
+        <% unless question.published_at? %>
           <%= button_to 'Publish', publish_user_question_path(question), method: :post %>
         <% end %>
       </div>

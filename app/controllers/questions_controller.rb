@@ -47,7 +47,11 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy
+    if @question.destroy
+      redirect_to user_questions_path, notice: t('notice.user.question.destroy_success')
+    else
+      redirect_to user_path, status: :unprocessable_entity
+    end
   end
 
   private def question_params
