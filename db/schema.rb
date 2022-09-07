@@ -196,6 +196,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_161459) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "credits", default: 0, null: false
+    t.datetime "disabled_at", precision: nil
     t.string "username"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
