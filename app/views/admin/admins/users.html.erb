@@ -8,6 +8,17 @@
         <div>Email: <%= user.email %></div>
         <div>Role: <%= user.role %></div>
       </div>
+      <div class="user-container-right">
+        <%= form_with url: disable_user_account_admin_path, method: :patch do |form| %>
+          <%= form.hidden_field :user_id, value: user.id %>
+          <% unless user.disabled_at? %>
+            <%= form.hidden_field :should_disable, value: 1 %>
+            <%= form.submit 'Disable Account' %>
+          <% else %>
+            <%= form.submit 'Enable Account' %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>
