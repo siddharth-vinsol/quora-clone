@@ -26,6 +26,10 @@ class User < ApplicationRecord
   validates :profile_image, attached_file_type: { types: VALID_IMAGE_MIME_TYPES }, allow_blank: true
   validates :credits, numericality: true
 
+  def admin?
+    self.role == role['admin']
+  end
+
   def update_password_reset_token
     if update(password_reset_token: TokenHandler.generate_token, reset_password_sent_at: Time.current)
       send_password_reset_mail

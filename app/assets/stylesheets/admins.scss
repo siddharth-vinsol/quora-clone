@@ -1,0 +1,17 @@
+.admins {
+  .links {
+    display: flex;
+    flex-direction: column;
+    a {
+      margin: 10px;
+    }
+  }
+  .users-container {
+    width: 70vw;
+    .user-container {
+      padding: 10px;
+      margin: 5px;
+      border: 2px solid black;
+    }
+  }
+}

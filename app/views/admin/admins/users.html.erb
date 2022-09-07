@@ -1,0 +1,13 @@
+<h3>List of Users</h3>
+
+<div class="users-container">
+  <% @users.each do |user| %>
+    <div class="user-container">
+      <div class="user-container-left">
+        <div>Name: <%= user.name %></div>
+        <div>Email: <%= user.email %></div>
+        <div>Role: <%= user.role %></div>
+      </div>
+    </div>
+  <% end %>
+</div>
