@@ -1,0 +1,21 @@
+.answer-submit-form {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  .answer-field {
+    font-size: 20px;
+    border-color: #FAD1BE;
+    border-radius: 10px;
+    padding: 5px;
+  }
+  input[type='submit'] {
+    margin-left: 10px;
+    margin-top: 10px;
+    border: none;
+    width: 150px;
+    padding: 10px;
+    background-color: #FAD1BE;
+    box-shadow: 2.5px 2.5px 10px rgb(173, 68, 19);
+  }
+}
