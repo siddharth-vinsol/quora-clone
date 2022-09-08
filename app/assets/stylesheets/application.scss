@@ -34,7 +34,10 @@ header.main {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 20%;
+    a {
+      font-size: 16px;
+      text-decoration: underline;
+    }
   }
 }
 body {
@@ -70,6 +73,7 @@ body {
 a {
   color: rgb(173, 68, 19);
   text-decoration: unset;
+  margin: 10px;
 }
 .white {
   color: white;

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     post '/', action: 'generate_reset_token'
     patch '/', action: 'update_password'
   end
-  resources :questions, only: [:new, :create]
+  resources :questions, only: [:index, :show]
   
   get 'verify_email', to: 'registrations#verify_email'
   get '/:token/password/reset', to: 'passwords#reset', as: 'reset_password'
