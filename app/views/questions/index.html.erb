@@ -1,0 +1,18 @@
+<div class="page-heading">Questions posted by other users</div>
+
+<div class="questions-container">
+
+<div class="questions-container">
+  <% @questions.each do |question| %>
+    <div class="question-container">
+      <div class="question-container-left">
+        <div>Title: <%= question.title %></div>
+        <div>Content: <%= truncate_action_text(question.content, 100) %></div>
+        <div>Asked By: <%= question.user.name %></div>
+      </div>
+      <div class="question-container-right">
+        <%= link_to 'View Question', question_path(question) %>
+      </div>
+    </div>
+  <% end %>
+</div>
