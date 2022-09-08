@@ -27,5 +27,18 @@
     border: 2px solid lightgray;
     border-radius: 20px;
     word-wrap: break-word;
+    .vote-buttons {
+      display: flex;
+      margin: 10px;
+      margin-left: 0;
+      .vote-button {
+        margin-right: 25px;
+        font-size: 10px;
+        padding: 10px;
+        line-height: 0;
+        width: auto;
+        height: auto;
+      }
+    }
   }
 }

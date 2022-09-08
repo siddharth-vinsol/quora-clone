@@ -34,6 +34,10 @@
   <div class="answers">
     <% @question.answers.each do |answer| %>
       <div class="answer">
+        <div class="vote-buttons">
+          <%= button_to 'Upvote', logout_path, class: 'vote-button' %>
+          <%= button_to 'Downvote', logout_path, class: 'vote-button' %>
+        </div>
         <div><b><%= answer.user.name %> </b>Says: </div>
         <%= answer.content %>
       </div>
