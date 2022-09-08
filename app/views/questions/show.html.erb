@@ -20,7 +20,6 @@
       <%= render_filelink_if_exists(@question.attachment) %>
     <% end %>
   </div>
-  <h3>Answers by Users</h3>
 
   <%= form_with model: @new_answer, url: answer_path, class: "answer-submit-form" do |form| %>
     <h3><u>Post Your Answer</u></h3>
@@ -32,4 +31,12 @@
   <% end %>
   
   <h3><u>Answers by other Users</u></h3>
+  <div class="answers">
+    <% @question.answers.each do |answer| %>
+      <div class="answer">
+        <div><b><%= answer.user.name %> </b>Says: </div>
+        <%= answer.content %>
+      </div>
+    <% end %>
+  </div>
 </div>
