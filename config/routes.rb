@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :questions, param: :permalink do
     post 'publish', on: :member
   end
+  resource :answer, only: [:create]
   
   get 'verify_email', to: 'registrations#verify_email'
   get '/:token/password/reset', to: 'passwords#reset', as: 'reset_password'

@@ -4,6 +4,7 @@ class Question < ApplicationRecord
   attr_accessor :should_publish
 
   belongs_to :user
+  has_many :answers, dependent: :restrict_with_error
   has_rich_text :content
   has_one_attached :attachment
 
