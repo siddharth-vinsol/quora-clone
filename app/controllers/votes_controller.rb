@@ -3,12 +3,13 @@ class VotesController < ApplicationController
   
   def upvote
     @answer.handle_vote(Vote.votes['upvote'], current_user.id)
-    redirect_to request.referrer
+
+    render json: { vote_count: @answer.votes.sum(:vote), type: 'upvote' }
   end
 
   def downvote
     @answer.handle_vote(Vote.votes['downvote'], current_user.id)
-    redirect_to request.referrer
+    render json: { vote_count: @answer.votes.sum(:vote), type: 'downvote' }
   end
 
   private def set_answer
