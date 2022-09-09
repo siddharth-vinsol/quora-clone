@@ -1,4 +1,6 @@
-Rails.application.routes.draw do  
+Rails.application.routes.draw do
+  root to: 'homepage#index'
+
   controller :sessions do
     get 'login'
     get 'logout'

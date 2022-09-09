@@ -10,10 +10,8 @@
         <div class="notice"><%= t('notice.user.question.draft_question') unless question.published_at? %></div>
       </div>
       <div class="question-container-right">
-        <% unless question.answered_at? %>
-          <%= button_to 'Edit', edit_user_question_path(question), method: :get%>
-          <%= button_to 'Delete', user_question_path(question), method: :delete %>
-        <% end %>
+        <%= button_to 'Edit', edit_user_question_path(question), method: :get%>
+        <%= button_to 'Delete', user_question_path(question), method: :delete %>
         <% unless question.published_at? %>
           <%= button_to 'Publish', publish_user_question_path(question), method: :post %>
         <% end %>
