@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     get 'login'
     get 'logout'
   end
+  scope controller: :votes, path: 'vote' do
+    post 'upvote'
+    post 'downvote'
+  end
 
   resource :session, only: [:create, :destroy]
   resource :registration, path: 'signup', only: [:create] do

@@ -1,7 +1,7 @@
 class Vote < ApplicationRecord
   belongs_to :voteable, polymorphic: true
 
-  enum value: {
+  enum vote: {
     'upvote' => 1,
     'downvote' => -1
   }

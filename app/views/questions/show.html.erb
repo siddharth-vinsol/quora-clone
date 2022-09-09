@@ -35,9 +35,9 @@
     <% @question.answers.each do |answer| %>
       <div class="answer">
         <div class="vote-buttons">
-          <%= button_to 'Ʌ', logout_path, class: 'vote-button' %>
-          <div class="votes-count">0</div>
-          <%= button_to 'V', logout_path, class: 'vote-button' %>
+          <%= button_to 'Ʌ', upvote_path(answer_id: answer.id), class: vote_classes_for_current_user(answer, 'upvote') %>
+          <div class="votes-count"><%= net_vote_count(answer) %></div>
+          <%= button_to 'V', downvote_path(answer_id: answer.id), class: vote_classes_for_current_user(answer, 'downvote') %>
         </div>
         <div><b><%= answer.user.name %> </b>Says: </div>
         <%= answer.content %>
