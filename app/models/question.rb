@@ -25,6 +25,10 @@ class Question < ApplicationRecord
   def file_attached?
     attachment.present?
   end
+  
+  def editable?
+    answers.blank?
+  end
 
   private def assign_permalink
     self.permalink = TokenHandler.generate_permalink
