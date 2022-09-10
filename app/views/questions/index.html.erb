@@ -1,11 +1,13 @@
-<div class="page-heading">Questions posted by other users</div>
+<h1 class="page-heading">Your Questions</h1>
 
 <div class="question-search-bar">
-  <%= form_with url: questions_path, method: :get do |form| %>
-    <%= form.text_field :search_title, placeholder: 'Question Title', class: 'search-field', value: params[:search_title] %>
-    <%= form.submit 'Search Question By Title' %>
+  <%= search_form_for @q, url: root_path do |form| %>
+    <%= form.search_field :title_cont, placeholder: 'Question Title', class: 'search-field' %>
+    <%= form.submit 'Search Question by Title' %>
   <% end %>
 </div>
+
+<%= link_to 'Post a new Question', new_question_path %>
 
 <div class="questions-container">
   <% @questions.each do |question| %>
@@ -13,10 +15,16 @@
       <div class="question-container-left">
         <div>Title: <%= question.title %></div>
         <div>Content: <%= truncate_action_text(question.content, 100) %></div>
-        <div>Asked By: <%= question.user.name %></div>
+        <%= render_filelink_if_exists question.attachment %>
+        <div class="notice"><%= t('notice.user.question.draft_question') unless question.published_at? %></div>
       </div>
       <div class="question-container-right">
-        <%= link_to 'View Question', question_path(question) %>
+        <%= button_to 'View', question_path(question), method: :get, class: 'view-button' %>
+        <%= button_to 'Edit', edit_question_path(question), method: :get, class: 'edit-button' %>
+        <%= button_to 'Delete', question_path(question), method: :delete, class: 'delete-button' %>
+        <% unless question.published_at? %>
+          <%= button_to 'Publish', publish_question_path(question), method: :post, class: 'publish-button' %>
+        <% end %>
       </div>
     </div>
   <% end %>
