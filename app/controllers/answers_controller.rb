@@ -5,7 +5,7 @@ class AnswersController < ApplicationController
     @new_answer = @question.answers.build(content: answer_params[:content], user_id: current_user.id)
 
     if @new_answer.save
-      redirect_to question_path(answer_params[:question_id]), notice: t('notice.user.answer.submit_success')
+      redirect_to question_path(answer_params[:permalink]), notice: t('notice.user.answer.submit_success')
     else
       render 'questions/show', status: :unprocessable_entity
     end
@@ -16,6 +16,6 @@ class AnswersController < ApplicationController
   end
 
   private def answer_params
-    params.require(:answer).permit(:question_id, :content)
+    params.require(:answer).permit(:question_id, :content, :permalink)
   end
 end
