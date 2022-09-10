@@ -1,9 +1,5 @@
 <div class="answer">
-  <div class="vote-buttons">
-    <%= button_to 'Ʌ', upvote_path(answer_id: answer.id), class: vote_classes_for_current_user(answer, 'upvote'), id: "upvote-button-#{answer.id}", data: { answer_id: answer.id, type: 'upvote' } %>
-    <div class="votes-count" id=<%= "vote-count-#{answer.id}" %>><%= net_vote_count(answer) %></div>
-    <%= button_to 'V', downvote_path(answer_id: answer.id), class: vote_classes_for_current_user(answer, 'downvote'), id: "downvote-button-#{answer.id}", data: { answer_id: answer.id, type: 'downvote' } %>
-  </div>
+  <%= render partial: 'shared/vote_buttons', locals: { resource: answer } %>
   <div><b><%= answer.user.name %> </b>Says: </div>
   <%= answer.content %>
 </div>
