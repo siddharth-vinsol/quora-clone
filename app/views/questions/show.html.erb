@@ -25,28 +25,10 @@
     <% end %>
   </div>
 
-  <%= form_with model: @new_answer, url: answer_path, class: "answer-submit-form", data: { turbo: false } do |form| %>
-    <h3><u>Post Your Answer</u></h3>
-    <%= render partial: 'shared/form_errors', locals: { model_object: @new_answer } %>
-
-    <%= form.hidden_field :question_id, value: @question.id %>
-    <%= form.hidden_field :permalink, value: @question.permalink %>
-    <%= form.rich_text_area :content, placeholder: 'Post your answer', class: 'answer-field'%>
-    <%= form.submit 'Submit' %>
-  <% end %>
+  <%= render 'answers/form' %>
   
   <h3><u>Answers by other Users</u></h3>
   <div class="answers-container">
-    <% @question.answers.each do |answer| %>
-      <div class="answer">
-        <div class="vote-buttons">
-          <%= button_to 'Ʌ', upvote_path(answer_id: answer.id), class: vote_classes_for_current_user(answer, 'upvote'), id: "upvote-button-#{answer.id}", data: { answer_id: answer.id, type: 'upvote' } %>
-          <div class="votes-count" id=<%= "vote-count-#{answer.id}" %>><%= net_vote_count(answer) %></div>
-          <%= button_to 'V', downvote_path(answer_id: answer.id), class: vote_classes_for_current_user(answer, 'downvote'), id: "downvote-button-#{answer.id}", data: { answer_id: answer.id, type: 'downvote' } %>
-        </div>
-        <div><b><%= answer.user.name %> </b>Says: </div>
-        <%= answer.content %>
-      </div>
-    <% end %>
+    <%= render @question.answers %>
   </div>
 </div>
