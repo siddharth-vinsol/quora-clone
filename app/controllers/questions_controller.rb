@@ -60,7 +60,7 @@ class QuestionsController < ApplicationController
   end
 
   private def set_question
-    @resource = @question = Question.find(params[:id])
+    @resource = @question = Question.find_by_permalink(params[:permalink])
   end
 
   private def enough_credits_on_user

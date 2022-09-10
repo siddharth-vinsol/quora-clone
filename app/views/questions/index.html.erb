@@ -19,11 +19,11 @@
         <div class="notice"><%= t('notice.user.question.draft_question') unless question.published_at? %></div>
       </div>
       <div class="question-container-right">
-        <%= button_to 'View', question_path(question), method: :get, class: 'view-button' %>
-        <%= button_to 'Edit', edit_question_path(question), method: :get, class: 'edit-button' %>
-        <%= button_to 'Delete', question_path(question), method: :delete, class: 'delete-button' %>
+        <%= button_to 'View', question_path(question.permalink), method: :get, class: 'view-button' %>
+        <%= button_to 'Edit', edit_question_path(question.permalink), method: :get, class: 'edit-button' %>
+        <%= button_to 'Delete', question_path(question.permalink), method: :delete, class: 'delete-button' %>
         <% unless question.published_at? %>
-          <%= button_to 'Publish', publish_question_path(question), method: :post, class: 'publish-button' %>
+          <%= button_to 'Publish', publish_question_path(question.permalink), method: :post, class: 'publish-button' %>
         <% end %>
       </div>
     </div>

@@ -16,7 +16,7 @@
         <div>Asked By: <%= question.user.name %></div>
       </div>
       <div class="question-container-right">
-        <%= link_to 'View Question', question_path(question) %>
+        <%= link_to 'View Question', question_path(question.permalink) %>
       </div>
     </div>
   <% end %>

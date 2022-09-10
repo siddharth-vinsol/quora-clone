@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     post '/', action: 'generate_reset_token'
     patch '/', action: 'update_password'
   end
-  resources :questions do
+  resources :questions, param: :permalink do
     post 'publish', on: :member
   end
   
