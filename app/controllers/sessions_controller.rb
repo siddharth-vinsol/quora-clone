@@ -14,15 +14,15 @@ class SessionsController < ApplicationController
         }
         redirect_to user_path
       else
-        redirect_to login_url, notice: t('notice.session.verify_before_continue')
+        redirect_to login_url, notice: t('verify_before_continue')
       end
     else
-      redirect_to login_url, notice: t('notice.session.invalid_email_password')
+      redirect_to login_url, notice: t('invalid_email_password')
     end
   end
 
   def destroy
     cookies.delete(:user_id)
-    redirect_to login_path, notice: t('notice.session.logout_success')
+    redirect_to login_path, notice: t('logout_success')
   end
 end

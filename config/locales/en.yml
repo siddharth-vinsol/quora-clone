@@ -1,17 +1,2 @@
 en:
   hello: "Hello world"
-  notice:
-    session:
-      login_before_continue: 'Please log in before proceeding'
-      verify_before_continue: 'Please verify your account using link sent on your email before moving further'
-      invalid_email_password: 'Wrong email and password combination. Please try again'
-      logout_success: 'Logged out successfully'
-    password:
-      reset_mail_sent: 'Password reset mail sent to your email'
-      reset_success: 'Password reset successfully'
-      invalid_reset_request: 'Invalid password reset request'
-      email_not_found: 'No such registered email exists'
-    registration:
-      signup_success: 'Thank you for signing up, a verification email has been sent to your account.'
-      verification_success: 'Account has been verified, please login again.'
-      verification_failure: 'Cannot verify your account.'

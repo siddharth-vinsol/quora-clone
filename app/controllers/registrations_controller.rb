@@ -5,7 +5,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to login_path, notice: t('notice.registration.signup_success')
+      redirect_to login_path, notice: t('signup_success')
     else
       render :new, status: :unprocessable_entity
     end
@@ -18,9 +18,9 @@ class RegistrationsController < ApplicationController
   def verify_email
     if current_user_by_confirmation_token
       @user.update(confirmation_token: nil, verified_at: Time.current)
-      render :verify_email, notice: t('notice.registration.verification_success')
+      render :verify_email, notice: t('verification_success')
     else
-      redirect_to login_path, notice: t('notice.registration.verification_failure')
+      redirect_to login_path, notice: t('verification_failure')
     end
   end
 
