@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :enough_credits_on_user, only: [:new, :create]
   before_action :set_question, except: [:index, :new, :create]
   before_action :validate_current_user_resource, only: [:publish, :edit, :update, :destroy]
+  skip_before_action :authorize, only: [:show]
 
   def index
     @q = Question.where(user: current_user).order('created_at DESC').ransack(params[:q])
@@ -33,6 +34,9 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+  end
+
+  def show
   end
 
   def update
