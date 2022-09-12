@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   VALID_IMAGE_MIME_TYPES = ['image/png', 'image/jpeg']
+  acts_as_taggable_on :topics
 
   before_create :generate_confirmation_token
   after_create_commit :send_verification_mail
