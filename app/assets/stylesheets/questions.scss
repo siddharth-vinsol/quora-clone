@@ -36,11 +36,36 @@
   }
   .questions-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     height: 80vh;
     width: 80vw;
     overflow: scroll;
+    .questions-container-left {
+      width: 20%;
+      border: 2px solid black;
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 20px;
+        input[type="submit"] {
+          border-color: #333232;
+          background-color: #E0E0E0;
+          box-shadow: none;
+          color: #333232;
+          margin: 5px;
+          font-size: 10px;
+          padding: 10px;
+          line-height: 0;
+          width: 100px;
+          height: 30px;
+        }
+      }
+    }
+    .questions-container-right {
+      width: 80%;
+    }
     .question-container {
       padding: 10px;
       border: 2px solid black;

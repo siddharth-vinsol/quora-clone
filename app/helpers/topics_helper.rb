@@ -1,5 +1,5 @@
 module TopicsHelper
   def topics_list
-    Tag.pluck(:name)
+    Topic.pluck(:name)
   end
 end
