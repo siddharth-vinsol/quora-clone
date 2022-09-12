@@ -3,6 +3,8 @@ class Question < ApplicationRecord
   
   attr_accessor :should_publish
 
+  acts_as_taggable_on :topics
+  
   belongs_to :user
   has_many :answers, dependent: :restrict_with_error
   has_many :sorted_answers, -> { by_most_upvoted }, class_name: 'Answer'

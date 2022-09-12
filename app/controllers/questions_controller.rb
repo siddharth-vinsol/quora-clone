@@ -60,7 +60,7 @@ class QuestionsController < ApplicationController
   end
 
   private def question_params
-    params.require(:question).permit(:title, :content, :attachment)
+    params.require(:question).permit(:title, :content, :attachment, topic_list: [])
   end
 
   private def resource

@@ -10,5 +10,5 @@ class TopicsHandler {
   }
 }
 
-let topicsHandler = new TopicsHandler($('#user_topic_list'));
+let topicsHandler = new TopicsHandler($('.topics-list'));
 topicsHandler.init();
