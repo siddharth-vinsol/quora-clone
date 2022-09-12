@@ -2,10 +2,5 @@
   <%= javascript_include_tag 'scripts/topics_handler', defer: true %>
 <% end %>
 
-<div class="topics-container">
-  <%= form_with model: entity, url: url, data: { turbo: false } do |form| %>
-    <%= form.label :topic_list, 'Topics seperated by commas', class: 'topic-list-label' %>
-    <%= form.select :topic_list, topics_list, { value: current_user.topic_list }, { class: 'topics-list', multiple: true } %>
-    <%= form.submit 'Update topics' %>
-  <% end %>
-</div>
+<%= form.label :topic_list, 'Topics seperated by commas', class: 'topic-list-label' %>
+<%= form.select :topic_list, topics_list, { value: current_user.topic_list }, { class: 'topics-list', multiple: true } %>
