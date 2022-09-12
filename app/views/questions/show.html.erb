@@ -25,7 +25,11 @@
     <% end %>
   </div>
 
-  <%= render 'answers/form' %>
+  <% if current_user %>
+    <%= render 'answers/form' %>
+  <% else %>
+    <div class="page-heading"><%= t('notice.session.login_before_answer')%></div>
+  <% end%>
   
   <h3><u>Answers by other Users</u></h3>
   <div class="answers-container" data-ref="answers-container">

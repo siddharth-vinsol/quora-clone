@@ -1,9 +1,12 @@
 class ApplicationController < ActionController::Base
   before_action :authorize
 
-  private def authorize
+  def authorize
     unless signed_in?
-      redirect_to login_path, notice: t('login_before_continue')
+      respond_to do |format|
+        format.html { redirect_to login_path, notice: t('notice.session.login_before_continue') }
+        format.json { render json: { error: t('notice.session.login_before_continue') }, status: :unprocessable_entity }
+      end
     end
   end
 

@@ -11,15 +11,20 @@ class VoteHandler {
         const voteButton = event.target;
         const formData = this.generateDataForRequest(voteButton.form);
         const data = await this.handleVoteRequests(voteButton, formData);
-        const { 
-          dataset: {
-            resourceId,
-            resourceType,
-            buttonType
-          }
-        } = voteButton;
-  
-        this.handleVoteButtonClasses(voteButton, resourceId, resourceType, buttonType, data);
+
+        if (data.error) {
+          this.handleError(data.error);
+        } else {
+          const {
+            dataset: {
+              resourceId,
+              resourceType,
+              buttonType
+            }
+          } = voteButton;
+    
+          this.handleVoteButtonClasses(voteButton, resourceId, resourceType, buttonType, data);
+        }
       }
     });
   }
@@ -30,6 +35,12 @@ class VoteHandler {
         data.append(pair[0], pair[1]);
     }
     return data;
+  }
+
+  handleError(error) {
+    const noticeElement = document.getElementById('notice');
+    noticeElement.textContent = error;
+    noticeElement.scrollIntoView();
   }
 
   handleVoteButtonClasses(voteButton, resourceId, resourceType, buttonType, data) {
