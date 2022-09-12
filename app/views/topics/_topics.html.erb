@@ -1,0 +1,7 @@
+<div class="topics-container">
+  <%= form_with model: entity, url: url do |form| %>
+    <%= form.label :topic_list, 'Topics seperated by commas', class: 'topic-list-label' %>
+    <%= form.text_area :topic_list, placeholder: 'Topic Name', value: current_user.topic_list.join(', '), rows: 4, cols: 50 %>
+    <%= form.submit 'Update topics' %>
+  <% end %>
+</div>
