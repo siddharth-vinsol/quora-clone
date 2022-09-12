@@ -94,6 +94,17 @@
       width: 80%;
     }
   }
+  .question-topics {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    .question-topic {
+      margin: 2px;
+      background-color: lightgrey;
+      padding: 5px;
+      border-radius: 25%;
+    }
+  }
   .question {
     display: flex;
     width: 70vw;

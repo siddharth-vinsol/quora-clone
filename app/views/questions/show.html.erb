@@ -18,6 +18,12 @@
   <div class="question-content">
     <div class="question-field-value"><%= @question.content %></div>
   </div>
+  <div class="question-topics">
+    Related Topics: 
+    <% @question.topic_list.each do |topic| %>
+      <div class="question-topic"><%= topic %></div>
+    <% end %>
+  </div>
   <div class="uploaded-file">
     <% if @question.file_attached? %>
       <div>File attached: <%= filename_from_file(@question.attachment) %></div>
