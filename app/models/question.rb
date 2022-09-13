@@ -19,6 +19,6 @@ class Question < ApplicationRecord
   end
 
   private def assign_permalink
-    self.permalink = TokenGenerator.generate_permalink
+    self.permalink = TokenHandler.generate_permalink
   end
 end

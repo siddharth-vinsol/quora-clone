@@ -1,0 +1,4 @@
+en:
+  publish_success: 'Your question has been published.'
+  draft_success: 'Your question has been saved as draft.'
+  destroy_success: 'Your question has been deleted.'
