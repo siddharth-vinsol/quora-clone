@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get '/', action: 'show'
     get 'edit'
     get 'password'
+    patch 'password', action: :update_password
   end
   resource :user, only: [:update]
   resource :password, only: [:show] do
