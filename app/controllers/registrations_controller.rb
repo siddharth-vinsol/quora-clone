@@ -1,6 +1,8 @@
 class RegistrationsController < ApplicationController
   skip_before_action :authorize
 
+  before_action :set_user, only: [:verify_email]
+
   def create
     @user = User.new(user_params)
 
@@ -16,8 +18,7 @@ class RegistrationsController < ApplicationController
   end
 
   def verify_email
-    if current_user_by_confirmation_token
-      @user.update(confirmation_token: nil, verified_at: Time.current)
+     if @user.verify_user
       render :verify_email, notice: t('verification_success')
     else
       redirect_to login_path, notice: t('verification_failure')
@@ -28,7 +29,9 @@ class RegistrationsController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-  private def current_user_by_confirmation_token
-    params[:confirmation_token].present? && @user = User.find_by(confirmation_token: params[:confirmation_token])
+  private def set_user
+    unless params[:confirmation_token].present? && @user = User.find_by(confirmation_token: params[:confirmation_token])
+      redirect_to login_path, notice: t('verification_failure')
+    end
   end
 end
