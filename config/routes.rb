@@ -13,9 +13,10 @@ Rails.application.routes.draw do
     get '/', action: 'show'
     get 'edit'
     get 'password'
+  end
+  resource :user, only: [:update] do
     patch 'password', action: :update_password
   end
-  resource :user, only: [:update]
   resource :password, only: [:show] do
     post '/', action: 'generate_reset_token'
     patch '/', action: 'update_password'
