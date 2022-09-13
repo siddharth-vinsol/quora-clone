@@ -15,12 +15,12 @@ class User < ApplicationRecord
   validates :email, format: { with: QuoraClone::RegexConstants::EMAIL_REGEX }, allow_blank: true
 
   def update_password_reset_token
-    update(password_reset_token: TokenGenerator.generate_token)
+    update(password_reset_token: TokenHandler.generate_token, reset_password_sent_at: Time.current)
     UserMailer.reset_password(self).deliver_later
   end
 
   def update_password(password, password_confirmation)
-    update(password: password, password_confirmation: password_confirmation, password_reset_token: nil, password_reset_at: Time.now)
+    update(password: password, password_confirmation: password_confirmation, password_reset_token: nil)
   end
 
   private def send_verification_mail
@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
 
   private def generate_confirmation_token
-    self.confirmation_token = TokenGenerator.generate_token
+    self.confirmation_token = TokenHandler.generate_token
   end
 
   private def setting_password?

@@ -3,3 +3,4 @@ en:
   reset_success: 'Password reset successfully.'
   invalid_reset_request: 'Invalid password reset request.'
   email_not_found: 'No such registered email exists.'
+  token_expired: 'Your link has expired.'

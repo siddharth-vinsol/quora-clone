@@ -2,6 +2,7 @@ class PasswordsController < ApplicationController
   skip_before_action :authorize
 
   before_action :set_user, only: [:reset, :update_password]
+  before_action :check_token_expiry, only: [:reset, :update_password]
 
   def show
   end
@@ -37,5 +38,9 @@ class PasswordsController < ApplicationController
 
   private def current_user_by_email
     @user = User.find_by(email: params[:email])
+  end
+
+  private def check_token_expiry
+    redirect_to password_path, notice: t('token_expired') if TokenHandler.token_expired?(@user.reset_password_sent_at)
   end
 end
