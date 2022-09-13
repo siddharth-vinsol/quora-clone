@@ -19,7 +19,8 @@ class PasswordsController < ApplicationController
   end
 
   def update_password
-    if @user.update_password(reset_password_params[:password], reset_password_params[:password_confirmation])
+    if @user.update(reset_password_params)
+      @user.clear_password_reset_token
       redirect_to login_path, notice: t('reset_success')
     else
       render :reset, status: :unprocessable_entity

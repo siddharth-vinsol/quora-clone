@@ -23,6 +23,10 @@ class User < ApplicationRecord
     update(password: password, password_confirmation: password_confirmation, password_reset_token: nil)
   end
 
+  def clear_password_reset_token
+    update(password_reset_token: nil)
+  end
+
   def verify_user
     update(confirmation_token: nil, verified_at: Time.current)
   end
