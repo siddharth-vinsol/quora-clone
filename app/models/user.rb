@@ -19,10 +19,6 @@ class User < ApplicationRecord
     UserMailer.reset_password(self).deliver_later
   end
 
-  def update_password(password, password_confirmation)
-    update(password: password, password_confirmation: password_confirmation, password_reset_token: nil)
-  end
-
   def clear_password_reset_token
     update(password_reset_token: nil)
   end

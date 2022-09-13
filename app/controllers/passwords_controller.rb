@@ -42,6 +42,6 @@ class PasswordsController < ApplicationController
   end
 
   private def check_token_expiry
-    redirect_to password_path, notice: t('token_expired') if TokenHandler.token_expired?(@user.reset_password_sent_at)
+    redirect_to password_path, notice: t('token_expired') if TokenHandler.token_expired?(@user.reset_password_sent_at, QuoraClone::Token::TOKEN_EXPIRATION_TIME)
   end
 end
