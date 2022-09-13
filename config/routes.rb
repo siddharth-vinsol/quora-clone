@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   end
   resource :user, only: [:show]
   resource :password, only: [:show] do
-    # get :reset, path: 'reset_password'
     post '/', action: 'generate_reset_token'
     patch '/', action: 'update_password'
   end
