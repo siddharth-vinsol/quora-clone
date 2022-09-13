@@ -10,8 +10,4 @@ class ApplicationController < ActionController::Base
   private def current_user
     @user ||= User.find_by(id: cookies.encrypted[:user_id])
   end
-
-  private def current_user_by_email
-    @user = User.find_by(email: params[:email])
-  end
 end

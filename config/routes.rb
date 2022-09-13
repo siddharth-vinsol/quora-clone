@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  default_url_options({ host: '127.0.0.1', port: 3000 })
+  default_url_options({ host: QuoraClone::Environment::HOST, port: QuoraClone::Environment::PORT })
   
   controller :sessions do
-    get 'login', action: :login
-    get 'logout', action: :logout
+    get 'login'
+    get 'logout'
   end
 
   resource :session, only: [:create, :destroy]
@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   end
   resource :user, only: [:show]
   resource :password, only: [:show] do
-    get :reset, path: 'reset_password'
+    # get :reset, path: 'reset_password'
     post '/', action: 'generate_reset_token'
-    patch '/', action: 'update_user_password'
+    patch '/', action: 'update_password'
   end
   
   get 'verify_email', to: 'registrations#verify_email'
-
+  get '/:token/password/reset', to: 'passwords#reset', as: 'reset_password'
 end

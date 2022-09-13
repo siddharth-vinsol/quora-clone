@@ -1,6 +1,6 @@
 <div class="form">
   <div>Reset your password here</div>
-  <%= form_with model: @user, url: password_path, method: :patch do |form| %>
+  <%= form_with model: @user, url: password_path(token: params[:token]), method: :patch do |form| %>
     <% if @user.errors.any? %>
       <div class='form-error'>
         <ul>

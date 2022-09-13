@@ -12,10 +12,11 @@ class User < ApplicationRecord
   validates :name, :email, presence: true
   validates :password, :password_confirmation, presence: true, if: :setting_password?
   validates :email, uniqueness: true
-  validates :email, format: { with: QuoraClone::EMAIL_REGEX }, allow_blank: true
+  validates :email, format: { with: QuoraClone::RegexConstants::EMAIL_REGEX }, allow_blank: true
 
   def update_password_reset_token
     update(password_reset_token: TokenGenerator.generate_token)
+    UserMailer.reset_password(self).deliver_later
   end
 
   def update_password(password, password_confirmation)
