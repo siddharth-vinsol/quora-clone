@@ -1,10 +1,14 @@
 class ApplicationController < ActionController::Base
   before_action :authorize
 
-  def authorize
-    unless current_user
-      redirect_to login_path, notice: t('notice.session.login_before_continue')
+  private def authorize
+    unless signed_in?
+      redirect_to login_path, notice: t('login_before_continue')
     end
+  end
+
+  private def signed_in?
+    current_user.present?
   end
 
   private def current_user
