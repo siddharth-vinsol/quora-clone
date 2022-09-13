@@ -1,12 +1,13 @@
 class SessionsController < ApplicationController
   skip_before_action :authorize
+
+  before_action :set_user, only: [:create]
   
   def login
   end
 
   def create
-    @user = User.find_by(email: params[:email])
-    if @user && @user.authenticate(params[:password])
+    if @user.authenticate(params[:password])
       if @user.verified_at?
         cookies.encrypted[:user_id] = { 
           value: @user.id,
@@ -24,5 +25,11 @@ class SessionsController < ApplicationController
   def destroy
     cookies.delete(:user_id)
     redirect_to login_path, notice: t('logout_success')
+  end
+
+  private def set_user
+    unless @user = User.find_by(email: params[:email])
+      redirect_to login_url, notice: t('invalid_email_password')
+    end
   end
 end
