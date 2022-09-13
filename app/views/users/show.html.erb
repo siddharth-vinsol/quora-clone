@@ -1,1 +1,14 @@
-<h1>WELCOME <%= @user.name %></h1>
+<h1>WELCOME <%= current_user.name %></h1>
+
+<div class="profile">
+  <%= image_tag current_user.profile_image.signed_id ? rails_blob_path(current_user.profile_image, disposition: 'attachment') : 'default.jpeg', class: 'profile-img' %>
+  <%#= form_with model: current_user, url: image_user_profile_path, method: :post do |form| %>
+    <%#= form.label :profile_image, 'Upload New Profile Picture' %>
+    <%#= form.file_field :profile_image, accept: 'image/png, image/jpeg', onChange: 'this.form.submit()' %>
+  <%# end %>
+
+  <div><%= current_user.name %></div>
+  <div><%= current_user.email %></div>
+  <%= button_to 'Edit Profile', profile_edit_path, method: :get %>
+  <%#= button_to 'Change Password', change_password_path, method: :get %>
+</div>

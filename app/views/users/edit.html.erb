@@ -1,0 +1,41 @@
+<div class="form">
+  <div class="form-header">Update Profile</div>
+  <%= form_with model: current_user, url: user_path do |form| %>
+    <% if current_user.errors.any? %>
+      <div class='form-error'>
+        <ul>
+          <% current_user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="img-field">
+      <%= image_tag current_user.profile_image.signed_id ? rails_blob_path(current_user.profile_image, disposition: 'attachment') : 'default.jpeg', class: 'profile-img' %>
+      <%= form.label :profile_image, 'Upload New Profile Picture' %>
+      <%= form.file_field :profile_image, accept: 'image/png, image/jpeg' %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :name, 'New name' %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="note">Note: Leave password blank if dont want to update it</div>
+    <div class="form-field">
+      <%= form.label :password, 'New Password' %>
+      <%= form.text_field :password %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :password_confirmation, 'New Password Confirmation' %>
+      <%= form.text_field :password_confirmation %>
+    </div>
+
+    <div class="submit-field">
+      <%= form.submit 'Update Profile' %>
+    </div>
+  <% end %>
+  <%= button_to 'Change Password' %>
+</div>

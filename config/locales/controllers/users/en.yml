@@ -1,0 +1,4 @@
+en:
+  profile_update_success: 'Your profile has been updated successfully.'
+  profile_image_upload_success: 'Your profile image has been updated successfully.'
+  profile_image_upload_failer: 'An error occured while updating your profile image.'

@@ -1,5 +1,5 @@
 class PasswordsController < ApplicationController
-  skip_before_action :authorize, except: [:change, :change_password]
+  skip_before_action :authorize
 
   before_action :set_user, only: [:reset, :update_password]
   before_action :check_token_expiry, only: [:reset, :update_password]
@@ -24,14 +24,6 @@ class PasswordsController < ApplicationController
       redirect_to login_path, notice: t('reset_success')
     else
       render :reset, status: :unprocessable_entity
-    end
-  end
-
-  def change_password
-    if @user.update_password(reset_password_params[:password], reset_password_params[:password_confirmation])
-      redirect_to user_profile_path, notice: t('notice.password.change_success')
-    else
-      render :change, status: :unprocessable_entity
     end
   end
 

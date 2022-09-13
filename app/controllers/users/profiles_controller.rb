@@ -3,18 +3,18 @@ class Users::ProfilesController < ApplicationController
   end
 
   def update
-    if @user.change_profile_details(user_profile_params[:name])
-      redirect_to user_profile_path, notice: t('notice.user.profile.update_success')
+    if current_user.change_profile_details(user_profile_params[:name])
+      redirect_to user_profile_path, notice: t('profile_update_success')
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def image
-    if @user.change_profile_picture(params[:user][:profile_image])
-      redirect_to user_profile_path, notice: t('user.profile.profile_image_upload_success')
+    if current_user.change_profile_picture(params[:user][:profile_image])
+      redirect_to user_profile_path, notice: t('profile_image_upload_success')
     else
-      redirect_to user_profile_path, notice: t('user.profile.profile_image_upload_failed')
+      redirect_to user_profile_path, notice: t('profile_image_upload_failed')
     end
   end
 
