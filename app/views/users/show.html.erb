@@ -5,5 +5,10 @@
 
   <div><%= current_user.name %></div>
   <div><%= current_user.email %></div>
+  <br />
+  <div>Your Topic of interests</div>
+  <div class="topics-container">
+    <%= render partial: 'topics/topic', collection: current_user.topics %>  
+  </div>
   <%= button_to 'Edit Profile', edit_user_path, method: :get %>
 </div>

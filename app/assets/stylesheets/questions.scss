@@ -71,6 +71,8 @@
       border: 2px solid black;
       margin: 5px;
       display: flex;
+      width: 90%;
+      height: fit-content;
       justify-content: space-between;
       .question-container-left {
         width: 80%;

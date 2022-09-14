@@ -14,7 +14,6 @@
       <%= form.collection_check_boxes :topics_name_eq_any, Topic.order(:name), :name, :name do |b| %>
         <div><%= b.check_box %> <%=b.label%></div>
       <% end %>
-      
       <%= form.submit %>
     <% end %>
   </div>

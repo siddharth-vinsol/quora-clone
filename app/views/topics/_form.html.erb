@@ -2,5 +2,5 @@
   <%= javascript_include_tag 'scripts/topics_handler', defer: true %>
 <% end %>
 
-<%= form.label :topic_list, 'Topics seperated by commas', class: 'topic-list-label' %>
+<%= form.label :topic_list, 'Topics list', class: 'topic-list-label' %>
 <%= form.select :topic_list, topics_list, { value: entity.topic_list }, { class: 'topics-list', multiple: true, data: { hello: 'asd'} } %>
