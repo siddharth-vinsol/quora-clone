@@ -5,6 +5,7 @@ class Answer < ApplicationRecord
 
   belongs_to :user
   belongs_to :question
+  has_many :comments, as: :commentable, dependent: :restrict_with_error
   has_rich_text :content
 
   validates :content, presence: true
