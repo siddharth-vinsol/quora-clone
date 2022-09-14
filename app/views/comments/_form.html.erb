@@ -1,10 +1,10 @@
 <div class="comment-form-container">
   <h4><u>Add Your comment</u></h4>
-  <%= form_with model: @new_comment, url: comment_path, class: 'comments-form' do |form| %>
-    <%= render partial: 'shared/form_errors', locals: { model_object: @new_comment } %>
+  <%= form_with model: new_comment, url: comment_path, class: 'comments-form' do |form| %>
+    <%= render partial: 'shared/form_errors', locals: { model_object: new_comment } %>
 
-    <%= form.hidden_field :commentable_id, value: resource.id %>
-    <%= form.hidden_field :commentable_type, value: resource.class %>
+    <%= form.hidden_field :commentable_id, value: commentable.id %>
+    <%= form.hidden_field :commentable_type, value: commentable.class %>
     <%= form.text_field :content, placeholder: 'Post your comment' %>
     <%= form.submit 'Add comment' %>
   <% end %>

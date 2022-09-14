@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
     if @new_comment.save
       redirect_to request.referrer, notice: t('comment_added')
     else
-      render 'questions/show', status: :unprocessable_entity
+      flash[:notice] = @new_comment.errors.full_messages.first
+      redirect_to request.referrer, status: :unprocessable_entity
     end
   end
 
