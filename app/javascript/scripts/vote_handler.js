@@ -5,9 +5,8 @@ class VoteHandler {
 
   init() {
     this.voteableContainer.addEventListener('click', async event => {
-      event.preventDefault();
-
       if (event.target.classList.contains('vote-button')) {
+        event.preventDefault();
         const voteButton = event.target;
         const formData = this.generateDataForRequest(voteButton.form);
         const data = await this.handleVoteRequests(voteButton, formData);
