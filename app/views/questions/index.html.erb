@@ -9,10 +9,11 @@
 
 <%= link_to 'Post a new Question', new_question_path %>
 
-<div class="questions-container">
+<div class="questions-container flex-col">
   <% @questions.each do |question| %>
     <div class="question-container">
       <div class="question-container-left">
+        <div class="votes-count"> Net Votes: <%= net_vote_count(question) %> </div>
         <div>Title: <%= question.title %></div>
         <div>Content: <%= truncate_action_text(question.content, 100) %></div>
         <%= render_filelink_if_exists question.attachment %>
