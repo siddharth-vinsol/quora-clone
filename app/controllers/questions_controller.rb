@@ -38,6 +38,7 @@ class QuestionsController < ApplicationController
 
   def show
     @new_answer = @question.answers.build
+    @new_comment = Comment.new(commentable: @question)
   end
 
   def update

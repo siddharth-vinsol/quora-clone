@@ -1,0 +1,24 @@
+.comment-form-container {
+  margin-top: 10px;
+  width: 100%;
+}
+.comments-form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  #comment_content {
+    width: 60%;
+    line-height: 30px;
+    border: 1px solid #AD4413;
+    padding: 2px;
+  }
+  input[type='submit'] {
+    margin-left: 10px;
+    border: none;
+    width: 150px;
+    padding: 10px;
+    background-color: #FAD1BE;
+    box-shadow: 2.5px 2.5px 10px rgb(173, 68, 19);
+    cursor: pointer;
+  }
+}

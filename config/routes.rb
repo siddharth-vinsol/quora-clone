@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     post 'publish', on: :member
   end
   resource :answer, only: [:create]
+  resource :comment, only: [:create]
   
   get 'verify_email', to: 'registrations#verify_email'
   get '/:token/password/reset', to: 'passwords#reset', as: 'reset_password'

@@ -9,6 +9,7 @@ class Question < ApplicationRecord
   belongs_to :user
   has_many :answers, dependent: :restrict_with_error
   has_many :sorted_answers, -> { by_most_upvoted }, class_name: 'Answer'
+  has_many :comments, as: :commentable, dependent: :restrict_with_error
   has_rich_text :content
   has_one_attached :attachment
 

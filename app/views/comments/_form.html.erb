@@ -1,0 +1,11 @@
+<div class="comment-form-container">
+  <h4><u>Add Your comment</u></h4>
+  <%= form_with model: @new_comment, url: comment_path, class: 'comments-form' do |form| %>
+    <%= render partial: 'shared/form_errors', locals: { model_object: @new_comment } %>
+
+    <%= form.hidden_field :question_id, value: @question.id %>
+    <%= form.hidden_field :permalink, value: @question.permalink %>
+    <%= form.text_field :content, placeholder: 'Post your comment' %>
+    <%= form.submit 'Add comment' %>
+  <% end %>
+</div>

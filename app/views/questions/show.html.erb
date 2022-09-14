@@ -32,6 +32,7 @@
 
   <% if signed_in? %>
     <%= render 'answers/form' %>
+    <%#= render 'comments/form' %>
   <% else %>
     <div class="page-heading"><%= t('login_before_continue')%></div>
   <% end%>
