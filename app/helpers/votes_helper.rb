@@ -8,6 +8,6 @@ module VotesHelper
   end
 
   def net_vote_count(voteable)
-    voteable.votes.sum(:vote)
+    voteable.total_upvotes - voteable.total_downvotes
   end
 end
