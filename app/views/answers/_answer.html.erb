@@ -3,6 +3,8 @@
   <div><b><%= answer.user.name %> </b>Says: </div>
   <%= answer.content %>
 
+  <div class="divider"></div>
+  <h3>User comments on this answer</h3>
   <%= render answer.comments %>
-  <%#= render 'comments/form' %>
+  <%= render partial: 'comments/form', locals: { resource: answer } %>
 </div>
