@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
   include CommonScopes
+  include VoteHandler
   
   attr_accessor :should_publish
 
@@ -10,6 +11,7 @@ class Question < ApplicationRecord
   has_many :sorted_answers, -> { by_most_upvoted }, class_name: 'Answer'
   has_rich_text :content
   has_one_attached :attachment
+  has_votes
 
   validates :title, :content, presence: true
   validates :total_upvotes, :total_downvotes, numericality: { greater_than_or_equal_to: 0 }

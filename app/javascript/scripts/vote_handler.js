@@ -1,10 +1,10 @@
 class VoteHandler {
   constructor(container) {
-    this.answersContainer = container;
+    this.voteableContainer = container;
   }
 
   init() {
-    this.answersContainer.addEventListener('click', async event => {
+    this.voteableContainer.addEventListener('click', async event => {
       event.preventDefault();
 
       if (event.target.classList.contains('vote-button')) {
@@ -66,5 +66,5 @@ class VoteHandler {
   }
 };
 
-const voteHandler = new VoteHandler(document.querySelector('[data-ref="answers-container"]'));
+const voteHandler = new VoteHandler(document.querySelector('[data-ref="voteable-container"]'));
 voteHandler.init();

@@ -145,11 +145,13 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      align-items: center;
       font-size: 18px;
       width: 95%;
       div {
         display: flex;
         flex-direction: row;
+        align-items: center;
         .question-field-label {
           font-weight: bolder;
           margin-right: 5px;

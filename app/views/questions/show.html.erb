@@ -4,9 +4,10 @@
 
 <div class="page-heading">Question Page</div>
 
-<div class="question">
+<div class="question" data-ref="voteable-container">
   <div class="question-header">
     <div>
+      <%= render partial: 'shared/vote_buttons', locals: { resource: @question } %>
       <div class="question-field-label">Title: </div>
       <div class="question-field-value"><%= @question.title %></div>
     </div>
@@ -36,7 +37,7 @@
   <% end%>
   
   <h3><u>Answers by other Users</u></h3>
-  <div class="answers-container" data-ref="answers-container">
+  <div class="answers-container">
     <%= render @question.sorted_answers %>
   </div>
 </div>
