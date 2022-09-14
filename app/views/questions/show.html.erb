@@ -32,11 +32,16 @@
 
   <% if signed_in? %>
     <%= render 'answers/form' %>
-    <%#= render 'comments/form' %>
+    <%= render 'comments/form' %>
   <% else %>
     <div class="page-heading"><%= t('login_before_continue')%></div>
   <% end%>
   
+  <h3><u>Comments by other Users</u></h3>
+  <div class="comments-container">
+    <%= render @question.comments %>
+  </div>
+
   <h3><u>Answers by other Users</u></h3>
   <div class="answers-container">
     <%= render @question.sorted_answers %>

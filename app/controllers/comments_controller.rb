@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @new_comment = @question.comments.build(content: comment_params[:content], user_id: current_user.id)
 
     if @new_comment.save
-      redirect_to question_path(answer_params[:permalink]), notice: t('comment_added')
+      redirect_to question_path(comment_params[:permalink]), notice: t('comment_added')
     else
       render 'questions/show', status: :unprocessable_entity
     end

@@ -5,7 +5,7 @@
 .comments-form {
   width: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   #comment_content {
     width: 60%;
     line-height: 30px;
@@ -20,5 +20,20 @@
     background-color: #FAD1BE;
     box-shadow: 2.5px 2.5px 10px rgb(173, 68, 19);
     cursor: pointer;
+  }
+}
+.comments-container {
+  width: 100%;
+  max-height: 200px;
+  overflow: scroll;
+  border: 2px solid brown;
+  border-radius: 10px;
+  .comment {
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid lightgray;
+    border-radius: 20px;
+    word-wrap: break-word;
+    color: #49494A;
   }
 }
