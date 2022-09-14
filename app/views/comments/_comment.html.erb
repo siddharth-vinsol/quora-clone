@@ -1,4 +1,5 @@
 <div class="comment">
+  <%= render partial: 'shared/vote_buttons', locals: { resource: comment } %>
   <div><b><%= comment.user.name %> </b>Commented: </div>
   <%= comment.content %>
 </div>

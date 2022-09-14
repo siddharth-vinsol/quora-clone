@@ -64,8 +64,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_090756) do
     t.string "content", null: false
     t.string "commentable_type", null: false
     t.integer "commentable_id", null: false
-    t.string "total_upvotes", default: "0"
-    t.string "total_downvotes", default: "0"
+    t.integer "total_upvotes", default: 0
+    t.integer "total_downvotes", default: 0
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
