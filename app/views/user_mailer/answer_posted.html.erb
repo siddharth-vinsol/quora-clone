@@ -1,0 +1,5 @@
+<div>Hi <%= @question_user.name %></div>
+<div><%= @answer_user.name %> posted an answer to your question: <%= @question.title %></div>
+<div>Click on link below to visit your question</div>
+
+<%= link_to 'Visit Question', question_url(permalink: @question.permalink) %>
