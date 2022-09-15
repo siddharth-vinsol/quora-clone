@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:publish, :edit, :update, :destroy, :show]
+  before_action :set_question, only: [:publish, :edit, :update, :destroy]
+  before_action :set_question_with_answers, only: [:show]
   before_action :validate_current_user_resource, only: [:publish, :edit, :update, :destroy]
   skip_before_action :authorize, only: [:show]
 
@@ -64,5 +65,9 @@ class QuestionsController < ApplicationController
 
   private def set_question
     @resource = @question = Question.find_by_permalink(params[:permalink])
+  end
+  
+  private def set_question_with_answers
+    @resource = @question = Question.includes(:sorted_answers).find_by_permalink(params[:permalink])
   end
 end
