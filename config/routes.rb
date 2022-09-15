@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
   resource :answer, only: [:create]
   resource :comment, only: [:create]
+  resource :abuse_report, only: [:new, :create]
   
   get 'verify_email', to: 'registrations#verify_email'
   get '/:token/password/reset', to: 'passwords#reset', as: 'reset_password'

@@ -1,0 +1,15 @@
+<div class="page-heading">Report Page</div>
+
+<div class="form">
+<div>You are reporting Question/Answer/Comment with content: </div>
+  <div class="reportable-content"><%= @reportable.content %></div>
+  <%= form_with model: @abuse_report, url: abuse_report_path(reportable_id: @reportable.id, reportable_type: @reportable.class) do |form| %>
+    <%= render partial: 'shared/form_errors', locals: { model_object: @abuse_report } %>
+    <div class="field">
+      <%= form.label :reason %>
+      <%= form.text_area :reason, size: '50x15' %>
+    </div>
+
+    <%= form.submit 'Submit Report' %>
+  <% end %>
+</div>

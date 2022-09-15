@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_14_090756) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_15_091411) do
+  create_table "abuse_reports", force: :cascade do |t|
+    t.string "abuse_reportable_type", null: false
+    t.integer "abuse_reportable_id", null: false
+    t.string "reason", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["abuse_reportable_type", "abuse_reportable_id"], name: "index_abuse_reports_on_abuse_reportable"
+    t.index ["user_id"], name: "index_abuse_reports_on_user_id"
+  end
+
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -142,6 +153,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_090756) do
     t.index ["voteable_type", "voteable_id"], name: "index_votes_on_voteable"
   end
 
+  add_foreign_key "abuse_reports", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
