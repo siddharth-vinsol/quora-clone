@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
     if @question.publish
       redirect_to questions_path, notice: t('publish_success')
     else
-      render :index, status: :unprocessable_entity
+      redirect_to questions_path, notice: @question.errors[:published_at].first
     end
   end
 
