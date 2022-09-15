@@ -2,6 +2,7 @@ class Question < ApplicationRecord
   include CommonScopes
   include VoteHandler
   include CommentsHandler
+  include AbuseReportsHandler
   
   attr_accessor :should_publish
 
@@ -17,7 +18,6 @@ class Question < ApplicationRecord
   validates :title, :content, presence: true
   validates :total_upvotes, :total_downvotes, numericality: { greater_than_or_equal_to: 0 }
   validates :title, :permalink, uniqueness: true, allow_blank: true
-  validates :published_at, reportable: true, if: :published_at?
 
   before_validation :assign_permalink, on: :create
   before_save :publish_question, if: :should_publish, unless: :published_at?
@@ -31,10 +31,6 @@ class Question < ApplicationRecord
 
   def file_attached?
     attachment.present?
-  end
-  
-  def unpublish
-    update(published_at: nil)
   end
   
   def editable?
