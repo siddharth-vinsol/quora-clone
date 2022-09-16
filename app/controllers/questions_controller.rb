@@ -14,9 +14,9 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.questions.build(question_params)
-    @question.publish if params[:draft].blank?
-
+    
     if @question.save
+      @question.publish if params[:publish].present?
       message = @question.published_at? ? t('publish_success') : t('draft_success')
       redirect_to questions_path, notice: message
     else
@@ -40,9 +40,9 @@ class QuestionsController < ApplicationController
 
   def update
     @question.update_attachment(params[:attachment]) if question_params[:attachment]
-    @question.publish if params[:draft].blank?
-
+    
     if @question.update(question_params)
+      @question.publish if params[:draft].present?
       message = @question.published_at? ? t('publish_success') : t('draft_success')
       redirect_to questions_path, notice: message
     else

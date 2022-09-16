@@ -24,15 +24,12 @@
       </div>
     </div>
 
-    <% unless question.published_at? %>
-      <div>
-        <%= check_box_tag :draft %>
-        <%= label_tag :draft, 'Save as Draft?' %>
-      </div>
-    <% end %>
 
     <div class="submit-field">
-      <%= form.submit submit_button_text %>
+      <% unless question.published_at? %>
+        <%= form.submit 'Publish your question', name: 'publish' %>
+      <% end %>
+      <%= form.submit 'Save' %>
     </div>
   <% end %>
 </div>
