@@ -3,6 +3,8 @@
   <div><b><%= answer.user.name %> </b>Says: </div>
   <%= answer.content %>
 
+  <%= link_to 'Report this Answer', new_abuse_report_path(reportable_id: answer.id, reportable_type: answer.class) %>
+
   <div class="divider"></div>
   <h3>User comments on this answer</h3>
   <%= render answer.comments %>

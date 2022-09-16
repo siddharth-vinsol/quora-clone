@@ -2,7 +2,7 @@ class AnswersController < ApplicationController
   before_action :set_question, only: [:create]
 
   def create
-    @new_answer = @question.answers.build(content: answer_params[:content], user_id: current_user.id)
+    @new_answer = @question.answers.build(content: answer_params[:content], user_id: current_user.id, published_at: Time.now)
 
     if @new_answer.save
       redirect_to question_path(answer_params[:permalink]), notice: t('submit_success')
