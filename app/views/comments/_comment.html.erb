@@ -3,5 +3,7 @@
     <%= render partial: 'shared/vote_buttons', locals: { resource: comment } %>
     <div><b><%= comment.user.name %> </b>Commented: </div>
     <%= comment.content %>
+
+    <%= link_to 'Report this Comment', new_abuse_report_path(reportable_id: comment.id, reportable_type: comment.class) %>
   </div>
 <% end %>
