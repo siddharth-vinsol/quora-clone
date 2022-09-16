@@ -12,7 +12,7 @@
     <% end %>
 
     <div class="img-field">
-      <%= image_tag current_user.profile_image.signed_id ? rails_blob_path(current_user.profile_image, disposition: 'attachment') : 'default.jpeg', class: 'profile-img' %>
+      <%= image_tag user_profile_image_link(current_user), class: 'profile-img' %>
       <%= form.label :profile_image, 'Upload New Profile Picture' %>
       <%= form.file_field :profile_image, accept: 'image/png, image/jpeg' %>
     </div>

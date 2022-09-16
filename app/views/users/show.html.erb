@@ -1,7 +1,7 @@
 <h1>WELCOME <%= current_user.name %></h1>
 
 <div class="profile">
-  <%= image_tag current_user.profile_image.signed_id ? rails_blob_path(current_user.profile_image, disposition: 'attachment') : 'default.jpeg', class: 'profile-img' %>
+  <%= image_tag user_profile_image_link(current_user), class: 'profile-img' %>
 
   <div><%= current_user.name %></div>
   <div><%= current_user.email %></div>
