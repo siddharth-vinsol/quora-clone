@@ -1,2 +1,3 @@
 en:
   submit_success: 'Your report have been submitted, Thank you.'
+  already_reported: 'You already submitted report for this on %{abuse_report_time}'

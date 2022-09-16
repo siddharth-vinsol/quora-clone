@@ -1,5 +1,6 @@
 class AbuseReportsController < ApplicationController
   before_action :set_reportable
+  before_action :check_already_reported
   
   def new
     @abuse_report = AbuseReport.new
@@ -22,5 +23,11 @@ class AbuseReportsController < ApplicationController
 
   private def abuse_report_params
     params.require(:abuse_report).permit(:reason)
+  end
+
+  private def check_already_reported
+    if @abuse_report = @reportable.abuse_reports.find_by(user_id: current_user.id)
+      redirect_to request.referrer, notice: t('already_reported', abuse_report_time: @abuse_report.created_at.to_date)
+    end
   end
 end
