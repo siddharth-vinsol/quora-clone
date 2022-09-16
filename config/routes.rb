@@ -9,12 +9,8 @@ Rails.application.routes.draw do
     get '/', action: 'new'
   end
 
-  scope 'profile', controller: :users, as: :profile do
-    get '/', action: 'show'
-    get 'edit'
+  resource :user, only: [:show, :edit, :update], path: 'profile' do
     get 'password'
-  end
-  resource :user, only: [:update] do
     patch 'password', action: :update_password
   end
   resource :password, only: [:show] do
