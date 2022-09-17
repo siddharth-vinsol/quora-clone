@@ -21,5 +21,6 @@ module QuoraClone
 
   module Credits
     SUCCESS_VERIFICATION_CREDITS = 5
+    MINIMUM_CREDITS_FOR_QUESTION = 1
   end
 end
