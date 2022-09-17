@@ -7,12 +7,6 @@ class CreditTransaction < ApplicationRecord
     'credit' => 1
   }
 
-  before_validation :determine_transaction_type
-
   validates :value, numericality: { greater_than_or_equal_to: 0 }
   validates :transaction_type, inclusion: transaction_types.keys
-
-  private def determine_transaction_type
-    self.transaction_type = value > 0 ? 'credit' : 'debit'
-  end
 end
