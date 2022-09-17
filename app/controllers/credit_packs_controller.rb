@@ -1,5 +1,5 @@
 class CreditPacksController < ApplicationController
-  def index
+  def show
     @credit_packs = CreditPack.order(:price)
   end
 end
