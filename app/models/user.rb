@@ -36,11 +36,17 @@ class User < ApplicationRecord
     update(confirmation_token: nil, verified_at: Time.current) && update_credits(QuoraClone::Credits::SUCCESS_VERIFICATION_CREDITS, 'Verfication Reward.')
   end
 
-  def update_credits(amount, reason)
-    credit_transactions.build({ value: amount, entity: nil, reason: reason })
+  def update_credits(amount, entity, reason)
     self.credits = self.credits + amount
 
-    save!
+    transaction_type = 'credit'
+    if amount < 0
+      transaction_type = 'debit'
+      amount *= -1
+    end
+    credit_transactions.build({ value: amount, entity: entity, reason: reason, transaction_type: transaction_type })
+
+    save
   end
 
   def password_reset_token_expired?
