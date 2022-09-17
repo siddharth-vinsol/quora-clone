@@ -1,0 +1,2 @@
+class CreditPack < ApplicationRecord
+end

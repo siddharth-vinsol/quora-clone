@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resource :answer, only: [:create]
   resource :comment, only: [:create]
   resource :abuse_report, only: [:new, :create]
+  resource :credit_pack, only: [:index]
   
   get 'verify_email', to: 'registrations#verify_email'
   get '/:token/password/reset', to: 'passwords#reset', as: 'reset_password'
