@@ -8,5 +8,12 @@ module AbuseReportsHandler
 
   def unpublish
     update(published_at: nil)
+    remove_credit_on_unpublish
+  end
+
+  private def remove_credit_on_unpublish
+    if transaction = user.credit_transactions.find_by(entity: self, transaction_type: 'credit')
+      user.update_credits(-1, self, 'Report Penalty')
+    end
   end
 end
