@@ -1,0 +1,15 @@
+<div class="page-heading">Credit Packs</div>
+
+<div class="credit-packs-container">
+  <% @credit_packs.each do |pack| %>
+    <div class="credit-pack">
+      <div class="credit-pack-left">
+        <div>Price: <%= pack.price %></div>
+        <div>Credits: <%= pack.credits %></div>
+      </div>
+      <div class="credit-pack-right">
+        <%= link_to 'Buy Now' %>
+      </div>
+    </div>
+  <% end %>
+</div>
