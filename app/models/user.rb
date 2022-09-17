@@ -13,12 +13,14 @@ class User < ApplicationRecord
   has_secure_password
   has_one_attached :profile_image, dependent: :destroy
   has_many :questions, dependent: :restrict_with_error
+  has_many :credit_transactions, dependent: :destroy
 
   validates :name, :email, presence: true
   validates :password, :password_confirmation, presence: true, if: :setting_password?
   validates :email, uniqueness: true
   validates :email, format: { with: QuoraClone::RegexConstants::EMAIL_REGEX }, allow_blank: true
   validates :profile_image, attached_file_type: { types: VALID_IMAGE_MIME_TYPES }, allow_blank: true
+  validates :credits, numericality: true
 
   def update_password_reset_token
     if update(password_reset_token: TokenHandler.generate_token, reset_password_sent_at: Time.current)
@@ -31,7 +33,14 @@ class User < ApplicationRecord
   end
 
   def verify
-    update(confirmation_token: nil, verified_at: Time.current)
+    update(confirmation_token: nil, verified_at: Time.current) && update_credits(QuoraClone::Credits::SUCCESS_VERIFICATION_CREDITS, 'Verfication Reward.')
+  end
+
+  def update_credits(amount, reason)
+    credit_transactions.build({ value: amount, entity: nil, reason: reason })
+    self.credits = self.credits + amount
+
+    save!
   end
 
   def password_reset_token_expired?
