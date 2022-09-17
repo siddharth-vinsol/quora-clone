@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_16_044912) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_17_055240) do
   create_table "abuse_reports", force: :cascade do |t|
     t.string "abuse_reportable_type", null: false
     t.integer "abuse_reportable_id", null: false
@@ -86,6 +86,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_044912) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "credit_transactions", force: :cascade do |t|
+    t.integer "value", null: false
+    t.string "reason"
+    t.integer "transaction_type", null: false
+    t.integer "user_id"
+    t.string "entity_type"
+    t.integer "entity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entity_type", "entity_id"], name: "index_credit_transactions_on_entity"
+    t.index ["user_id"], name: "index_credit_transactions_on_user_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string "title", null: false
     t.integer "total_upvotes", default: 0
@@ -142,6 +155,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_044912) do
     t.datetime "reset_password_sent_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "credits", default: 0, null: false
   end
 
   create_table "votes", force: :cascade do |t|
@@ -161,6 +175,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_044912) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "comments", "users"
+  add_foreign_key "credit_transactions", "users"
   add_foreign_key "questions", "users"
   add_foreign_key "taggings", "tags"
   add_foreign_key "votes", "users"
