@@ -4,11 +4,13 @@
   <% @credit_packs.each do |pack| %>
     <div class="credit-pack">
       <div class="credit-pack-left">
-        <div>Price: <%= pack.price %></div>
+        <div>Price: ₹<%= pack.price %></div>
         <div>Credits: <%= pack.credits %></div>
       </div>
       <div class="credit-pack-right">
-        <%= link_to 'Buy Now' %>
+        <%= form_with url: charges_path(pack_id: pack.id), method: :post, data: { turbo: false } do |form| %>
+          <%= form.submit 'Buy now', class: 'button-link' %>
+        <% end %>
       </div>
     </div>
   <% end %>
