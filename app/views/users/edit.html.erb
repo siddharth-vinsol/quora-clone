@@ -1,15 +1,7 @@
 <div class="form">
   <div class="form-header">Update Profile</div>
   <%= form_with model: current_user, url: user_path do |form| %>
-    <% if current_user.errors.any? %>
-      <div class='form-error'>
-        <ul>
-          <% current_user.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= render partial: 'shared/form_errors', locals: { model_object: @user } %>
 
     <div class="img-field">
       <%= image_tag user_profile_image_link(current_user), class: 'profile-img' %>
