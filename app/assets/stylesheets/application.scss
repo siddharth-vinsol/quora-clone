@@ -73,10 +73,12 @@ body {
     width: 100%;
   }
 }
-a {
+a, .button-link {
   color: rgb(173, 68, 19);
   text-decoration: unset;
   margin: 10px;
+  border: none;
+  background-color: transparent;
 }
 .white {
   color: white;
