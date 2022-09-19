@@ -14,6 +14,7 @@ class User < ApplicationRecord
   validates :password, :password_confirmation, presence: true, if: :setting_password?
   validates :email, uniqueness: true
   validates :email, format: { with: QuoraClone::RegexConstants::EMAIL_REGEX }, allow_blank: true
+  validates :profile_image, attached_file_type: { types: ['.png', '.jpeg'] }, allow_blank: true
 
   def update_password_reset_token
     if update(password_reset_token: TokenHandler.generate_token, reset_password_sent_at: Time.current)
@@ -35,10 +36,6 @@ class User < ApplicationRecord
 
   def is_verified?
     verified_at.present?
-  end
-
-  def change_profile_details(name)
-    update(name: name)
   end
 
   private def send_verification_mail
