@@ -1,4 +1,4 @@
-class ChargesController < ApplicationController
+class TransactionsController < ApplicationController
   before_action :process_transaction, only: [:success]
   before_action :set_credit_pack, only: [:create, :success]
   before_action :setup_stripe_payment, only: [:create]

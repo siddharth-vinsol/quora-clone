@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   resource :comment, only: [:create]
   resource :abuse_report, only: [:new, :create]
   resource :credit_pack, only: [:show]
-  resource :charges, only: [:create] do
+  resource :transactions, only: [:create] do
     get 'success'
   end
   
