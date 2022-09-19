@@ -14,9 +14,4 @@ module QuoraClone
   module Token
     TOKEN_EXPIRATION_TIME = 1.day
   end
-
-  module Environment
-    HOST = '127.0.0.1'
-    PORT = 3000
-  end
 end

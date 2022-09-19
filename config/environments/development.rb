@@ -43,7 +43,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: QuoraClone::Environment::HOST, port: QuoraClone::Environment::PORT }
+  config.action_mailer.default_url_options = { host: '127.0.0.1', port: 3000 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

@@ -18,7 +18,7 @@ class RegistrationsController < ApplicationController
   end
 
   def verify_email
-     if @user.verify_user
+     if @user.verify
       render :verify_email, notice: t('verification_success')
     else
       redirect_to login_path, notice: t('verification_failure')
