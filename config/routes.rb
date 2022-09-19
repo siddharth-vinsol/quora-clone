@@ -1,6 +1,4 @@
-Rails.application.routes.draw do
-  default_url_options({ host: QuoraClone::Environment::HOST, port: QuoraClone::Environment::PORT })
-  
+Rails.application.routes.draw do  
   controller :sessions do
     get 'login'
     get 'logout'
