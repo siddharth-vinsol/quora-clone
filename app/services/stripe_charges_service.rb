@@ -1,6 +1,6 @@
 class StripeChargesService
   DEFAULT_CURRENCY = 'inr'.freeze
-  PAYMENT_SUCCESS_URL = 'http://127.0.0.1:3000/charges/success?transaction_id={CHECKOUT_SESSION_ID}'
+  PAYMENT_SUCCESS_URL = 'http://127.0.0.1:3000/transactions/success?transaction_id={CHECKOUT_SESSION_ID}'
   PAYMENT_FAILED_URL = 'http://127.0.0.1:3000/credit_pack'
 
   def initialize(credit_pack, user)
