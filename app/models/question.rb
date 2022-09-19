@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
+  include CommonScopes
+  
   belongs_to :user
   has_rich_text :content
   has_one_attached :attachment
@@ -8,6 +10,9 @@ class Question < ApplicationRecord
   validates :title, :permalink, uniqueness: true, allow_blank: true
 
   before_validation :assign_permalink, on: :create
+
+  scope :published_questions, -> { where.not(published_at: nil) }
+  scope :user_questions, -> (user) { where(user: user) }
 
   def publish
     update(published_at: Time.current)

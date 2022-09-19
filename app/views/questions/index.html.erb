@@ -1,7 +1,7 @@
 <h1 class="page-heading">Your Questions</h1>
 
 <div class="question-search-bar">
-  <%= search_form_for @q, url: root_path do |form| %>
+  <%= search_form_for @q, url: questions_path do |form| %>
     <%= form.search_field :title_cont, placeholder: 'Question Title', class: 'search-field' %>
     <%= form.submit 'Search Question by Title' %>
   <% end %>

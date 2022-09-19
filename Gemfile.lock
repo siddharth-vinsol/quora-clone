@@ -246,10 +246,10 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
-  letter_opener
+  letter_opener (~> 1.8.1)
   puma (~> 5.0)
   rails (~> 7.0.3, >= 7.0.3.1)
-  ransack
+  ransack (~> 3.2.1)
   sassc-rails
   selenium-webdriver
   sprockets-rails

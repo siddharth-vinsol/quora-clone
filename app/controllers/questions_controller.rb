@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   skip_before_action :authorize, only: [:show]
 
   def index
-    @q = Question.where(user: current_user).order('created_at DESC').ransack(params[:q])
+    @q = Question.includes(:rich_text_content).user_questions(current_user).chronological_order.ransack(params[:q])
     @questions = @q.result
   end
 

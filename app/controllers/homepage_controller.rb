@@ -1,14 +1,18 @@
 class HomepageController < ApplicationController
   skip_before_action :authorize
 
-  def index
-    @q = Question.where.not(published_at: nil).order('created_at DESC')
-    if current_user
-      @q = @q.where.not(user_id: current_user.id).ransack(params[:q])
-    else
-      @q = @q.ransack(params[:q])
-    end
+  before_action :discard_current_user_questions, only: [:index], if: :signed_in?
 
-    @questions = @q.result.includes(:user)
+  def index
+    @q = Question.includes(:user, :rich_text_content).published_questions.chronological_order.ransack(params[:q])
+    @questions = @q.result
+  end
+
+  private def discard_current_user_questions
+    if params[:q].present?
+      params[:q][:user_id_not_eq] = current_user.id
+    else
+      params[:q] = { user_id_not_eq: current_user.id }
+    end
   end
 end
