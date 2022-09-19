@@ -1,16 +1,6 @@
 <div class='form'>
   <%= form_with model: @user, url: registration_path do |form| %>
-    <% if @user.errors.any? %>
-      <div class='form-error'>
-        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-        <ul>
-          <% @user.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= render partial: 'shared/form_errors', locals: { model_object: @user } %>
 
     <h3>Enter details to signup</h3>
 
