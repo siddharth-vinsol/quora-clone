@@ -13,7 +13,7 @@
   <body>
     <header class="main">
       <div>Quora Clone App</div>
-      <%= button_to 'Logout', session_path, method: :delete, class: 'logout-button' if cookies.encrypted[:user_id] %>
+      <%= button_to 'Logout', session_path, method: :delete, class: 'logout-button' if signed_in? %>
     </header>
 
     <main class="<%= controller.controller_name %>">

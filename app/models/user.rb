@@ -27,6 +27,10 @@ class User < ApplicationRecord
     update(confirmation_token: nil, verified_at: Time.current)
   end
 
+  def token_expired?
+    TokenHandler.token_expired?(reset_password_sent_at, QuoraClone::Token::TOKEN_EXPIRATION_TIME)
+  end
+
   private def send_verification_mail
     UserMailer.verification(self).deliver_now
   end

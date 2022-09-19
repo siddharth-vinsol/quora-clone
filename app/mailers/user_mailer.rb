@@ -1,11 +1,11 @@
 class UserMailer < ApplicationMailer
   def verification(user)
     @user = user
-    mail to: user.email, subject: 'Verification mail for new account'
+    mail to: user.email, subject: t('verification_subject')
   end
 
   def reset_password(user)
     @user = user
-    mail to: user.email, subject: 'Reset password link'
+    mail to: user.email, subject: t('password_reset_subject')
   end
 end
