@@ -1,0 +1,10 @@
+<div class="question-container">
+  <div class="question-container-left">
+    <div>Title: <%= question.title %></div>
+    <div>Content: <%= truncate_action_text(question.content, 100) %></div>
+    <div>Asked By: <%= question.user.name %></div>
+  </div>
+  <div class="question-container-right">
+    <%= link_to 'View Question', question_path(question.permalink) %>
+  </div>
+</div>
