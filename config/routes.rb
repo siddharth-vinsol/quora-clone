@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :credit_packs, only: [:index]
   resource :order_transactions, only: [:create] do
     get 'success'
+    get 'failure'
   end
   resources :orders, only: [:create] do
     get 'checkout', on: :member
