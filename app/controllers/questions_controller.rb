@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   skip_before_action :authorize, only: [:show]
 
   def index
-    @q = Question.includes(:rich_text_content).user_questions(current_user).chronological_order.ransack(params[:q])
+    @q = Question.includes(:rich_text_content, :attachment_attachment).user_questions(current_user).chronological_order.ransack(params[:q])
     @questions = @q.result
   end
 
@@ -14,9 +14,9 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.questions.build(question_params)
+    @question.publish = true if params[:publish].present?
     
     if @question.save
-      @question.publish if params[:publish].present?
       message = @question.published_at? ? t('publish_success') : t('draft_success')
       redirect_to questions_path, notice: message
     else
@@ -25,7 +25,9 @@ class QuestionsController < ApplicationController
   end
 
   def publish
-    if @question.publish
+    @question.publish = true
+
+    if @question.save
       redirect_to questions_path, notice: t('publish_success')
     else
       render :index, status: :unprocessable_entity
@@ -39,10 +41,9 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question.update_attachment(params[:attachment]) if question_params[:attachment]
+    @question.publish = true if params[:publish].present?
     
     if @question.update(question_params)
-      @question.publish if params[:draft].present?
       message = @question.published_at? ? t('publish_success') : t('draft_success')
       redirect_to questions_path, notice: message
     else
