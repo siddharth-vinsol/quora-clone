@@ -1,0 +1,19 @@
+<div class="page-heading">Checkout Page</div>
+<div class="order-details-container">
+  <div>Your Order Details</div>
+  <div class="order-details">
+    <div class="order-detail">
+      <div>Price: </div>
+      <div>₹<%= @order.amount %></div>
+    </div>
+
+    <div class="order-detail">
+      <div>Credits: </div>
+      <div><%= @order.credit_pack.credits %></div>
+    </div>
+
+    <%= form_with url: order_transactions_path(order_id: @order.id), data: { turbo: false } do |form| %>
+      <%= form.submit 'Checkout', class: 'form-submit-button' %>
+    <% end %>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_19_103752) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_20_093353) do
   create_table "abuse_reports", force: :cascade do |t|
     t.string "abuse_reportable_type", null: false
     t.integer "abuse_reportable_id", null: false
@@ -87,7 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_103752) do
   end
 
   create_table "credit_packs", force: :cascade do |t|
-    t.integer "price"
+    t.decimal "price", precision: 8, scale: 2
     t.integer "credits"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -104,6 +104,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_103752) do
     t.datetime "updated_at", null: false
     t.index ["entity_type", "entity_id"], name: "index_credit_transactions_on_entity"
     t.index ["user_id"], name: "index_credit_transactions_on_user_id"
+  end
+
+  create_table "order_transactions", force: :cascade do |t|
+    t.string "transaction_id", null: false
+    t.decimal "amount", null: false
+    t.string "payment_method", null: false
+    t.string "payment_status", null: false
+    t.string "reason"
+    t.integer "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_transactions_on_order_id"
+    t.index ["transaction_id"], name: "index_order_transactions_on_transaction_id", unique: true
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.decimal "amount", null: false
+    t.integer "status", null: false
+    t.integer "credit_pack_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["credit_pack_id"], name: "index_orders_on_credit_pack_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -184,6 +208,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_103752) do
   add_foreign_key "answers", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "credit_transactions", "users"
+  add_foreign_key "order_transactions", "orders"
+  add_foreign_key "orders", "credit_packs"
+  add_foreign_key "orders", "users"
   add_foreign_key "questions", "users"
   add_foreign_key "taggings", "tags"
   add_foreign_key "votes", "users"
