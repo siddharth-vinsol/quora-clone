@@ -1,6 +1,6 @@
-class TransactionsController < ApplicationController
+class OrderTransactionsController < ApplicationController
   before_action :process_transaction, only: [:success]
-  before_action :set_credit_pack, only: [:create, :success]
+  before_action :set_order, only: [:create, :success]
   before_action :setup_stripe_payment, only: [:create]
   before_action :update_user_credits, only: [:success]
 
@@ -14,12 +14,12 @@ class TransactionsController < ApplicationController
   def success
   end
 
-  private def set_credit_pack
-    @credit_pack = CreditPack.find(params[:pack_id])
+  private def set_order
+    @order = Order.find(params[:order_id])
   end
   
   private def setup_stripe_payment
-    @payment_session = StripeChargesService.new(@credit_pack, current_user)
+    @payment_session = StripeChargesService.new(@order, current_user)
   end
 
   private def process_transaction
@@ -27,7 +27,7 @@ class TransactionsController < ApplicationController
       id: params[:transaction_id],
       expand: ['customer']
     })
-    params[:pack_id] = @payment_status.metadata.credit_pack_id
+    params[:order_id] = @payment_status.metadata.order_id
 
   rescue Stripe::InvalidRequestError
     redirect_to credit_pack_path, notice: 'Invalid transaction.'
@@ -35,7 +35,7 @@ class TransactionsController < ApplicationController
 
   private def update_user_credits
     if @payment_status.payment_status == 'paid'
-      current_user.update_credits(@credit_pack.credits, @credit_pack, 'Purchased Pack')
+      current_user.update_credits(@order.credit_pack.credits, @order, 'Purchased Pack')
     end
   end
 end

@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_one_attached :profile_image, dependent: :destroy
   has_many :questions, dependent: :restrict_with_error
   has_many :credit_transactions, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   validates :name, :email, presence: true
   validates :password, :password_confirmation, presence: true, if: :setting_password?

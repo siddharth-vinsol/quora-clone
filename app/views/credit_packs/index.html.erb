@@ -8,7 +8,7 @@
         <div>Credits: <%= pack.credits %></div>
       </div>
       <div class="credit-pack-right">
-        <%= form_with url: transactions_path(pack_id: pack.id), method: :post, data: { turbo: false } do |form| %>
+        <%= form_with url: orders_path(pack_id: pack.id) do |form| %>
           <%= form.submit 'Buy now', class: 'button-link' %>
         <% end %>
       </div>

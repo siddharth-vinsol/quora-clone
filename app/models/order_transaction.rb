@@ -1,0 +1,2 @@
+class OrderTransaction < ApplicationRecord
+end
