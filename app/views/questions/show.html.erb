@@ -15,7 +15,7 @@
     <div class="question-field-value"><%= @question.content %></div>
   </div>
   <div class="uploaded-file">
-    <% if @question.attachment.signed_id %>
+    <% if @question.attachment.present? %>
       <div>File attached: <%= filename_from_file(@question.attachment) %></div>
       <%= render_filelink_if_exists(@question.attachment) %>
     <% end %>
