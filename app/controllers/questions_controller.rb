@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   skip_before_action :authorize, only: [:show]
 
   def index
-    @q = Question.includes(:rich_text_content, :attachment_attachment).user_questions(current_user).chronological_order.ransack(params[:q])
+    @q = Question.includes(:rich_text_content, :attachment_attachment).user_questions(current_user).by_recently_created.ransack(params[:q])
     @questions = @q.result
   end
 
@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.questions.build(question_params)
-    @question.publish = true if params[:publish].present?
+    @question.publish = params[:publish]
     
     if @question.save
       message = @question.published_at? ? t('publish_success') : t('draft_success')
@@ -41,7 +41,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question.publish = true if params[:publish].present?
+    @question.publish = params[:publish]
     
     if @question.update(question_params)
       message = @question.published_at? ? t('publish_success') : t('draft_success')
@@ -65,9 +65,5 @@ class QuestionsController < ApplicationController
 
   private def set_question
     @resource = @question = Question.find_by_permalink(params[:permalink])
-  end
-
-  private def enough_credits_on_user
-    redirect_to user_path, notice: t('notice.user.question.low_credits_error') unless current_user.enough_credits_to_post_question?
   end
 end
