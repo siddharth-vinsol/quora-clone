@@ -1,17 +1,17 @@
 <div class="form">
   <div class="form-header">Update Profile</div>
   <%= form_with model: current_user, url: user_path do |form| %>
-    <%= render partial: 'shared/form_errors', locals: { model_object: @user } %>
-
     <div class="img-field">
       <%= image_tag user_profile_image_link(current_user), class: 'profile-img' %>
       <%= form.label :profile_image, 'Upload New Profile Picture' %>
-      <%= form.file_field :profile_image, accept: User::VALID_IMAGE_MIME_TYPES %>
+      <%= form.file_field :profile_image, accept: User::VALID_IMAGE_MIME_TYPES.join('') %>
+      <%= render partial: 'shared/form_field_error', locals: { model_object: @user, attribute: :profile_image } %>
     </div>
 
     <div class="form-field">
       <%= form.label :name, 'New name' %>
       <%= form.text_field :name %>
+      <%= render partial: 'shared/form_field_error', locals: { model_object: @user, attribute: :name } %>
     </div>
 
     <div class="submit-field">

@@ -1,0 +1,6 @@
+<% if model_object.errors[attribute].present? %>
+  <div class="form-field-error">
+    <b><%= attribute %></b>
+    <span><%= model_object.errors[attribute].first %></span>
+  </div>
+<% end %>

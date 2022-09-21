@@ -137,3 +137,15 @@ button {
       box-shadow: 0 6px 20px rgb(173, 86, 19);
   }
 }
+.form-field-error {
+  color: red;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+.field-with-errors {
+  display: flex;
+  flex-direction: row;
+  font-weight: bolder;
+}
