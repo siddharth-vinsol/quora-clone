@@ -6,6 +6,7 @@ class CreateOrderTransactions < ActiveRecord::Migration[7.0]
       t.string :payment_method, null: false
       t.string :payment_status, null: false
       t.string :reason
+      t.string :status
       t.references :order, null: false, foreign_key: true
       t.timestamps
     end

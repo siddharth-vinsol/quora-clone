@@ -13,9 +13,11 @@ class OrderTransactionsController < ApplicationController
   end
 
   def success
+    @order.update(status: 'success')
   end
 
   def failure
+    @order.update(status: 'failed')
   end
 
   private def set_order
@@ -29,7 +31,7 @@ class OrderTransactionsController < ApplicationController
   private def process_transaction
     @payment_status = Stripe::Checkout::Session.retrieve({
       id: params[:transaction_id],
-      expand: ['customer']
+      expand: ['customer', 'payment_intent']
     })
     params[:order_id] = @payment_status.metadata.order_id
 
@@ -44,12 +46,21 @@ class OrderTransactionsController < ApplicationController
   end
 
   private def generate_transaction
+    transaction_reason = transaction_status = nil
+    if @payment_status.payment_intent.present?
+      transaction_reason = @payment_status.payment_intent.last_payment_error.try(:message)
+      transaction_status = @payment_status.payment_intent.try(:status)
+    else
+      transaction_reason = 'unpaid'
+    end
+
     @order_transaction = OrderTransaction.find_or_initialize_by(transaction_id: @payment_status.id) do |transaction|
       transaction.order = @order
       transaction.amount = @payment_status.amount_total
       transaction.payment_method = @payment_status.payment_method_types[0]
       transaction.payment_status = @payment_status.payment_status
-      # transaction.reason
+      transaction.reason = transaction_reason
+      transaction.status = transaction_status
     end
 
     if @order_transaction.persisted?
