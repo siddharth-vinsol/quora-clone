@@ -1,0 +1,18 @@
+<div class="page-heading">Your credit history</div>
+<table>
+  <tr>
+      <th>S.No</th>
+      <th>Value</th>
+      <th>Reason</th>
+      <th>Transaction Type</th>
+  </tr>
+  <% @credit_transactions.each_with_index do |transaction, index| %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= transaction.value %></td>
+      <td><%= transaction.reason %></td>
+      <td><%= transaction.transaction_type %></td>
+    </tr>
+  <% end %>
+</table>
+

@@ -26,6 +26,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def credit_transactions
+    @credit_transactions = current_user.credit_transactions
+  end
+
   private def user_params
     params.require(:user).permit(:name, :profile_image, :password, :password_confirmation, topic_list: [])
   end
