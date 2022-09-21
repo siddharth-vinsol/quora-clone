@@ -42,6 +42,6 @@ class PasswordsController < ApplicationController
   end
 
   private def check_token_expiry
-    redirect_to password_path, notice: t('token_expired') if @user.token_expired?
+    redirect_to password_path, notice: t('token_expired') if @user.password_reset_token_expired?
   end
 end

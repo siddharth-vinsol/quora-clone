@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   def update_password_reset_token
     if update(password_reset_token: TokenHandler.generate_token, reset_password_sent_at: Time.current)
-      UserMailer.reset_password(self).deliver_later
+      send_password_reset_mail
     end
   end
 
@@ -28,7 +28,7 @@ class User < ApplicationRecord
     update(confirmation_token: nil, verified_at: Time.current)
   end
 
-  def token_expired?
+  def password_reset_token_expired?
     TokenHandler.token_expired?(reset_password_sent_at, QuoraClone::Token::TOKEN_EXPIRATION_TIME)
   end
 
@@ -37,7 +37,11 @@ class User < ApplicationRecord
   end
 
   private def send_verification_mail
-    UserMailer.verification(self).deliver_now
+    UserMailer.verification(self).deliver_later
+  end
+
+  private def send_password_reset_mail
+    UserMailer.reset_password(self).deliver_later
   end
 
   private def generate_confirmation_token
