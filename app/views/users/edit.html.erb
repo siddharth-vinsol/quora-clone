@@ -6,7 +6,7 @@
     <div class="img-field">
       <%= image_tag user_profile_image_link(current_user), class: 'profile-img' %>
       <%= form.label :profile_image, 'Upload New Profile Picture' %>
-      <%= form.file_field :profile_image, accept: 'image/png, image/jpeg' %>
+      <%= form.file_field :profile_image, accept: User::VALID_IMAGE_MIME_TYPES %>
     </div>
 
     <div class="form-field">
