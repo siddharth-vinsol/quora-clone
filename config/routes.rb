@@ -1,6 +1,19 @@
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+Rails.application.routes.draw do  
+  controller :sessions do
+    get 'login'
+    get 'logout'
+  end
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resource :session, only: [:create, :destroy]
+  resource :registration, path: 'signup', only: [:create] do
+    get '/', action: 'new'
+  end
+  resource :user, only: [:show]
+  resource :password, only: [:show] do
+    post '/', action: 'generate_reset_token'
+    patch '/', action: 'update_password'
+  end
+  
+  get 'verify_email', to: 'registrations#verify_email'
+  get '/:token/password/reset', to: 'passwords#reset', as: 'reset_password'
 end

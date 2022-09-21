@@ -1,0 +1,27 @@
+<div class="form">
+  <%= form_with url: session_path do |form| %>
+    <div class="field" >
+      <%= form.label :email, 'Enter Email' %>
+      <%= form.text_field :email %>
+    </div>
+
+    <div class="field" >
+      <%= form.label :password, 'Enter Password' %>
+      <%= form.password_field :password %>
+    </div>
+
+    <div class="field" >
+      <%= form.label :remember_me %>
+      <%= form.check_box :remember_me %>
+    </div>
+
+    <div class="submit-field" >
+      <%= form.submit 'Login' %>
+    </div>
+  <% end %>
+
+  <div class="form-footer">
+    <%= link_to 'Sign Up!', registration_path %> |
+    <%= link_to 'Forgot password?', password_path %>
+  </div>
+</div>
