@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    redirect_to user_path if @user.id == current_user.id
   end
 
   def update

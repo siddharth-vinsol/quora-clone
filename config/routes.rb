@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     patch 'password', action: :update_password
     get 'credit_transactions'
   end
-  resources :users, only: [:show], param: :username
+  resources :users, only: [:show], param: :username, as: 'user_profile'
   resource :password, only: [:show] do
     post '/', action: 'generate_reset_token'
     patch '/', action: 'update_password'
