@@ -112,6 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_20_093353) do
     t.string "payment_method", null: false
     t.string "payment_status", null: false
     t.string "reason"
+    t.string "status"
     t.integer "order_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
