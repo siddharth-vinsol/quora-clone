@@ -1,13 +1,17 @@
 class UsersController < ApplicationController
   before_action :validate_old_password, only: [:update_password]
+  before_action :set_user, only: [:show]
 
-  def show
+  def profile
   end
 
   def edit
   end
 
   def password
+  end
+
+  def show
   end
 
   def update
@@ -37,6 +41,12 @@ class UsersController < ApplicationController
   private def validate_old_password
     unless current_user.authenticate(params[:user][:old_password])
       redirect_to password_user_path, notice: t('old_password_not_matching')
+    end
+  end
+
+  private def set_user
+    unless @user = User.find_by(username: params[:username])
+      redirect_to user_path, notice: ('profile_not_found')
     end
   end
 end

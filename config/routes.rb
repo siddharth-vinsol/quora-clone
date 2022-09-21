@@ -15,11 +15,13 @@ Rails.application.routes.draw do
     get '/', action: 'new'
   end
 
-  resource :user, only: [:show, :edit, :update], path: 'profile' do
+  resource :user, only: [:edit, :update], path: 'profile' do
+    get '/', action: :profile
     get 'password'
     patch 'password', action: :update_password
     get 'credit_transactions'
   end
+  resources :users, only: [:show], param: :username
   resource :password, only: [:show] do
     post '/', action: 'generate_reset_token'
     patch '/', action: 'update_password'
