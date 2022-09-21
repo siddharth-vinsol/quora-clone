@@ -17,9 +17,9 @@ class User < ApplicationRecord
   has_many :credit_transactions, dependent: :destroy
   has_many :orders, dependent: :destroy
 
-  validates :name, :email, presence: true
+  validates :name, :email, :username, presence: true
   validates :password, :password_confirmation, presence: true, if: :setting_password?
-  validates :email, uniqueness: true
+  validates :email, :username, uniqueness: true
   validates :email, format: { with: QuoraClone::RegexConstants::EMAIL_REGEX }, allow_blank: true
   validates :profile_image, attached_file_type: { types: VALID_IMAGE_MIME_TYPES }, allow_blank: true
   validates :credits, numericality: true

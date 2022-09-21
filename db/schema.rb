@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_20_093353) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_21_122909) do
   create_table "abuse_reports", force: :cascade do |t|
     t.string "abuse_reportable_type", null: false
     t.integer "abuse_reportable_id", null: false
@@ -189,6 +189,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_20_093353) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "credits", default: 0, null: false
+    t.string "username"
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   create_table "votes", force: :cascade do |t|

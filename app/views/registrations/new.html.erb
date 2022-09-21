@@ -9,6 +9,11 @@
     <%= render partial: 'shared/form_field_error', locals: { model_object: @user, attribute: :name } %>
     
     <div class="field">
+      <%= form.label :username, 'Username: ' %>
+      <%= form.text_field :username %>
+    </div>
+
+    <div class="field">
       <%= form.label :email, 'Email: ' %>
       <%= form.email_field :email %>
     </div>
