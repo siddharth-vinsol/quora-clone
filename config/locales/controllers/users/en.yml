@@ -4,3 +4,4 @@ en:
   profile_image_upload_failer: 'An error occured while updating your profile image.'
   old_password_not_matching: 'Your old password does not match with specified one.'
   password_update_success: 'Your password has been updated.'
+  profile_not_found: 'This profile does not exist.'
