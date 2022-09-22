@@ -16,7 +16,7 @@
         <div>Title: <%= question.title %></div>
         <div>Content: <%= truncate_action_text(question.content, 100) %></div>
         <%= render_filelink_if_exists question.attachment %>
-        <div class="notice"><%= t('notice.user.question.draft_question') unless question.published_at? %></div>
+        <div class="notice"><%= t('draft_question') unless question.published_at? %></div>
       </div>
       <div class="question-container-right">
         <%= button_to 'View', question_path(question.permalink), method: :get, class: 'view-button' %>

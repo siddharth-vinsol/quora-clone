@@ -21,6 +21,10 @@ class Question < ApplicationRecord
     update(should_publish: true)
   end
 
+  def file_attached?
+    attachment.present?
+  end
+
   private def assign_permalink
     self.permalink = TokenHandler.generate_permalink
   end

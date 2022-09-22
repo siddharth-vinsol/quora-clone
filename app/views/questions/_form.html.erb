@@ -1,29 +1,28 @@
 <div class="form">
   <%= form_with(model: question, url: url) do |form| %>
-    <%= render partial: 'shared/form_errors', locals: { model_object: question } %>
-    
     <div class="field">
       <%= form.label :title, 'Title' %>
       <%= form.text_area :title %>
     </div>
+    <%= render partial: 'shared/form_field_error', locals: { model_object: question, attribute: :title } %>
 
     <div class="field">
       <%= form.label :content, 'Content' %>
       <%= form.rich_text_area :content %>
     </div>
+    <%= render partial: 'shared/form_field_error', locals: { model_object: question, attribute: :content } %>
 
     <div class="upload-button">
       <%= form.label :attachment, 'Attach PDF file' %>
       <%= form.file_field :attachment, accept: 'application/pdf' %>
 
       <div class="uploaded-file">
-        <% if question.attachment.present? && question.persisted? %>
+        <% if question.file_attached? && question.persisted? %>
           <div>File attached: <%= filename_from_file(question.attachment) %></div>
           <%= render_filelink_if_exists(question.attachment) %>
         <% end %>
       </div>
     </div>
-
 
     <div class="submit-field">
       <% unless question.published_at? %>
