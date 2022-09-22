@@ -1,18 +1,18 @@
 <div class="form">
-  <div>Reset your password here</div>
+  <div class="form-header">Reset your password here</div>
   <%= form_with model: @user, url: password_path(token: params[:token]), method: :patch do |form| %>
-    <%= render partial: 'shared/form_errors', locals: { model_object: @user } %>
-
     <%= hidden_field_tag :password_reset_token, params[:password_reset_token] %>
     <div class="form-field" >
       <%= form.label :password %>
       <%= form.password_field :password %>
     </div>
+    <%= render partial: 'shared/form_field_error', locals: { model_object: @user, attribute: :password } %>
 
     <div class="form-field" >
       <%= form.label :password_confirmation %>
       <%= form.password_field :password_confirmation %>
     </div>
+    <%= render partial: 'shared/form_field_error', locals: { model_object: @user, attribute: :password_confirmation } %>
 
     <div class="submit-field">
       <%= form.submit 'Reset password' %>
