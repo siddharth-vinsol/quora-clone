@@ -30,6 +30,10 @@ class User < ApplicationRecord
     role == 'admin'
   end
 
+  def is_verified?
+    verified_at?
+  end
+
   def update_password_reset_token
     if update(password_reset_token: TokenHandler.generate_token, reset_password_sent_at: Time.current)
       send_password_reset_mail

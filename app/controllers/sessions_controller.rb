@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
   def create
     if @user.is_verified?
       handle_logged_in_user
-      redirect_to user_path
     else
       redirect_to login_url, notice: t('verify_before_continue')
     end
@@ -36,7 +35,7 @@ class SessionsController < ApplicationController
   private def handle_logged_in_user
     case
     when @user.disabled_at?
-      redirect_to login_url, notice: t('notice.session.disabled_account.')
+      redirect_to login_url, notice: t('disabled_account.')
     when @user.admin?
       create_auth_cookie
       redirect_to admin_path
@@ -44,7 +43,7 @@ class SessionsController < ApplicationController
       create_auth_cookie
       redirect_to user_path
     else
-      redirect_to login_url, notice: t('notice.session.verify_before_continue')
+      redirect_to login_url, notice: t('verify_before_continue')
     end
   end
 
