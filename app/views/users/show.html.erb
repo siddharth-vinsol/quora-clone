@@ -1,14 +1,14 @@
 <div class="profile">
-  <%= image_tag user_profile_image_link(@user), class: 'profile-img' %>
+  <%= image_tag user_profile_image_link(@other_user), class: 'profile-img' %>
 
-  <div>Name: <%= @user.name %></div>
-  <div>Username: <%= @user.username %></div>
+  <div>Name: <%= @other_user.name %></div>
+  <div>Username: <%= @other_user.username %></div>
 
   <div>Topics of interests</div>
   <div class="topics-container">
-    <%= render partial: 'topics/topic', collection: @user.topics %>  
+    <%= render partial: 'topics/topic', collection: @other_user.topics %>  
   </div>
 
   <br />
-  <button>Follow</button>
+  <%= button_to follow_button_text(current_user, @other_user), follow_user_profile_path(@other_user.username) %>
 </div>

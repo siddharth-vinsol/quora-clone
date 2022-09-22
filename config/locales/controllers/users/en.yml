@@ -5,3 +5,5 @@ en:
   old_password_not_matching: 'Your old password does not match with specified one.'
   password_update_success: 'Your password has been updated.'
   profile_not_found: 'This profile does not exist.'
+  followed: 'You followed %{username}'
+  unfollowed: 'You unfollowed %{username}'

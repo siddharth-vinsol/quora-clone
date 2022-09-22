@@ -57,6 +57,10 @@ class User < ApplicationRecord
   def is_verified?
     verified_at.present?
   end
+  
+  def follows?(user)
+    followees.exists?(user.id)
+  end
 
   private def send_verification_mail
     UserMailer.verification(self).deliver_later
