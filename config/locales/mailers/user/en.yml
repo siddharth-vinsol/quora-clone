@@ -1,3 +1,4 @@
 en:
   verification_subject: 'Verification mail for new account.'
   password_reset_subject: 'Reset password link.'
+  answer_posted: 'Someone posted an answer on your question.'

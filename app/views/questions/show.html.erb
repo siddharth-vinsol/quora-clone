@@ -25,10 +25,10 @@
     <% end %>
   </div>
 
-  <% if current_user %>
+  <% if signed_in? %>
     <%= render 'answers/form' %>
   <% else %>
-    <div class="page-heading"><%= t('notice.session.login_before_answer')%></div>
+    <div class="page-heading"><%= t('login_before_continue')%></div>
   <% end%>
   
   <h3><u>Answers by other Users</u></h3>

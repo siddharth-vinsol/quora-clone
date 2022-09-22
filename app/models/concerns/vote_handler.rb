@@ -1,11 +1,7 @@
 module VoteHandler
   def self.included(klass)
-    klass.extend(ClassMethods)
-  end
-
-  module ClassMethods
-    def has_votes
-      has_many :votes, as: :voteable
+    klass.class_eval do
+      has_many :votes, as: :voteable, dependent: :destroy
     end
   end
 
@@ -54,5 +50,9 @@ module VoteHandler
         decrement!(:total_downvotes)
       end
     end
+  end
+
+  def net_votes
+    total_upvotes - total_downvotes
   end
 end

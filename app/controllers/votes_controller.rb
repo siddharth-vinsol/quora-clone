@@ -3,12 +3,12 @@ class VotesController < ApplicationController
   
   def upvote
     @voteable.upvote(current_user.id)
-    render json: { vote_count: @voteable.total_upvotes - @voteable.total_downvotes, type: 'upvote' }
+    render json: { vote_count: @voteable.net_votes, type: 'upvote' }
   end
 
   def downvote
     @voteable.downvote(current_user.id)
-    render json: { vote_count: @voteable.total_upvotes - @voteable.total_downvotes, type: 'downvote' }
+    render json: { vote_count: @voteable.net_votes, type: 'downvote' }
   end
 
   private def set_voteable

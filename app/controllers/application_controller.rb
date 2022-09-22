@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   private def validate_current_user_resource
-    redirect_to '/404' unless current_user.id == @resource.user_id
+    redirect_to '/404' unless current_user.id == resource.user_id
   end
 
   private def current_user

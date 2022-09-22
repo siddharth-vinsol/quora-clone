@@ -9,11 +9,11 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: t('password_reset_subject')
   end
 
-  def answer_posted(question, question_user, answer, answer_user)
-    @question = question
-    @question_user = question_user
-    @answer = answer
-    @answer_user = answer_user
-    mail to: question_user.email, subject: 'Someone posted an answer on your question'
+  def answer_posted(answer_id)
+    @answer = Answer.find_by(id: answer_id)
+    @question = @answer.question
+    @question_user = @question.user
+    @answer_user = @answer.user
+    mail to: @question_user.email, subject: t('answer_posted')
   end
 end

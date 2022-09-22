@@ -63,11 +63,15 @@ class QuestionsController < ApplicationController
     params.require(:question).permit(:title, :content, :attachment)
   end
 
+  private def resource
+    @question
+  end
+
   private def set_question
-    @resource = @question = Question.find_by_permalink(params[:permalink])
+    @question = Question.find_by_permalink(params[:permalink])
   end
   
   private def set_question_with_answers
-    @resource = @question = Question.includes(:sorted_answers).find_by_permalink(params[:permalink])
+    @question = Question.includes(:sorted_answers).find_by_permalink(params[:permalink])
   end
 end
