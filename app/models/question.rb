@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
   include CommonScopes
   
-  attr_accessor :publish
+  attr_accessor :should_publish
 
   belongs_to :user
   has_rich_text :content
@@ -12,10 +12,14 @@ class Question < ApplicationRecord
   validates :title, :permalink, uniqueness: true, allow_blank: true
 
   before_validation :assign_permalink, on: :create
-  before_save :publish_question, if: :publish, unless: :published_at?
+  before_save :publish_question, if: :should_publish, unless: :published_at?
 
   scope :published_questions, -> { where.not(published_at: nil) }
-  scope :user_questions, -> (user) { where(user: user) }
+  scope :of_user, -> (user) { where(user: user) }
+
+  def publish
+    update(should_publish: true)
+  end
 
   private def assign_permalink
     self.permalink = TokenHandler.generate_permalink
