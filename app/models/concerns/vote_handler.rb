@@ -2,6 +2,8 @@ module VoteHandler
   def self.included(klass)
     klass.class_eval do
       has_many :votes, as: :voteable, dependent: :destroy
+
+      scope :by_most_upvoted, -> { order(Arel.sql('total_upvotes - total_downvotes DESC')) }
     end
   end
 

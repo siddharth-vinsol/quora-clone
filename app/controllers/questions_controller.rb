@@ -37,7 +37,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @new_answer = Answer.new(question: @question)
+    @new_answer = @question.answers.build
   end
 
   def update

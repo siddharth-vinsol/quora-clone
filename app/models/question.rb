@@ -5,7 +5,7 @@ class Question < ApplicationRecord
 
   belongs_to :user
   has_many :answers, dependent: :restrict_with_error
-  has_many :sorted_answers, -> { order(Arel.sql('total_upvotes - total_downvotes DESC')) }, class_name: 'Answer', dependent: :restrict_with_error
+  has_many :sorted_answers, -> { by_most_upvoted }, class_name: 'Answer'
   has_rich_text :content
   has_one_attached :attachment
 
