@@ -14,6 +14,13 @@
       <%= form.collection_check_boxes :topics_name_eq_any, ordered_topics, :name, :name do |b| %>
         <div><%= b.check_box %> <%=b.label%></div>
       <% end %>
+      <br />
+      <% if signed_in? %>
+        <div>
+          <%= form.check_box :user_id_eq_any, { checked: @q.user_id_eq_any.present? }, current_user.followee_ids, nil %>
+          <%= form.label :user_id_eq_any, 'Question posted by people I follow'%>
+        </div>
+      <% end%>
       <%= form.submit %>
     <% end %>
   </div>
