@@ -27,7 +27,7 @@ class User < ApplicationRecord
   validates :credits, numericality: true
 
   def admin?
-    self.role == role['admin']
+    role == 'admin'
   end
 
   def update_password_reset_token
@@ -74,7 +74,7 @@ class User < ApplicationRecord
   end
 
   private def send_password_reset_mail
-    UserMailer.reset_password(self).deliver_later
+    UserMailer.verification(self).deliver_now unless admin?
   end
 
   private def generate_confirmation_token
