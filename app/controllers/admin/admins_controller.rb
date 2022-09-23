@@ -1,5 +1,5 @@
 class Admin::AdminsController < Admin::BaseController
-  before_action :set_user, only: [:disable_user]
+  before_action :set_entity, only: [:disable_entity]
 
   def show
   end
@@ -9,10 +9,10 @@ class Admin::AdminsController < Admin::BaseController
   end
 
   def questions
-    @questions = Question.includes(:user)
+    @questions = Question.includes(:user).published_only
   end
 
-  def disable_user
+  def disable_entity
     if params[:should_disable] == '1'
       disable_time = Time.now
       message = t('user_disable_success')
@@ -21,14 +21,14 @@ class Admin::AdminsController < Admin::BaseController
       message = t('user_enable_success')
     end
 
-    if @user.update(disabled_at: disable_time)
-      redirect_to users_admin_path, notice: message
+    if @entity.update(disabled_at: disable_time)
+      redirect_to request.referrer, notice: message
     else
       redirect_to '404'
     end
   end
 
-  private def set_user
-    @user = User.find(params[:user_id])
+  private def set_entity
+    @entity = params[:entity_type].constantize.find(params[:entity_id])
   end
 end

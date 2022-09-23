@@ -19,6 +19,7 @@
         <div>
           <%= link_to 'Browse Questions', root_path %>
           <% if signed_in? %>
+            <%= link_to 'Admin Dashboard', admin_path if current_user.admin? %>
             <%= link_to 'Your Profile', user_path %>
             <%= link_to 'Your Questions', questions_path %>
             <%= button_to 'Logout', session_path, method: :delete, class: 'logout-button' %>

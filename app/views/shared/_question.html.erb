@@ -3,6 +3,11 @@
     <div>Title: <%= question.title %></div>
     <div>Content: <%= truncate_action_text(question.content, 100) %></div>
     <div>Asked By: <%= question.user.name %></div>
+
+    <div class="question-topics">
+      Related Topics:
+      <%= render partial: 'topics/topic', collection: question.topics %>
+    </div>
   </div>
   <div class="question-container-right">
     <%= link_to 'View Question', question_path(question.permalink) %>

@@ -9,15 +9,7 @@
         <div>Role: <%= user.role %></div>
       </div>
       <div class="entity-container-right">
-        <%= form_with url: disable_user_admin_path, method: :patch do |form| %>
-          <%= form.hidden_field :user_id, value: user.id %>
-          <% if user.banned? %>
-            <%= form.submit 'Enable Account' %>
-          <% else %>
-            <%= form.hidden_field :should_disable, value: 1 %>
-            <%= form.submit 'Disable Account' %>
-          <% end %>
-        <% end %>
+        <%= render partial: 'disable_entity_form', locals: { entity: user } %>
       </div>
     </div>
   <% end %>
