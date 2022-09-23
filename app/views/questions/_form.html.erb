@@ -29,10 +29,11 @@
     </div>
 
     <div class="submit-field">
-      <% unless question.published_at? %>
+      <% unless question.published_at? && question.persisted? %>
         <%= form.submit 'Publish your question', name: 'publish' %>
       <% end %>
       <%= form.submit 'Save' %>
     </div>
+    <%= render partial: 'shared/form_field_error', locals: { model_object: question, attribute: :published_at } %>
   <% end %>
 </div>

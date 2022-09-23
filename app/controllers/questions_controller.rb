@@ -18,10 +18,6 @@ class QuestionsController < ApplicationController
     @question.should_publish = params[:publish]
     
     if @question.save
-      # if params[:publish].present? && !@question.publish
-      #   redirect_to questions_path, notice: @question.errors[:published_at].first and return
-      # end
-
       message = @question.published_at? ? t('publish_success') : t('draft_success')
       redirect_to questions_path, notice: message
     else
@@ -53,10 +49,6 @@ class QuestionsController < ApplicationController
     @question.should_publish = params[:publish]
     
     if @question.update(question_params)
-      # if params[:publish].present? && !@question.publish
-      #   redirect_to questions_path, notice: @question.errors[:published_at].first and return
-      # end
-
       message = @question.published_at? ? t('publish_success') : t('draft_success')
       redirect_to questions_path, notice: message
     else

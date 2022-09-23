@@ -4,11 +4,11 @@ module VoteHandler
       has_many :votes, as: :voteable, dependent: :destroy
       scope :by_most_upvoted, -> { order(Arel.sql('total_upvotes - total_downvotes DESC')) }
       
-      def votes_has_credits
+      def self.votes_has_credits
         @creditable = true
       end
 
-      def creditable
+      def self.creditable
         @creditable
       end
     end
