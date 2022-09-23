@@ -10,9 +10,8 @@ class Question < ApplicationRecord
   
   belongs_to :user
   has_many :answers, dependent: :restrict_with_error
-  has_many :sorted_answers, -> { by_most_upvoted }, class_name: 'Answer'
+  has_many :sorted_answers, -> { by_most_upvoted.published_only }, class_name: 'Answer'
   has_many :abuse_reports, as: :abuse_reportable
-  has_many :published_answers, -> { where.not(published_at: nil) }, dependent: :restrict_with_error, class_name: 'Answer'
   has_rich_text :content
   has_one_attached :attachment
 
@@ -21,9 +20,8 @@ class Question < ApplicationRecord
   validates :title, :permalink, uniqueness: true, allow_blank: true
 
   before_validation :assign_permalink, on: :create
-  before_save :publish_question, if: :should_publish, unless: :published_at?
+  before_validation :publish_question, if: :should_publish, unless: :published_at?
 
-  scope :published_questions, -> { where.not(published_at: nil) }
   scope :of_user, -> (user) { where(user: user) }
 
   def publish
