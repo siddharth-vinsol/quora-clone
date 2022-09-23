@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   before_create :generate_confirmation_token
   after_create_commit :send_verification_mail
+  after_update :reward_verification_credits, if: :verified_at_previously_changed?
 
   enum role: {
     'admin' => 0,
@@ -33,7 +34,7 @@ class User < ApplicationRecord
   end
 
   def verify
-    update(confirmation_token: nil, verified_at: Time.current) && update_credits(QuoraClone::Credits::SUCCESS_VERIFICATION_CREDITS, 'Verfication Reward.')
+    update(confirmation_token: nil, verified_at: Time.current)
   end
 
   def update_credits(amount, entity, reason)
@@ -71,5 +72,9 @@ class User < ApplicationRecord
 
   private def setting_password?
     password || password_confirmation
+  end
+
+  private def reward_verification_credits
+    update_credits(QuoraClone::Credits::SUCCESS_VERIFICATION_CREDITS, nil, 'Verfication Reward.')
   end
 end
