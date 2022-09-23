@@ -15,10 +15,10 @@ class Admin::AdminsController < Admin::BaseController
   def disable_entity
     if params[:should_disable] == '1'
       disable_time = Time.now
-      message = t('user_disable_success')
+      message = t('entity_disable_success', entity: params[:entity_type])
     else
       disable_time = nil
-      message = t('user_enable_success')
+      message = t('entity_enable_success', entity: params[:entity_type])
     end
 
     if @entity.update(disabled_at: disable_time)
