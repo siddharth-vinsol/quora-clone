@@ -16,6 +16,6 @@ module QuoraClone
   end
   
   module AbuseReport
-    ABUSE_REPORT_THRESHOLD = 2
+    ABUSE_REPORT_THRESHOLD = 1
   end
 end

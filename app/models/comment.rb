@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
+  include CommonScopes
   include VoteHandler
   include AbuseReportsHandler
 

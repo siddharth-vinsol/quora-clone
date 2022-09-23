@@ -1,4 +1,5 @@
 class Answer < ApplicationRecord
+  include CommonScopes
   include VoteHandler
   include CommentsHandler
   include AbuseReportsHandler

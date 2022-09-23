@@ -7,6 +7,6 @@
 
   <div class="divider"></div>
   <h3>User comments on this answer</h3>
-  <%= render answer.published_comments %>
-  <%= render partial: 'comments/form', locals: { commentable: answer, new_comment: answer.published_comments.last } %>
+  <%= render answer.sorted_comments %>
+  <%= render partial: 'comments/form', locals: { commentable: answer, new_comment: answer.sorted_comments.last } %>
 </div>

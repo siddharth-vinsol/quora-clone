@@ -29,7 +29,7 @@
       <%= render_filelink_if_exists(@question.attachment) %>
     <% end %>
   </div>
-  <%= link_to 'Report This', new_abuse_report_path(reportable_id: @question.id, reportable_type: @question.class) %>
+  <%= link_to 'Report this Question', new_abuse_report_path(reportable_id: @question.id, reportable_type: @question.class) %>
 
   <% if signed_in? %>
     <%= render 'answers/form' %>
@@ -40,7 +40,7 @@
   
   <h3><u>Comments by other Users</u></h3>
   <div class="comments-container">
-    <%= render @question.published_comments %>
+    <%= render @question.sorted_comments %>
   </div>
 
   <h3><u>Answers by other Users</u></h3>

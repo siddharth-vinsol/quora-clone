@@ -11,7 +11,7 @@ class AbuseReportsController < ApplicationController
     @abuse_report.user = current_user
 
     if @abuse_report.save
-      redirect_to profile_path, notice: t('submit_success')
+      redirect_to user_path, notice: t('submit_success')
     else
       render :new, status: :unprocessable_entity
     end
