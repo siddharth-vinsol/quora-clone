@@ -1,1 +1,14 @@
-<h2>Admin Questions</h2>
+<h2>List of Questions</h2>
+
+<div class="entities-container">
+  <% @questions.each do |question| %>
+    <div class="entity-container">
+      <div class="entity-container-left">
+        <%= render partial: 'questions/question_details', locals: { question: question } %>
+      </div>
+      <div class="entity-container-right">
+        
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -13,15 +13,7 @@
   <% @questions.each do |question| %>
     <div class="question-container">
       <div class="question-container-left">
-        <div class="votes-count"> Net Votes: <%= net_vote_count(question) %> </div>
-        <div>Title: <%= question.title %></div>
-        <div>Content: <%= truncate_action_text(question.content, 100) %></div>
-        <%= render_filelink_if_exists question.attachment %>
-        <div class="notice"><%= t('draft_question') unless question.published_at? %></div>
-        <div class="question-topics">
-          Related Topics:
-          <%= render partial: 'topics/topic', collection: question.topics %>
-        </div>
+        <%= render partial: 'question_details', locals: { question: question } %>
       </div>
       <div class="question-container-right">
         <%= button_to 'View', question_path(question.permalink), method: :get, class: 'view-button' %>

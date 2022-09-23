@@ -9,6 +9,7 @@ class Admin::AdminsController < Admin::BaseController
   end
 
   def questions
+    @questions = Question.includes(:user)
   end
 
   def disable_user
