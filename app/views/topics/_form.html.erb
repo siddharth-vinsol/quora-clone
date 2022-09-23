@@ -1,6 +1,6 @@
 <% content_for :head do %>
-  <%= javascript_include_tag 'scripts/topics_handler', defer: true %>
+  <%= javascript_include_tag 'scripts/select2_handler', defer: true %>
 <% end %>
 
 <%= form.label :topic_list, 'Topics list', class: 'topic-list-label' %>
-<%= form.select :topic_list, topics_list, { value: entity.topic_list }, { class: 'topics-list', multiple: true, data: { hello: 'asd'} } %>
+<%= form.select :topic_list, topics_list, { value: entity.topic_list }, { class: 'topics-list', multiple: true, data: { ref: 'select2-container'} } %>
