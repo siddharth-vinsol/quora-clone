@@ -7,8 +7,8 @@ class User < ApplicationRecord
   after_update :reward_verification_credits, if: :verified_at_previously_changed?
 
   enum role: {
-    'admin' => 0,
-    'user' => 1
+    admin: 0,
+    user: 1
   }
 
   has_secure_password
@@ -25,10 +25,6 @@ class User < ApplicationRecord
   validates :email, format: { with: QuoraClone::RegexConstants::EMAIL_REGEX }, allow_blank: true
   validates :profile_image, attached_file_type: { types: VALID_IMAGE_MIME_TYPES }, allow_blank: true
   validates :credits, numericality: true
-
-  def admin?
-    role == 'admin'
-  end
 
   def is_verified?
     verified_at?
@@ -71,6 +67,10 @@ class User < ApplicationRecord
   
   def follows?(user)
     followees.exists?(user.id)
+  end
+
+  def banned?
+    disabled_at?
   end
 
   private def send_verification_mail
