@@ -34,12 +34,12 @@ class SessionsController < ApplicationController
 
   private def handle_logged_in_user
     case
-    when @user.disabled_at?
-      redirect_to login_url, notice: t('disabled_account.')
+    when @user.banned?
+      redirect_to login_url, notice: t('disabled_account.', disable_day: @user.disabled_at.to_date)
     when @user.admin?
       create_auth_cookie
       redirect_to admin_path
-    when @user.verified_at?
+    when @user.is_verified?
       create_auth_cookie
       redirect_to user_path
     else

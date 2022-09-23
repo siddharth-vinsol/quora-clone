@@ -1,5 +1,5 @@
 class Admin::AdminsController < Admin::BaseController
-  before_action :set_user, only: [:disable_user_account]
+  before_action :set_user, only: [:disable_user]
 
   def show
   end
@@ -11,20 +11,23 @@ class Admin::AdminsController < Admin::BaseController
   def questions
   end
 
-  def disable_user_account
+  def disable_user
     if params[:should_disable] == '1'
-      status = Time.current
-      message = t('notice.user.admin.user_disable_success')
+      disable_time = Time.now
+      message = t('user_disable_success')
     else
-      status = nil
-      message = t('notice.user.admin.user_enable_success')
+      disable_time = nil
+      message = t('user_enable_success')
     end
 
-    @user.change_disable_status(status)
-    redirect_to users_admin_path, notice: message
+    if @user.update(disabled_at: disable_time)
+      redirect_to users_admin_path, notice: message
+    else
+      redirect_to '404'
+    end
   end
 
   private def set_user
-    redirect_to users_admin_path, notice: t('notice.user.admin.user_not_found') unless @user = User.find_by(id: params[:user_id])
+    @user = User.find(params[:user_id])
   end
 end

@@ -1,2 +1,4 @@
 en:
   not_authorized: 'You are not authorized to access this.'
+  user_disable_success: 'User has been banned.'
+  user_enable_success: 'User has been un-banned.'
