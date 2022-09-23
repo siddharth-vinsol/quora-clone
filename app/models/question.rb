@@ -33,7 +33,7 @@ class Question < ApplicationRecord
   end
 
   def editable?
-    answers.blank? && votes.blank? && comments.blank?
+    answers.blank? && votes.blank? && comments.blank? && abuse_reports.blank?
   end
 
   private def assign_permalink
