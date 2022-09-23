@@ -8,7 +8,9 @@
   <div class="topics-container">
     <%= render partial: 'topics/topic', collection: @other_user.topics %>  
   </div>
-
-  <br />
+  <% if @other_user.banned? %>
+    <div class="ban-text">This user was banned on <%= @other_user.disabled_at.to_date %>.</div>
+  <% end %>
+  
   <%= button_to follow_button_text(current_user, @other_user), follow_user_profile_path(@other_user.username) %>
 </div>
