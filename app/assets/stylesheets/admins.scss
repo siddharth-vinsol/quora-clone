@@ -6,15 +6,15 @@
       margin: 10px;
     }
   }
-  .users-container {
+  .entities-container {
     width: 70vw;
-    .user-container {
+    .entity-container {
       padding: 10px;
       margin: 5px;
       border: 2px solid black;
       display: flex;
       justify-content: space-around;
-      .user-container-left {
+      .entity-container-left {
         width: 70%;
       }
     }
