@@ -34,3 +34,14 @@
   width: auto;
   height: auto;
 }
+.question-topics {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  .question-topic {
+    margin: 2px;
+    background-color: lightgrey;
+    padding: 5px;
+    border-radius: 25%;
+  }
+}
