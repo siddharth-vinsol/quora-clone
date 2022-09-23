@@ -17,6 +17,11 @@
       .entity-container-left {
         width: 70%;
       }
+      .entity-container-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
     }
   }
 }
