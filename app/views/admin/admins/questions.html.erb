@@ -7,7 +7,7 @@
         <%= render partial: 'questions/question_details', locals: { question: question } %>
       </div>
       <div class="entity-container-right">
-        
+        <%= render partial: 'disable_entity_form', locals: { entity: question } %>
       </div>
     </div>
   <% end %>

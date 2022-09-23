@@ -4,7 +4,7 @@ class HomepageController < ApplicationController
   before_action :update_search_params, only: [:index], if: :signed_in?
 
   def index
-    @q = Question.includes(:user, :rich_text_content).published_only.by_recently_created.ransack(search_params)
+    @q = Question.includes(:user, :rich_text_content).published_only.not_disabled.by_recently_created.ransack(search_params)
     @questions = @q.result
   end
 

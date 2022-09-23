@@ -17,12 +17,16 @@
       </div>
       <div class="question-container-right">
         <%= button_to 'View', question_path(question.permalink), method: :get, class: 'view-button' %>
-        <% if question.editable? %>
-          <%= button_to 'Edit', edit_question_path(question.permalink), method: :get, class: 'edit-button' %>
-          <%= button_to 'Delete', question_path(question.permalink), method: :delete, class: 'delete-button' %>
-        <% end %>
-        <% unless question.published_at? %>
-          <%= button_to 'Publish', publish_question_path(question.permalink), method: :post, class: 'publish-button' %>
+        <% if question.disabled_at? %>
+          <div>Disabled by admin on <%= question.disabled_at.to_date %></div>
+        <% else %>
+          <% if question.editable? %>
+            <%= button_to 'Edit', edit_question_path(question.permalink), method: :get, class: 'edit-button' %>
+            <%= button_to 'Delete', question_path(question.permalink), method: :delete, class: 'delete-button' %>
+          <% end %>
+          <% unless question.published_at? %>
+            <%= button_to 'Publish', publish_question_path(question.permalink), method: :post, class: 'publish-button' %>
+          <% end %>
         <% end %>
       </div>
     </div>
