@@ -32,7 +32,7 @@
 
   <% if signed_in? %>
     <%= render 'answers/form' %>
-    <%= render partial: 'comments/form', locals: { commentable: @question, new_comment: @new_question_comment } %>
+    <%= render partial: 'comments/form', locals: { commentable: @question, new_comment: @new_comment } %>
   <% else %>
     <div class="page-heading"><%= t('login_before_continue')%></div>
   <% end%>

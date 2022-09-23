@@ -40,7 +40,7 @@ class QuestionsController < ApplicationController
     @new_answer = @question.answers.build
     @new_comment = @question.comments.build
 
-    @question.answers.each do |answer|
+    @question.sorted_answers.each do |answer|
       answer.comments.build
     end
   end

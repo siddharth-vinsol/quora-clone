@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_commentable, only: [:create]
+  before_action :load_commentable, only: [:create]
 
   def create
     @new_comment = @commentable.comments.build(content: comment_params[:content], user_id: current_user.id)
@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  private def set_commentable
+  private def load_commentable
     @commentable = comment_params[:commentable_type].constantize.find(comment_params[:commentable_id])
   end
 
