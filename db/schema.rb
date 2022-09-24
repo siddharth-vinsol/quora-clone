@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_24_051952) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_24_060205) do
   create_table "abuse_reports", force: :cascade do |t|
     t.string "abuse_reportable_type", null: false
     t.integer "abuse_reportable_id", null: false
@@ -113,6 +113,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_24_051952) do
     t.integer "follower_id", null: false
     t.index ["followee_id"], name: "index_follows_on_followee_id"
     t.index ["follower_id"], name: "index_follows_on_follower_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "content"
+    t.boolean "sent"
+    t.string "redirect_link"
+    t.string "notifiable_type", null: false
+    t.integer "notifiable_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "order_transactions", force: :cascade do |t|
@@ -224,6 +236,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_24_051952) do
   add_foreign_key "credit_transactions", "users"
   add_foreign_key "follows", "users", column: "followee_id"
   add_foreign_key "follows", "users", column: "follower_id"
+  add_foreign_key "notifications", "users"
   add_foreign_key "order_transactions", "orders"
   add_foreign_key "orders", "credit_packs"
   add_foreign_key "orders", "users"
