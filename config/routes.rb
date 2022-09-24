@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     patch 'disable_entity'
   end
 
-  scope controller: :notifications, path: 'notifications' do
+  resource :notifications, only: [:show] do
     get 'unsent'
     get 'unread'
   end
