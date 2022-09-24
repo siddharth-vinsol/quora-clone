@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   resource :admin, only: [:show], module: :admin do
     get 'users'
     get 'questions'
+    get 'answers'
     patch 'disable_entity'
   end
 end
