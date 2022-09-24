@@ -53,4 +53,8 @@ Rails.application.routes.draw do
     get 'comments'
     patch 'disable_entity'
   end
+
+  scope controller: :notifications, path: 'notifications' do
+    get 'unsent'
+  end
 end

@@ -1,0 +1,21 @@
+.notifications-container {
+  width: 32px;
+  position: relative;
+  cursor: pointer;
+  .notification-bell {
+    width: 32px;
+    position: relative;
+  }
+  .red-box {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+  }
+  .hide {
+    display: none;
+  }
+}
