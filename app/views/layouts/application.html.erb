@@ -38,7 +38,7 @@
     </main>
 
     <% if signed_in? %>
-      <%= javascript_include_tag 'scripts/notification_handler', defer: true %>
     <% end %>
+      <%= javascript_include_tag 'scripts/notification_handler', 'data-turbolinks-track': 'reload', defer: true %>
   </body>
 </html>
