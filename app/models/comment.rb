@@ -17,10 +17,10 @@ class Comment < ApplicationRecord
     if user_id != commentable.user_id
       if commentable_type == 'Question'
         content = 'Someone commented on your question.'
-        redirect_link = question_path(commentable.permalink)
+        redirect_link = question_path(commentable.permalink, scroll_to: "comment-#{id}")
       else
         content = 'Someone commented on your answer.'
-        redirect_link = question_path(commentable.question.permalink)
+        redirect_link = question_path(commentable.question.permalink, scroll_to: "comment-#{id}")
       end
 
       notifications.create(user: commentable.user, content: content, redirect_link: redirect_link)

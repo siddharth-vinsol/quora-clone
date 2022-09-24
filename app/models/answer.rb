@@ -26,7 +26,7 @@ class Answer < ApplicationRecord
 
   private def generate_notifications
     if user_id != question.user_id
-      notifications.create(user: question.user, content: 'Someone posted an answer on your question.', redirect_link: question_path(question.permalink))
+      notifications.create(user: question.user, content: 'Someone posted an answer on your question.', redirect_link: question_path(question.permalink, scroll_to: "answer-#{id}"))
     end
   end
 end
