@@ -1,5 +1,5 @@
-let NOTIFICATION_ENDPOINT = 'http://127.0.0.1:3000/notifications';
-let POLLING_INTERVAL = 1000;
+const NOTIFICATION_ENDPOINT = 'http://127.0.0.1:3000/notifications';
+const POLLING_INTERVAL = 1000;
 
 class NotificationHandler {
   constructor(notificationBellContainer, notificationContainer) {
@@ -9,6 +9,7 @@ class NotificationHandler {
 
   init() {
     this.notificationBellContainer.click(() => {
+      this.notificationBellContainer.children()[0].classList.add('hide');
       this.notificationContainer.toggleClass('hide');
       this.fetchUnreadNotifications();
     })
@@ -40,7 +41,7 @@ class NotificationHandler {
         notifications.forEach(element => {
           this.notificationContainer.append(`
             <div class="notification">
-              <a href="/questions/3240c4b3-f1f3-4412-9ba8-bd895aa81517">
+              <a href="${element.redirect_link}">
                 <div class="notification-text">${element.content}</div>
                 <div class="notification-text">${this.timeSince(new Date(element.created_at))} ago.</div>
               </a>
