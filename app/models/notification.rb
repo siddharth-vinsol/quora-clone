@@ -1,4 +1,6 @@
 class Notification < ApplicationRecord
+  include CommonScopes
+  
   belongs_to :notifiable, polymorphic: true
   belongs_to :user
 

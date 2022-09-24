@@ -40,16 +40,23 @@ class NotificationHandler {
         this.notificationContainer.empty();
         notifications.forEach(element => {
           this.notificationContainer.append(`
-            <div class="notification">
+            <div class="notification highlight">
               <a href="${element.redirect_link}">
                 <div class="notification-text">${element.content}</div>
                 <div class="notification-text">${this.timeSince(new Date(element.created_at))} ago.</div>
               </a>
             </div>
             <div class="divider"></div>
-          `)
+          `);
         });
+        this.notificationContainer.append(`
+          <a href="/notifications">Show All Notifications</a>
+        `)
       });
+  }
+
+  markNotificationsAsSent() {
+    
   }
 
   timeSince(date) {
