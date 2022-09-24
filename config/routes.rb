@@ -57,5 +57,6 @@ Rails.application.routes.draw do
   resource :notifications, only: [:show] do
     get 'unsent'
     get 'unread'
+    post 'mark_sent'
   end
 end
