@@ -1,0 +1,25 @@
+<h2>List of Comments</h2>
+
+<div class="entities-container">
+  <% @comments.each do |comment| %>
+    <div class="entity-container">
+      <div class="entity-container-left">
+        <div class="votes-count"> Net Votes: <%= net_vote_count(comment) %> </div>
+        <% if comment.commentable_type == 'Answer' %>
+          <div>Answer Content: <%= comment.commentable.content %></div>
+        <% else %>
+          <div>Question Title: <%= comment.commentable.title %></div>
+        <% end %>
+        <div>Content: <%= truncate_action_text(comment.content, 100) %></div>
+      </div>
+      <div class="entity-container-right">
+        <% if comment.commentable_type == 'Answer' %>
+          <%= link_to 'View Answer', question_path(comment.commentable.question.permalink, scroll_to: "comment-#{comment.id}") %>
+        <% else %>
+          <%= link_to 'View Question', question_path(comment.commentable.permalink, scroll_to: "comment-#{comment.id}") %>
+        <% end %>
+        <%= render partial: 'disable_entity_form', locals: { entity: comment } %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -16,6 +16,10 @@ class Admin::AdminsController < Admin::BaseController
     @answers = Answer.includes(:user, :question, :rich_text_content).published_only
   end
 
+  def comments
+    @comments = Comment.includes(:user, :commentable).published_only
+  end
+
   def disable_entity
     if params[:should_disable] == '1'
       disable_time = Time.now
