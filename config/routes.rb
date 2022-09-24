@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     get 'users'
     get 'questions'
     get 'answers'
+    get 'comments'
     patch 'disable_entity'
   end
 end
