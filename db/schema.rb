@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_23_170024) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_24_045158) do
   create_table "abuse_reports", force: :cascade do |t|
     t.string "abuse_reportable_type", null: false
     t.integer "abuse_reportable_id", null: false
@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_23_170024) do
     t.integer "total_upvotes", default: 0
     t.integer "total_downvotes", default: 0
     t.datetime "published_at", precision: nil
+    t.datetime "disabled_at", precision: nil
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end

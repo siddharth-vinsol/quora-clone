@@ -1,0 +1,17 @@
+<h2>List of Answers</h2>
+
+<div class="entities-container">
+  <% @answers.each do |answer| %>
+    <div class="entity-container">
+      <div class="entity-container-left">
+        <div class="votes-count"> Net Votes: <%= net_vote_count(answer) %> </div>
+        <div>Question Title: <%= answer.question.title %></div>
+        <div>Content: <%= truncate_action_text(answer.content, 100) %></div>
+      </div>
+      <div class="entity-container-right">
+        <%= link_to 'View Answer', question_path(answer.question.permalink) %>
+        <%= render partial: 'disable_entity_form', locals: { entity: answer } %>
+      </div>
+    </div>
+  <% end %>
+</div>
