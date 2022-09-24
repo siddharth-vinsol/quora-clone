@@ -1,5 +1,5 @@
 const NOTIFICATION_ENDPOINT = 'http://127.0.0.1:3000/notifications';
-const POLLING_INTERVAL = 1000;
+const POLLING_INTERVAL = 300000;
 
 class NotificationHandler {
   constructor(notificationBellContainer, notificationContainer) {
@@ -12,6 +12,7 @@ class NotificationHandler {
       this.notificationBellContainer.children()[0].classList.add('hide');
       this.notificationContainer.toggleClass('hide');
       this.fetchUnreadNotifications();
+      this.markNotificationsAsSent();
     })
 
     this.pollNotifications();
@@ -56,7 +57,8 @@ class NotificationHandler {
   }
 
   markNotificationsAsSent() {
-    
+    $.post(NOTIFICATION_ENDPOINT + '/mark_sent')
+      .then(() => {})
   }
 
   timeSince(date) {
