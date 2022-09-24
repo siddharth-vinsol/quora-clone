@@ -16,6 +16,30 @@
     top: 0;
   }
   .hide {
-    display: none;
+    display: none !important;
+  }
+  .notification-box {
+    display: block;
+    position: absolute;
+    top: 40px;
+    background-color: #f9f9f9;
+    min-width: 600px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    .notification {
+      width: 100%;
+      margin: 0;
+      border: 2px solid black;
+      a {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+      }
+      .notification-text {
+        color: black;
+        font-size: 16px;
+      }
+    }
   }
 }

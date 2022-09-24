@@ -56,5 +56,6 @@ Rails.application.routes.draw do
 
   scope controller: :notifications, path: 'notifications' do
     get 'unsent'
+    get 'unread'
   end
 end
