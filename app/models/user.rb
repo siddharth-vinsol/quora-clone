@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_and_belongs_to_many :followers, class_name: 'User', join_table: 'follows', association_foreign_key: 'follower_id', foreign_key: 'followee_id'
   has_and_belongs_to_many :followees, class_name: 'User', join_table: 'follows', association_foreign_key: 'followee_id', foreign_key: 'follower_id'
+  has_many :notifications, dependent: :destroy
 
   validates :name, :email, :username, presence: true
   validates :password, :password_confirmation, presence: true, if: :setting_password?
