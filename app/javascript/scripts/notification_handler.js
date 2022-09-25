@@ -3,9 +3,10 @@ var initPage = function() {
   const POLLING_INTERVAL = 300000;
 
   class NotificationHandler {
-    constructor(notificationBellContainer, notificationContainer) {
+    constructor(notificationBellContainer, notificationContainer, notificationList) {
       this.notificationBellContainer = notificationBellContainer;
       this.notificationContainer = notificationContainer;
+      this.notificationList = notificationList;
     }
 
     init() {
@@ -39,21 +40,17 @@ var initPage = function() {
       $.get(NOTIFICATION_ENDPOINT + '/unread')
         .then(data => {
           const { notifications, status } = data;
-          this.notificationContainer.empty();
+          this.notificationList.empty();
           notifications.forEach(element => {
-            this.notificationContainer.append(`
+            this.notificationList.append(`
               <div class="notification highlight">
                 <a href="${element.redirect_link}">
                   <div class="notification-text">${element.content}</div>
                   <div class="notification-text">${this.timeSince(new Date(element.created_at))} ago.</div>
                 </a>
               </div>
-              <div class="divider"></div>
             `);
           });
-          this.notificationContainer.append(`
-            <a href="/notifications">Show All Notifications</a>
-          `)
         });
     }
 
@@ -88,7 +85,7 @@ var initPage = function() {
     }
   }
 
-  let notificationHandler = new NotificationHandler($('*[data-ref="notification-bell-container"]'), $('*[data-ref="notification-container"]'));
+  let notificationHandler = new NotificationHandler($('*[data-ref="notification-bell-container"]'), $('*[data-ref="notification-container"]'), $('*[data-ref="notification-list"]'));
   notificationHandler.init();
 }
 

@@ -22,6 +22,14 @@ class NotificationsController < ApplicationController
     end
   end
 
+  def mark_all_read
+    if @notifications.update(read_at: Time.now)
+      render json: { status: 200 }
+    else
+      render json: { status: 400 }
+    end
+  end
+
   private def load_notifications
     @notifications = current_user.notifications.by_recently_created
   end

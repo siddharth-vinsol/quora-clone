@@ -57,5 +57,6 @@ Rails.application.routes.draw do
     get 'unsent'
     get 'unread'
     post 'mark_sent'
+    patch 'mark_all_read'
   end
 end
