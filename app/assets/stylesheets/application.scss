@@ -201,3 +201,14 @@ button {
   from { background-color: #FFE8E4; }
   to { background-color: transparent; }
 }
+.pop-up-notification {
+  background-color: lightgreen;
+  position: absolute;
+  top: 85px;
+  left: 100px;
+  padding: 10px;
+  display: block;
+  border-radius: 10px;
+  border: 2px dashed pink;
+  cursor: pointer;
+}
