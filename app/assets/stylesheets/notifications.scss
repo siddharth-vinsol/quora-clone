@@ -15,9 +15,6 @@
     z-index: 1;
     top: 0;
   }
-  .hide {
-    display: none !important;
-  }
   .notification-box {
     display: block;
     position: absolute;
@@ -46,6 +43,9 @@
       }
     }
   }
+}
+.hide {
+  display: none !important;
 }
 .notifications-list-container {
   width: 80vw;

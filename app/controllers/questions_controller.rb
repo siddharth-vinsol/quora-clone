@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:publish, :edit, :update, :destroy]
   before_action :load_question_with_answer_comment, only: [:show]
   before_action :validate_current_user_resource, only: [:publish, :edit, :update, :destroy]
+  after_action :send_posted_notification, only: [:create, :publish, :update]
   skip_before_action :authorize, only: [:show]
 
   def index
@@ -78,5 +79,13 @@ class QuestionsController < ApplicationController
 
   private def load_question_with_answer_comment
     @question = Question.includes({ sorted_answers: [:user, :rich_text_content] }, { sorted_comments: [:user] }, :topics).find_by_permalink(params[:permalink])
+  end
+
+  private def send_posted_notification
+    if @question.persisted? && @question.published_at?
+      ActionCable.server.broadcast('new_question_posted', {
+        status: 200
+      })
+    end
   end
 end
