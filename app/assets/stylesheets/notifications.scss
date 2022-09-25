@@ -33,7 +33,7 @@
     }
     .notification {
       width: 100%;
-      margin: 0;
+      margin: 5px;
       border: 2px solid black;
       a {
         display: flex;
@@ -53,5 +53,17 @@
     padding: 10px;
     margin: 5px;
     border: 2px solid black;
+  }
+}
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+}
+.notifications-footer {
+  display: flex;
+  justify-content: space-around;
+  .button-link {
+    border: none;
+    box-shadow: none;
   }
 }
