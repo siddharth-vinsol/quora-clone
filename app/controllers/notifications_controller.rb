@@ -1,4 +1,6 @@
 class NotificationsController < ApplicationController
+  include SerializeHandler
+
   skip_before_action :verify_authenticity_token
   
   before_action :load_notifications
@@ -7,11 +9,11 @@ class NotificationsController < ApplicationController
   end
 
   def unsent
-    render json: { status: 200, notifications: @notifications.where(sent: false) }
+    render json: { status: 200, notifications: serialize_array_of_objects(@notifications.where(sent: false), NotificationSerializer) }
   end
   
   def unread
-    render json: { status: 200, notifications: @notifications.where(read_at: nil) }
+    render json: { status: 200, notifications: serialize_array_of_objects(@notifications.where(read_at: nil), NotificationSerializer) }
   end
 
   def mark_sent
