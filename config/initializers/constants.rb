@@ -24,4 +24,10 @@ module QuoraClone
     MINIMUM_CREDITS_FOR_QUESTION = 1
     MINIMUM_VOTES_TO_REWARD_CREDITS = 1
   end
+
+  module Api
+    module V1
+      MAX_API_CALLS_PER_HOUR = 2
+    end
+  end
 end
