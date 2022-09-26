@@ -1,4 +1,4 @@
-<h1>WELCOME <%= current_user.name %></h1>
+<div class="page-heading">WELCOME <%= current_user.name %></div>
 
 <div class="profile">
   <%= image_tag user_profile_image_link(current_user), class: 'profile-img' %>
@@ -6,6 +6,7 @@
   <div>Name: <%= current_user.name %></div>
   <div>Username: <%= current_user.username %></div>
   <div>Email: <%= current_user.email %></div>
+  <div>Auth Token: <%= current_user.auth_token %></div>
   <div>Your Credits: <%= current_user.credits %></div>
   <%= link_to 'Your credits history', credit_transactions_user_path %>
   <%= link_to 'Buy more credits!', credit_packs_path %>

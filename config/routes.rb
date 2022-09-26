@@ -63,6 +63,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      get 'feed', to: 'users#feed', format: true, constraints: { format: :json }
       resources :topics, only: [:index, :show], param: :topic
     end
   end
