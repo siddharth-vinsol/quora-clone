@@ -5,6 +5,7 @@ class User < ApplicationRecord
   before_create :generate_confirmation_token
   after_create_commit :send_verification_mail
   before_update :reward_verification_credits, if: :verified_at_changed?
+  before_update :generate_auth_token, if: :verified_at_previously_changed?
 
   enum role: {
     admin: 0,
@@ -90,5 +91,9 @@ class User < ApplicationRecord
   private def reward_verification_credits
     self.credits += QuoraClone::Credits::SUCCESS_VERIFICATION_CREDITS
     credit_transactions.build({ value: QuoraClone::Credits::SUCCESS_VERIFICATION_CREDITS, entity: nil, reason: 'Verification Reward.', transaction_type: 'credit' })
+  end
+
+  private def generate_auth_token
+    self.auth_token = TokenHandler.generate_token
   end
 end
