@@ -3,6 +3,7 @@
   <head>
     <title>QuoraClone</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,7 +14,12 @@
   <body>
     <header class="main">
       <div>Quora Clone App</div>
-      <%= button_to 'Logout', session_path, method: :delete, class: 'logout-button' if signed_in? %>
+      <% if signed_in? %>
+        <div>
+          <%= link_to 'Profile', user_path, class: 'white' %>
+          <%= button_to 'Logout', session_path, method: :delete, class: 'logout-button' %>
+        </div>
+      <% end %>
     </header>
 
     <main class="<%= controller.controller_name %>">

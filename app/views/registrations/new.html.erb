@@ -1,28 +1,30 @@
 <div class='form'>
   <%= form_with model: @user, url: registration_path do |form| %>
-    <%= render partial: 'shared/form_errors', locals: { model_object: @user } %>
-
     <h3>Enter details to signup</h3>
 
     <div class="field">
       <%= form.label :name, 'Name: ' %>
       <%= form.text_field :name %>
     </div>
+    <%= render partial: 'shared/form_field_error', locals: { model_object: @user, attribute: :name } %>
     
     <div class="field">
       <%= form.label :email, 'Email: ' %>
       <%= form.email_field :email %>
     </div>
+    <%= render partial: 'shared/form_field_error', locals: { model_object: @user, attribute: :email } %>
 
     <div class="field">
       <%= form.label :password, 'Password: ' %>
       <%= form.password_field :password %>
     </div>
+    <%= render partial: 'shared/form_field_error', locals: { model_object: @user, attribute: :password } %>
     
     <div class="field">
       <%= form.label :password_confirmation, 'Confirm Password: ' %>
       <%= form.password_field :password_confirmation %>
     </div>
+    <%= render partial: 'shared/form_field_error', locals: { model_object: @user, attribute: :password_confirmation } %>
 
     <div class="submit-field">
       <%= form.submit 'Signup!' %>

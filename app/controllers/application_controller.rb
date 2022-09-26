@@ -15,5 +15,5 @@ class ApplicationController < ActionController::Base
     @user ||= User.find_by(id: cookies.encrypted[:user_id])
   end
 
-  helper_method :signed_in?
+  helper_method :current_user, :signed_in?
 end

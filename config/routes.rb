@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   resource :registration, path: 'signup', only: [:create] do
     get '/', action: 'new'
   end
-  resource :user, only: [:show]
+
+  resource :user, only: [:show, :edit, :update], path: 'profile' do
+    get 'password'
+    patch 'password', action: :update_password
+  end
   resource :password, only: [:show] do
     post '/', action: 'generate_reset_token'
     patch '/', action: 'update_password'

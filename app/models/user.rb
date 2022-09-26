@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  VALID_IMAGE_MIME_TYPES = ['image/png', 'image/jpeg']
+
   before_create :generate_confirmation_token
   after_create_commit :send_verification_mail
 
@@ -8,11 +10,13 @@ class User < ApplicationRecord
   }
 
   has_secure_password
+  has_one_attached :profile_image, dependent: :destroy
 
   validates :name, :email, presence: true
   validates :password, :password_confirmation, presence: true, if: :setting_password?
   validates :email, uniqueness: true
   validates :email, format: { with: QuoraClone::RegexConstants::EMAIL_REGEX }, allow_blank: true
+  validates :profile_image, attached_file_type: { types: VALID_IMAGE_MIME_TYPES }, allow_blank: true
 
   def update_password_reset_token
     if update(password_reset_token: TokenHandler.generate_token, reset_password_sent_at: Time.current)

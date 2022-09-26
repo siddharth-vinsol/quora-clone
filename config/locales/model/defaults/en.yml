@@ -1,0 +1,2 @@
+en:
+  invalid_filetype: 'Profile picture has invalid extension. Can only be %{file_types}'

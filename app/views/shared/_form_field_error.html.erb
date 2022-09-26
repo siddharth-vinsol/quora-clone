@@ -1,0 +1,8 @@
+<% if model_object.errors[attribute].present? %>
+  <% model_object.errors[attribute].each do |error| %>
+    <div class="form-field-error">
+      <b><%= attribute %></b>
+      <span><%= error %></span>
+    </div>
+  <% end %>
+<% end %>
