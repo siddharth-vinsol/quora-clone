@@ -21,7 +21,7 @@ var initPage = function() {
     }
 
     pollNotifications() {
-      this.fetchUnreadNotifications();
+      this.fetchUnsentNotifications();
       setInterval(() => {
         this.fetchUnsentNotifications();
       }, POLLING_INTERVAL)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_24_060205) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_26_113443) do
   create_table "abuse_reports", force: :cascade do |t|
     t.string "abuse_reportable_type", null: false
     t.integer "abuse_reportable_id", null: false
@@ -71,6 +71,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_24_060205) do
     t.datetime "disabled_at", precision: nil
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "api_request_logs", force: :cascade do |t|
+    t.string "endpoint"
+    t.string "ip_address"
+    t.datetime "created_at", precision: nil
   end
 
   create_table "comments", force: :cascade do |t|
@@ -214,6 +220,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_24_060205) do
     t.integer "credits", default: 0, null: false
     t.datetime "disabled_at", precision: nil
     t.string "username"
+    t.string "auth_token"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
