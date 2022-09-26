@@ -53,6 +53,7 @@ gem 'ransack', "~> 3.2.1"
 gem 'acts-as-taggable-on', '~> 9.0'
 gem 'select2-rails'
 gem 'stripe', '~> 7.1.0'
+gem 'active_model_serializers', '~> 0.10.0'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
