@@ -1,6 +1,6 @@
 var initPage = function() {
   const NOTIFICATION_ENDPOINT = 'http://127.0.0.1:3000/notifications';
-  const POLLING_INTERVAL = 300000;
+  const POLLING_INTERVAL = 30000;
 
   class NotificationHandler {
     constructor(notificationBellContainer, notificationContainer, notificationList) {
@@ -21,7 +21,8 @@ var initPage = function() {
     }
 
     pollNotifications() {
-      setTimeout(() => {
+      this.fetchUnreadNotifications();
+      setInterval(() => {
         this.fetchUnsentNotifications();
       }, POLLING_INTERVAL)
     }
@@ -46,7 +47,7 @@ var initPage = function() {
               <div class="notification highlight">
                 <a href="${element.redirect_link}">
                   <div class="notification-text">${element.content}</div>
-                  <div class="notification-text">${this.timeSince(new Date(element.created_at))} ago.</div>
+                  <div class="notification-text">${moment(element.created_at).fromNow()}</div>
                 </a>
               </div>
             `);
@@ -57,31 +58,6 @@ var initPage = function() {
     markNotificationsAsSent() {
       $.post(NOTIFICATION_ENDPOINT + '/mark_sent')
         .then(() => {})
-    }
-
-    timeSince(date) {
-      let seconds = Math.floor((new Date() - date) / 1000);
-      let interval = seconds / 31536000;
-      if (interval > 1) {
-        return Math.floor(interval) + " years";
-      }
-      interval = seconds / 2592000;
-      if (interval > 1) {
-        return Math.floor(interval) + " months";
-      }
-      interval = seconds / 86400;
-      if (interval > 1) {
-        return Math.floor(interval) + " days";
-      }
-      interval = seconds / 3600;
-      if (interval > 1) {
-        return Math.floor(interval) + " hours";
-      }
-      interval = seconds / 60;
-      if (interval > 1) {
-        return Math.floor(interval) + " minutes";
-      }
-      return Math.floor(seconds) + " seconds";
     }
   }
 
