@@ -1,2 +1,3 @@
 en:
   invalid_auth_token: 'Your auth token is invalid.'
+  too_many_api_calls: 'Too many requests. Please try again later.'
