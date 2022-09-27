@@ -18,6 +18,10 @@ class Answer < ApplicationRecord
   
   votes_has_credits
 
+  def redirect_link
+    question_path(question.permalink, scroll_to: scrollable_id)
+  end
+
   private def send_answer_posted_mail
     if user_id != question.user_id
       UserMailer.answer_posted(id).deliver_later
@@ -26,7 +30,7 @@ class Answer < ApplicationRecord
 
   private def generate_notifications
     if user_id != question.user_id
-      notifications.create(user: question.user, content: 'Someone posted an answer on your question.', redirect_link: question_path(question.permalink, scroll_to: "answer-#{id}"))
+      notifications.create(user: question.user, content: 'Someone posted an answer on your question.')
     end
   end
 end

@@ -193,6 +193,9 @@ button {
   font-size: 16px;
   box-shadow: 0 4px 14px 0 rgb(173, 86, 19);
 }
+.notification-highlight {
+  background-color: #FFE8E4;
+}
 .highlight {
   animation-name: highlight-fadeout;
   animation-duration: 5s;

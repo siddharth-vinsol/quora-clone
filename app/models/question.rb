@@ -41,6 +41,10 @@ class Question < ApplicationRecord
     answers.blank? && votes.blank? && comments.blank? && abuse_reports.blank?
   end
 
+  def redirect_link
+    question_path(permalink, scroll_to: scrollable_id)
+  end
+
   private def assign_permalink
     self.permalink = TokenHandler.generate_permalink
   end
@@ -56,7 +60,7 @@ class Question < ApplicationRecord
   private def handle_topic_notifications
     users = User.tagged_with(topic_list, any: true)
     users.each do |user|
-      notifications.create(user: user, content: 'Question posted related to your interest', redirect_link: question_path(permalink)) if self.user.id != user.id
+      notifications.create(user: user, content: 'Question posted related to your interest') if self.user.id != user.id
     end
   end
 end

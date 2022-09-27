@@ -1,6 +1,6 @@
 var initPage = function() {
   const NOTIFICATION_ENDPOINT = 'http://127.0.0.1:3000/notifications';
-  const POLLING_INTERVAL = 30000;
+  const POLLING_INTERVAL = 300000;
 
   class NotificationHandler {
     constructor(notificationBellContainer, notificationContainer, notificationList) {
@@ -44,7 +44,7 @@ var initPage = function() {
           this.notificationList.empty();
           notifications.forEach(element => {
             this.notificationList.append(`
-              <div class="notification highlight">
+              <div class="notification notification-highlight">
                 <a href="${element.redirect_link}">
                   <div class="notification-text">${element.content}</div>
                   <div class="notification-text">${moment(element.created_at).fromNow()}</div>

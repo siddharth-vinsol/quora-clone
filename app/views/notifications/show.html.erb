@@ -5,7 +5,7 @@
     <% if notification.read_at? %>
     <div class="notification">
     <% else %>
-    <div class="notification highlight">
+    <div class="notification notification-highlight">
     <% end %>
       <a href="<%= notification.redirect_link %>">
         <div class="notification-text"><%= notification.content %></div>
