@@ -13,14 +13,20 @@ class Comment < ApplicationRecord
 
   after_create :generate_notifications
 
+  def redirect_link
+    if commentable_type == 'Question'
+      question_path(commentable.permalink, scroll_to: scrollable_id)
+    else
+      question_path(commentable.question.permalink, scroll_to: scrollable_id)
+    end
+  end
+
   private def generate_notifications
     if user_id != commentable.user_id
       if commentable_type == 'Question'
         content = 'Someone commented on your question.'
-        redirect_link = question_path(commentable.permalink, scroll_to: "comment-#{id}")
       else
         content = 'Someone commented on your answer.'
-        redirect_link = question_path(commentable.question.permalink, scroll_to: "comment-#{id}")
       end
 
       notifications.create(user: commentable.user, content: content, redirect_link: redirect_link)

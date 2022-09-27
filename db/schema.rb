@@ -124,7 +124,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_26_113443) do
   create_table "notifications", force: :cascade do |t|
     t.string "content"
     t.boolean "sent", default: false
-    t.string "redirect_link"
     t.string "notifiable_type", null: false
     t.integer "notifiable_id", null: false
     t.integer "user_id", null: false
