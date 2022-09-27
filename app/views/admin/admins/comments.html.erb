@@ -14,9 +14,9 @@
       </div>
       <div class="entity-container-right">
         <% if comment.commentable_type == 'Answer' %>
-          <%= link_to 'View Answer', question_path(comment.commentable.question.permalink, scroll_to: "comment-#{comment.id}") %>
+          <%= link_to 'View Comment', question_path(comment.commentable.question.permalink, scroll_to: comment.scrollable_id) %>
         <% else %>
-          <%= link_to 'View Question', question_path(comment.commentable.permalink, scroll_to: "comment-#{comment.id}") %>
+          <%= link_to 'View Comment', question_path(comment.commentable.permalink, scroll_to: comment.scrollable_id) %>
         <% end %>
         <%= render partial: 'disable_entity_form', locals: { entity: comment } %>
       </div>

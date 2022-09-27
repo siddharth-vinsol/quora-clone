@@ -9,7 +9,7 @@
         <div>Content: <%= truncate_action_text(answer.content, 100) %></div>
       </div>
       <div class="entity-container-right">
-        <%= link_to 'View Answer', question_path(answer.question.permalink, scroll_to: "answer-#{answer.id}") %>
+        <%= link_to 'View Answer', question_path(answer.question.permalink, scroll_to: answer.scrollable_id) %>
         <%= render partial: 'disable_entity_form', locals: { entity: answer } %>
       </div>
     </div>

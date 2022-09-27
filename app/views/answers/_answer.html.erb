@@ -1,4 +1,4 @@
-<div class="answer", data-scroll_id='<%= "answer-#{answer.id}" %>'>
+<div class="answer", data-scroll_id="<%= answer.scrollable_id %>">
   <%= render partial: 'shared/vote_buttons', locals: { resource: answer } %>
   <div><b><%= answer.user.name %> </b>Says: </div>
   <%= answer.content %>

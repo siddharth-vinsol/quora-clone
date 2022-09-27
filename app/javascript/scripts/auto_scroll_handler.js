@@ -5,10 +5,9 @@ class AutoScrollHandler {
 
   init() {
     if (this.scrollToElement) {
-      $('html, body').animate({
-        scrollTop: this.scrollToElement.offset().top
-      }, 1000);
+      $('html, body').animate({ scrollTop: this.scrollToElement.offset().top }, 1000);
       this.scrollToElement.addClass('highlight')
+      this.scrollToElement.animate({backgroundColor: '#000000'}, 'slow');
     }
   }
 }

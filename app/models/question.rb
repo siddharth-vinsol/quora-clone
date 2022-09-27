@@ -3,6 +3,7 @@ class Question < ApplicationRecord
   include VoteHandler
   include CommentsHandler
   include AbuseReportsHandler
+  include AutoScrollHandler
   
   attr_accessor :should_publish
 
