@@ -194,5 +194,10 @@ button {
   box-shadow: 0 4px 14px 0 rgb(173, 86, 19);
 }
 .highlight {
-  background-color: #FFE8E4;
+  animation-name: highlight-fadeout;
+  animation-duration: 5s;
+}
+@keyframes highlight-fadeout {
+  from { background-color: #FFE8E4; }
+  to { background-color: transparent; }
 }
