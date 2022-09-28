@@ -48,6 +48,11 @@ class UsersController < ApplicationController
     redirect_to user_profile_path(@other_user.username), notice: notice
   end
 
+  def remove_photo
+    current_user.profile_image.purge
+    redirect_to user_path, notice: t('profile_image_deleted')
+  end
+
   private def user_params
     params.require(:user).permit(:name, :username, :profile_image, :password, :password_confirmation, topic_list: [])
   end

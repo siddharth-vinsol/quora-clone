@@ -6,4 +6,8 @@ module UsersHelper
   def follow_button_text(user, other_user)
     user.follows?(other_user) ? 'Unfollow' : 'Follow'
   end
+
+  def profile_image_attached?(user)
+    user.profile_image.present?
+  end
 end

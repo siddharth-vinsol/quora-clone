@@ -90,7 +90,6 @@ a, .button-link {
   background-color: #FAD1BE;
   padding: 35px;
   border-radius: 20px;
-  max-width: 600px;
   .form-header {
     text-align: center;
     margin-bottom: 20px;
@@ -219,4 +218,14 @@ button {
 .logo {
   color: white;
   font-size: 26px;
+}
+.cross-button {
+  margin: 0;
+  cursor: pointer;
+  display: inline;
+  position: absolute;
+  left: 55%;
+}
+.max-fixed-width {
+  width: 600px;
 }
