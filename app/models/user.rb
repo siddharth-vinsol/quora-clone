@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include NotificationsHandler
+  
   VALID_IMAGE_MIME_TYPES = ['image/png', 'image/jpeg']
   acts_as_taggable_on :topics
 
@@ -6,6 +8,7 @@ class User < ApplicationRecord
   after_create_commit :send_verification_mail
   before_update :reward_verification_credits, if: :verified_at_changed?
   before_update :generate_auth_token, if: :verified_at_changed?
+  after_update :generate_verification_notification, if: :verified_at_previously_changed?
 
   enum role: {
     admin: 0,
@@ -73,6 +76,10 @@ class User < ApplicationRecord
     disabled_at?
   end
 
+  def redirect_link
+    user_path
+  end
+
   private def send_verification_mail
     UserMailer.verification(self).deliver_later
   end
@@ -96,5 +103,9 @@ class User < ApplicationRecord
 
   private def generate_auth_token
     self.auth_token = TokenHandler.generate_token
+  end
+
+  private def generate_verification_notification
+    notifications.build(content: 'Your account has been verified and 5 credits have been rewarded.', notifiable: self)
   end
 end
