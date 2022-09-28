@@ -1,4 +1,4 @@
 en:
   signup_success: 'Thank you for signing up, a verification email has been sent to your account.'
-  verification_success: 'Account has been verified, Please login again.'
+  verification_success: 'Your account has been verified, Please login again.'
   verification_failure: 'Cannot verify your account.'
