@@ -6,7 +6,9 @@
 
   <% if signed_in? %>
     <% if current_user_resource?(comment, current_user) %>
-
+      <%= form_with url: comment_path(comment), method: :delete do |form| %>
+        <%= form.submit "Delete Your Comment", class: 'delete-button' %>
+      <% end %>
     <% else %>
       <%= link_to 'Report this Comment', new_abuse_report_path(reportable_id: comment.id, reportable_type: comment.class) %>
     <% end %>
