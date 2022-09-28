@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     post 'publish', on: :member
   end
   resources :answers, only: [:create, :destroy]
-  resources :comments, only: [:create]
+  resources :comments, only: [:create, :destroy]
   resources :abuse_reports, only: [:new, :create]
   resources :credit_packs, only: [:index]
   resources :order_transactions, only: [:create] do
