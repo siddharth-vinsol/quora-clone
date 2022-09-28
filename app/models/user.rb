@@ -22,7 +22,8 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   validates :name, :email, :username, presence: true
-  validates :password, :password_confirmation, presence: true, if: :setting_password?
+  validates :password, format: { with: QuoraClone::RegexConstants::PASSWORD_REGEX, message: I18n.t('invalid_password') }, allow_blank: true
+  validates :password, :password_confirmation, presence: true, allow_blank: true, if: :setting_password?
   validates :email, :username, uniqueness: true
   validates :email, format: { with: QuoraClone::RegexConstants::EMAIL_REGEX }, allow_blank: true
   validates :profile_image, attached_file_type: { types: VALID_IMAGE_MIME_TYPES }, allow_blank: true
