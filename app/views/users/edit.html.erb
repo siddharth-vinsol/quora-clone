@@ -1,7 +1,7 @@
 <div class="form">
   <div class="form-header">Update Profile</div>
   <% if profile_image_attached?(current_user) %>
-    <%= form_with url: remove_photo_user_path, method: :patch, class: 'cross-button' do |form| %>
+    <%= form_with url: remove_photo_user_path, method: :delete, class: 'cross-button' do |form| %>
       <%= image_tag 'cross.png', { onclick: 'this.parentElement.submit()' } %>
     <% end %>
   <% end %>

@@ -5,7 +5,7 @@
 
   <% if signed_in? %>
     <% if current_user_resource?(answer, current_user) %>
-      <%= form_with url: answer_path(answer), method: :delete do |form| %>
+      <%= form_with url: answer_path(answer), method: :delete, data: { 'turbo-confirm': 'Are you sure?' } do |form| %>
         <%= form.hidden_field :permalink, value: answer.question.permalink %>
         <%= form.submit "Delete Your Answer", class: 'delete-button' %>
       <% end %>

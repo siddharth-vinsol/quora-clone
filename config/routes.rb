@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get 'password'
     patch 'password', action: :update_password
     get 'credit_transactions'
-    patch 'remove_photo'
+    delete 'remove_photo'
   end
   resources :users, only: [:show], param: :username, as: 'user_profile' do
     post 'follow', on: :member
