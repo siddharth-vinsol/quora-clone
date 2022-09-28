@@ -16,7 +16,7 @@
     <div class="page-heading">Search by Topics</div>
     <%= search_form_for @q, url: root_path do |form| %>
       <%= form.collection_check_boxes :topics_name_eq_any, ordered_topics, :name, :name do |b| %>
-        <div><%= b.check_box %> <%=b.label%></div>
+        <div><%= b.check_box %> <%= b.label %></div>
       <% end %>
       <br />
       <% if signed_in? %>
