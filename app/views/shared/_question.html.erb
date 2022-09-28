@@ -1,11 +1,10 @@
 <div class="question-container">
   <div class="question-container-left">
-    <div>Title: <%= question.title %></div>
-    <div>Content: <%= truncate_action_text(question.content, 100) %></div>
-    <div>Asked By: <%= question.user.name %></div>
+    <div><b><%= question.title %></b></div>
+    <div><%= truncate_action_text(question.content, 100) %></div>
+    <div><%= link_to question.user.name, user_profile_path(question.user.username) %></div>
 
     <div class="question-topics">
-      Related Topics:
       <%= render partial: 'topics/topic', collection: question.topics %>
     </div>
   </div>
