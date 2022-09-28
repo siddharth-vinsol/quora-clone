@@ -9,8 +9,7 @@
   <div class="question-header">
     <div>
       <%= render partial: 'shared/vote_buttons', locals: { resource: @question } %>
-      <div class="question-field-label">Title: </div>
-      <div class="question-field-value"><%= @question.title %></div>
+      <div class="question-field-value"><b><%= @question.title %></b></div>
     </div>
     <div>
       <div class="question-field-label">Asked By: </div>
@@ -36,7 +35,7 @@
     <%= render 'answers/form' %>
     <%= render partial: 'comments/form', locals: { commentable: @question, new_comment: @new_comment } %>
   <% else %>
-    <div class="page-heading"><%= t('login_before_continue')%></div>
+    <div class="page-heading"><%= t('login_before_answer')%></div>
   <% end%>
   
   <h3><u>Comments by other Users</u></h3>
