@@ -235,7 +235,7 @@ button {
   color: rgb(173, 68, 19);
   box-shadow: none;
 
-  @at-root form {
+  @at-root &form {
     display: inline;
   }
 }
