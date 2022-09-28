@@ -7,3 +7,4 @@ en:
   profile_not_found: 'This profile does not exist.'
   followed: 'You followed %{username}'
   unfollowed: 'You unfollowed %{username}'
+  same_old_new_password: 'New password cannot be same as old password.'
