@@ -29,7 +29,7 @@ class Comment < ApplicationRecord
         content = 'Someone commented on your answer.'
       end
 
-      notifications.create(user: commentable.user, content: content, redirect_link: redirect_link)
+      notifications.create(user: commentable.user, content: content)
     end
   end
 end

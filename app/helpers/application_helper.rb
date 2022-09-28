@@ -6,4 +6,8 @@ module ApplicationHelper
   def filename_from_file(file)
     file.filename.to_s
   end
+
+  def current_user_resource?(resource, user)
+    resource.user_id == user.id
+  end
 end

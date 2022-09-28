@@ -12,7 +12,7 @@ class Answer < ApplicationRecord
   belongs_to :user
   belongs_to :question
   has_rich_text :content
-  has_many :notifications, as: :notifiable
+  has_many :notifications, as: :notifiable, dependent: :destroy
   
   validates :content, presence: true
   

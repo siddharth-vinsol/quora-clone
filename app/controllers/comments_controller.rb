@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   def create
     @new_comment = @commentable.comments.build(content: comment_params[:content], user_id: current_user.id, published_at: Time.current)
 
-    if @new_comment.save!
+    if @new_comment.save
       redirect_to request.referrer, notice: t('comment_added')
     else
       flash[:notice] = @new_comment.errors.full_messages.first

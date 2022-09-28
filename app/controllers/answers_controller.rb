@@ -1,5 +1,7 @@
 class AnswersController < ApplicationController
   before_action :set_question, only: [:create]
+  before_action :set_answer, only: [:destroy]
+  before_action :validate_current_user_resource, only: [:destroy] 
 
   def create
     @new_answer = @question.answers.build(content: answer_params[:content], user_id: current_user.id, published_at: Time.now)
@@ -11,11 +13,27 @@ class AnswersController < ApplicationController
     end
   end
 
+  def destroy
+    if @answer.destroy
+      redirect_to question_path(params[:permalink]), notice: t('answer_deleted')
+    else
+      render 'questions/show', status: :unprocessable_entity
+    end
+  end
+
   private def set_question
     @question = Question.find(answer_params[:question_id])
   end
 
   private def answer_params
     params.require(:answer).permit(:question_id, :content, :permalink)
+  end
+
+  private def set_answer
+    @answer = Answer.find(params[:id])
+  end
+
+  private def resource
+    @answer
   end
 end
