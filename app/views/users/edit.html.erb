@@ -1,5 +1,10 @@
 <div class="form">
   <div class="form-header">Update Profile</div>
+  <% if profile_image_attached?(current_user) %>
+    <%= form_with url: remove_photo_user_path, method: :patch, class: 'cross-button' do |form| %>
+      <%= image_tag 'cross.png', { onclick: 'this.parentElement.submit()' } %>
+    <% end %>
+  <% end %>
   <%= form_with model: current_user, url: user_path do |form| %>
     <div class="img-field">
       <%= image_tag user_profile_image_link(current_user), class: 'profile-img' %>
@@ -18,6 +23,7 @@
       <%= form.label :username, 'Username' %>
       <%= form.text_field :username %>
     </div>
+    <%= render partial: 'shared/form_field_error', locals: { model_object: current_user, attribute: :username } %>
 
     <div class="form-topics">
       <%= render partial: 'topics/form', locals: { form: form, entity: current_user }%>

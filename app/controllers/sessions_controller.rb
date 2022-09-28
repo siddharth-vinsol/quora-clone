@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
       redirect_to admin_path
     when @user.is_verified?
       create_auth_cookie
-      redirect_to user_path
+      redirect_to root_path
     else
       redirect_to login_url, notice: t('verify_before_continue')
     end
