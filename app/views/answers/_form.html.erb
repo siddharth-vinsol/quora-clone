@@ -1,4 +1,4 @@
-<%= form_with model: @new_answer, url: answer_path, class: "answer-submit-form" do |form| %>
+<%= form_with model: @new_answer, url: answers_path, class: "answer-submit-form" do |form| %>
   <h3><u>Post Your Answer</u></h3>
   <%= render partial: 'shared/form_errors', locals: { model_object: @new_answer } %>
 

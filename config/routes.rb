@@ -32,9 +32,9 @@ Rails.application.routes.draw do
   resources :questions, param: :permalink do
     post 'publish', on: :member
   end
-  resource :answer, only: [:create]
-  resource :comment, only: [:create]
-  resource :abuse_report, only: [:new, :create]
+  resources :answers, only: [:create, :destroy]
+  resources :comments, only: [:create]
+  resources :abuse_reports, only: [:new, :create]
   resources :credit_packs, only: [:index]
   resource :order_transactions, only: [:create]
   resources :orders, only: [:create], param: :code do

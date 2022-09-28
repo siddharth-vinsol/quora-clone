@@ -229,3 +229,13 @@ button {
 .max-fixed-width {
   width: 600px;
 }
+.delete-button {
+  border: 0;
+  background-color: transparent;
+  color: rgb(173, 68, 19);
+  box-shadow: none;
+
+  @at-root form {
+    display: inline;
+  }
+}
