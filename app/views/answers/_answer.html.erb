@@ -3,7 +3,16 @@
   <div><b><%= answer.user.name %> </b>Says: </div>
   <%= answer.content %>
 
-  <%= link_to 'Report this Answer', new_abuse_report_path(reportable_id: answer.id, reportable_type: answer.class) %>
+  <% if signed_in? %>
+    <% if current_user_resource?(answer, current_user) %>
+      <%= form_with url: answer_path(answer), method: :delete do |form| %>
+        <%= form.hidden_field :permalink, value: answer.question.permalink %>
+        <%= form.submit "Delete Your Answer", class: 'delete-button' %>
+      <% end %>
+    <% else %>
+      <%= link_to 'Report this Answer', new_abuse_report_path(reportable_id: answer.id, reportable_type: answer.class) %>
+    <% end %>
+  <% end %>
 
   <div class="divider"></div>
   <h3>User comments on this answer</h3>

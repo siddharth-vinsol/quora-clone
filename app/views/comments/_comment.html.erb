@@ -4,6 +4,12 @@
     <div><b><%= comment.user.name %> </b>Commented: </div>
     <%= comment.content %>
 
-    <%= link_to 'Report this Comment', new_abuse_report_path(reportable_id: comment.id, reportable_type: comment.class) %>
+  <% if signed_in? %>
+    <% if current_user_resource?(comment, current_user) %>
+
+    <% else %>
+      <%= link_to 'Report this Comment', new_abuse_report_path(reportable_id: comment.id, reportable_type: comment.class) %>
+    <% end %>
+  <% end %>
   </div>
 <% end %>
