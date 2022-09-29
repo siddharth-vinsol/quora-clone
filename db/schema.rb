@@ -216,8 +216,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_26_113443) do
     t.datetime "reset_password_sent_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "credits", default: 0, null: false
     t.datetime "disabled_at", precision: nil
+    t.integer "credits", default: 0, null: false
     t.string "username"
     t.string "auth_token"
     t.index ["username"], name: "index_users_on_username", unique: true
