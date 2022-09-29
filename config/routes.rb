@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   end
   resources :questions, param: :permalink do
     post 'publish', on: :member
+    delete 'remove_attachment', on: :member
   end
   resources :answers, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
