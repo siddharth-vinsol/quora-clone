@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   before_create :generate_confirmation_token
   after_create_commit :send_verification_mail
-  after_update :reward_verification_credits, if: :verified_at_previously_changed?
+  before_update :reward_verification_credits, if: :verified_at_changed?
 
   enum role: {
     'admin' => 0,
@@ -38,15 +38,12 @@ class User < ApplicationRecord
   end
 
   def update_credits(amount, entity, reason)
-    self.credits = self.credits + amount
+    self.credits += amount
 
-    transaction_type = 'credit'
-    if amount < 0
-      transaction_type = 'debit'
-      amount *= -1
-    end
+    transaction_type = amount < 0 ? 'debit' : 'credit'
+    amount = amount.abs
+
     credit_transactions.build({ value: amount, entity: entity, reason: reason, transaction_type: transaction_type })
-
     save
   end
 
@@ -75,6 +72,7 @@ class User < ApplicationRecord
   end
 
   private def reward_verification_credits
-    update_credits(QuoraClone::Credits::SUCCESS_VERIFICATION_CREDITS, nil, 'Verfication Reward.')
+    self.credits += QuoraClone::Credits::SUCCESS_VERIFICATION_CREDITS
+    credit_transactions.build({ value: QuoraClone::Credits::SUCCESS_VERIFICATION_CREDITS, entity: nil, reason: 'Verification Reward.', transaction_type: 'credit' })
   end
 end
