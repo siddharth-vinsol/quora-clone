@@ -31,10 +31,7 @@ Rails.application.routes.draw do
   resource :comment, only: [:create]
   resource :abuse_report, only: [:new, :create]
   resources :credit_packs, only: [:index]
-  resource :order_transactions, only: [:create] do
-    get 'success'
-    get 'failure'
-  end
+  resource :order_transactions, only: [:create]
   resources :orders, only: [:create], param: :code do
     get 'checkout', on: :member
     get 'success', on: :member

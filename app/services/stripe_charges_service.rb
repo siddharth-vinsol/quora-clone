@@ -1,7 +1,7 @@
 class StripeChargesService
   DEFAULT_CURRENCY = 'inr'.freeze
-  PAYMENT_SUCCESS_URL = 'http://127.0.0.1:3000/order_transactions/success?transaction_id={CHECKOUT_SESSION_ID}'
-  PAYMENT_FAILED_URL = 'http://127.0.0.1:3000/order_transactions/failure?transaction_id={CHECKOUT_SESSION_ID}'
+  PAYMENT_SUCCESS_URL = 'http://127.0.0.1:3000/orders/ORDER_CODE/success?transaction_id={CHECKOUT_SESSION_ID}'
+  PAYMENT_FAILED_URL = 'http://127.0.0.1:3000/orders/ORDER_CODE/failure?transaction_id={CHECKOUT_SESSION_ID}'
 
   def initialize(order, user)
     @order = order
@@ -15,9 +15,9 @@ class StripeChargesService
         quantity: 1
       }],
       mode: 'payment',
-      success_url: PAYMENT_SUCCESS_URL,
-      cancel_url: PAYMENT_FAILED_URL,
-      metadata: { order_id: @order.id }
+      success_url: PAYMENT_SUCCESS_URL.gsub('ORDER_CODE', @order.code),
+      cancel_url: PAYMENT_FAILED_URL.gsub('ORDER_CODE', @order.code),
+      metadata: { order_code: @order.code }
     })
   end
 
