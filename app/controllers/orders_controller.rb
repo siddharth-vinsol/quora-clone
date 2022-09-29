@@ -3,9 +3,9 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:checkout]
 
   def create
-    @order = Order.find_or_initialize_by(amount: @credit_pack.price, status: 'in-cart', credit_pack: @credit_pack, user: current_user, status: 'in-cart')
+    @order = Order.find_or_initialize_by(amount: @credit_pack.price, status: 'in_cart', credit_pack: @credit_pack, user: current_user)
     if @order.save
-      redirect_to checkout_order_path(@order.id)
+      redirect_to checkout_order_path(@order.code)
     else
       redirect_to credit_packs_path, notice: t('failed_order')
     end
@@ -19,6 +19,6 @@ class OrdersController < ApplicationController
   end
 
   private def set_order
-    @order = Order.find(params[:id])
+    @order = Order.find_by(code: params[:code])
   end
 end

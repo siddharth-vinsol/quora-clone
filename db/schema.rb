@@ -123,6 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_20_093353) do
   create_table "orders", force: :cascade do |t|
     t.decimal "amount", null: false
     t.integer "status", null: false
+    t.string "code", null: false
     t.integer "credit_pack_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false

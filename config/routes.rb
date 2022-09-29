@@ -35,8 +35,10 @@ Rails.application.routes.draw do
     get 'success'
     get 'failure'
   end
-  resources :orders, only: [:create] do
+  resources :orders, only: [:create], param: :code do
     get 'checkout', on: :member
+    get 'success', on: :member
+    get 'failure', on: :member
   end
 
   get 'verify_email', to: 'registrations#verify_email'
