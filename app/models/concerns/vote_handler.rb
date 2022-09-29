@@ -1,15 +1,13 @@
 module VoteHandler
   def self.included(klass)
     klass.class_eval do
+      cattr_accessor :creditable, instance_reader: true
+      
       has_many :votes, as: :voteable, dependent: :destroy
       scope :by_most_upvoted, -> { order(Arel.sql('total_upvotes - total_downvotes DESC')) }
       
       def self.votes_has_credits
-        @creditable = true
-      end
-
-      def self.creditable
-        @creditable
+        self.creditable = true
       end
     end
   end
@@ -64,17 +62,15 @@ module VoteHandler
   end
 
   def handle_resource_credits
-    return unless self.class.creditable
+    return unless creditable
 
     if net_votes >= QuoraClone::Credits::MINIMUM_VOTES_TO_REWARD_CREDITS
-      unless transaction = user.credit_transactions.find_by(entity: self, transaction_type: 'credit')
+      unless user.credit_transactions.where(entity: self).last.try(:credit?)
         user.update_credits(1, self, 'Answer Reward')
-        user.credit_transactions.find_by(entity: self, transaction_type: 'debit').try(:destroy)
       end
     else
-      if transaction = user.credit_transactions.find_by(entity: self, transaction_type: 'credit')
+      if user.credit_transactions.where(entity: self).last.try(:credit?)
         user.update_credits(-1, self, 'Answer Penalty')
-        transaction.destroy
       end
     end
   end

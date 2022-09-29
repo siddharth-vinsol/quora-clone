@@ -12,7 +12,7 @@ module AbuseReportsHandler
   end
 
   private def remove_credit_on_unpublish
-    if transaction = user.credit_transactions.find_by(entity: self, transaction_type: 'credit')
+    if transaction = user.credit_transactions.where(entity: self).last.try(:credit?)
       user.update_credits(-1, self, 'Report Penalty')
     end
   end
