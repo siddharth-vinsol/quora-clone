@@ -34,7 +34,11 @@ header.main {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 20%;
+    a {
+      font-size: 16px;
+      text-decoration: underline;
+      color: white;
+    }
   }
 }
 body {
@@ -58,10 +62,19 @@ body {
     margin-right: 20px;
     font-size: 20px;
   }
+  .hidden {
+    display: none;
+  }
+  .page-heading {
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+  }
 }
 a {
   color: rgb(173, 68, 19);
   text-decoration: unset;
+  margin: 10px;
 }
 .white {
   color: white;
@@ -93,12 +106,21 @@ a {
     width: 100%;
     justify-content: center;
   }
+  .upload-button {
+    border: 2px solid black;
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+    width: 30%;
+    font-size: 24px;
+  }
   input[type='submit'] {
     display: inline-block;
     outline: 0;
     cursor: pointer;
     border: none;
     padding: 0 56px;
+    margin: 5px;
     height: 45px;
     line-height: 45px;
     border-radius: 7px;

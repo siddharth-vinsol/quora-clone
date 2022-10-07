@@ -1,4 +1,6 @@
-Rails.application.routes.draw do  
+Rails.application.routes.draw do
+  root to: 'homepage#index'
+
   controller :sessions do
     get 'login'
     get 'logout'
@@ -16,6 +18,9 @@ Rails.application.routes.draw do
   resource :password, only: [:show] do
     post '/', action: 'generate_reset_token'
     patch '/', action: 'update_password'
+  end
+  resources :questions, param: :permalink do
+    post 'publish', on: :member
   end
   
   get 'verify_email', to: 'registrations#verify_email'

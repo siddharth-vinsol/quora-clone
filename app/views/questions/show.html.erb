@@ -1,0 +1,24 @@
+<div class="page-heading">Question Page</div>
+
+<div class="question">
+  <div class="question-header">
+    <div>
+      <div class="question-field-label">Title: </div>
+      <div class="question-field-value"><%= @question.title %></div>
+    </div>
+    <div>
+      <div class="question-field-label">Asked By: </div>
+      <div class="question-field-value"><%= @question.user.name %></div>
+    </div>
+  </div>
+  <div class="question-content">
+    <div class="question-field-value"><%= @question.content %></div>
+  </div>
+  <div class="uploaded-file">
+    <% if @question.file_attached? %>
+      <div>File attached: <%= filename_from_file(@question.attachment) %></div>
+      <%= render_filelink_if_exists(@question.attachment) %>
+    <% end %>
+  </div>
+  <h3>Answers by Users</h3>
+</div>

@@ -1,0 +1,121 @@
+.questions, .homepage {
+  .field {
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+    input {
+      font-size: 28px;
+      background-color: white;
+    }
+    textarea {
+      width: 75vw;
+    }
+    .trix-content {
+      background-color: white;
+      font-size: 18px;
+    }
+  }
+  .question-search-bar {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    .search-field {
+      width: 70%;
+      font-size: 20px;
+      border-color: #FAD1BE;
+      border-radius: 10px;
+      padding: 5px;
+    }
+    input[type='submit'] {
+      margin-left: 10px;;
+      border: none;
+      width: 200px;
+      padding: 10px;
+      background-color: #FAD1BE;
+      box-shadow: 2.5px 2.5px 10px rgb(173, 68, 19);
+    }
+  }
+  .questions-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 80vh;
+    width: 80vw;
+    overflow: scroll;
+    .question-container {
+      padding: 10px;
+      border: 2px solid black;
+      margin: 5px;
+      display: flex;
+      justify-content: space-between;
+      .question-container-left {
+        width: 80%;
+      }
+      .question-container-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        width: 20%;
+        button {
+          border-color: #333232;
+          background-color: #E0E0E0;
+          box-shadow: none;
+          color: #333232;
+          margin: 5px;
+          font-size: 10px;
+          padding: 10px;
+          line-height: 0;
+          width: 80px;
+          height: 25px;
+        }
+        .view-button {
+          background-color: #FAD1BE;
+        }
+        .edit-button {
+          background-color: #E0E0E0;
+        }
+        .delete-button {
+          background-color: #ED7B7D;
+        }
+        .publish-button {
+          background-color: #E7E89B;
+        }
+      }
+    }
+  }
+  .uploaded-file {
+    margin-top: 30px;
+    font-size: 16px;
+  }
+  .question {
+    display: flex;
+    width: 70vw;
+    padding: 10px;
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 2px solid black;
+    .question-header {
+      margin: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-size: 18px;
+      width: 95%;
+      div {
+        display: flex;
+        flex-direction: row;
+        .question-field-label {
+          font-weight: bolder;
+          margin-right: 5px;
+        }
+      }
+    }
+    .question-content {
+      padding: 10px;
+      background-color: #FAD1BE;
+      border-radius: 20px;
+      width: 90%;
+    }
+  }
+}

@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
 
+  private def validate_current_user_resource
+    redirect_to '/404' unless current_user.id == @resource.user_id
+  end
+
   private def current_user
     @user ||= User.find_by(id: cookies.encrypted[:user_id])
   end

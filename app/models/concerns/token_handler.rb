@@ -8,4 +8,8 @@ module TokenHandler
       Time.current - token_generated_time.to_time > duration
     end
   end
+
+  def self.generate_permalink
+    SecureRandom.uuid
+  end
 end

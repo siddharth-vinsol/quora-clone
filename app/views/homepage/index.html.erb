@@ -1,0 +1,12 @@
+<div class="page-heading">Questions posted by other users</div>
+
+<div class="question-search-bar">
+  <%= search_form_for @q, url: root_path do |form| %>
+    <%= form.search_field :title_cont, placeholder: 'Question Title', class: 'search-field' %>
+    <%= form.submit 'Search Question by Title' %>
+  <% end %>
+</div>
+
+<div class="questions-container">
+  <%= render partial: 'shared/question', collection: @questions %>
+</div>
