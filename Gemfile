@@ -78,3 +78,8 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 5.1.2'
+  gem 'factory_bot_rails', '~>6.2.0'
+end
