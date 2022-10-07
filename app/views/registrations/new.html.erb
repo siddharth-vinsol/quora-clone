@@ -1,5 +1,5 @@
 <div class='form'>
-  <%= form_with model: @user, url: registration_path do |form| %>
+  <%= form_with model: @user, url: registration_path, class: 'max-fixed-width' do |form| %>
     <h3>Enter details to signup</h3>
 
     <div class="field">
@@ -12,6 +12,7 @@
       <%= form.label :username, 'Username: ' %>
       <%= form.text_field :username %>
     </div>
+    <%= render partial: 'shared/form_field_error', locals: { model_object: @user, attribute: :username } %>
 
     <div class="field">
       <%= form.label :email, 'Email: ' %>

@@ -1,9 +1,10 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:publish, :edit, :update, :destroy]
+  before_action :set_question, only: [:publish, :edit, :update, :destroy, :remove_attachment]
   before_action :load_question_with_answer_comment, only: [:show]
-  before_action :validate_current_user_resource, only: [:publish, :edit, :update, :destroy]
+  before_action :validate_current_user_resource, only: [:publish, :edit, :update, :destroy, :remove_attachment]
   after_action :send_posted_notification, only: [:create, :publish, :update]
   skip_before_action :authorize, only: [:show]
+  skip_before_action :verify_authenticity_token, only: [:remove_attachment]
 
   def index
     @q = Question.includes(:rich_text_content, :attachment_attachment).of_user(current_user).by_recently_created.ransack(params[:q])
@@ -48,7 +49,7 @@ class QuestionsController < ApplicationController
 
   def update
     @question.should_publish = params[:publish]
-    
+    @question.attachment = nil
     if @question.update(question_params)
       message = @question.published_at? ? t('publish_success') : t('draft_success')
       redirect_to questions_path, notice: message
@@ -63,6 +64,11 @@ class QuestionsController < ApplicationController
     else
       redirect_to questions_path, status: :unprocessable_entity
     end
+  end
+
+  def remove_attachment
+    @question.attachment.purge
+    render json: { status: :ok }
   end
 
   private def question_params

@@ -7,7 +7,7 @@ class Comment < ApplicationRecord
 
   belongs_to :commentable, polymorphic: true
   belongs_to :user
-  has_many :notifications, as: :notifiable
+  has_many :notifications, as: :notifiable, dependent: :destroy
   
   validates :content, presence: true
 
@@ -29,7 +29,7 @@ class Comment < ApplicationRecord
         content = 'Someone commented on your answer.'
       end
 
-      notifications.create(user: commentable.user, content: content, redirect_link: redirect_link)
+      notifications.create(user: commentable.user, content: content)
     end
   end
 end
