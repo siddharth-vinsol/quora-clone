@@ -1,4 +1,5 @@
 <div>Hi <%= @user.name %></div>
 <div>Your account has been verified, Thank you!</div>
+<div><%= QuoraClone::Credits::SUCCESS_VERIFICATION_CREDITS %> credits has also been awarded to you!!</div>
 <div>Please login again using below link</div>
 <%= link_to 'Login', login_path %>

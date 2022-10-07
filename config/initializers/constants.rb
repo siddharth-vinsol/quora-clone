@@ -18,4 +18,10 @@ module QuoraClone
   module AbuseReport
     ABUSE_REPORT_THRESHOLD = 1
   end
+
+  module Credits
+    SUCCESS_VERIFICATION_CREDITS = 5
+    MINIMUM_CREDITS_FOR_QUESTION = 1
+    MINIMUM_VOTES_TO_REWARD_CREDITS = 1
+  end
 end

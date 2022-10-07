@@ -1,2 +1,3 @@
 en:
   not_publishable: 'Cannot publish this question due to excessive reports.'
+  not_enough_credits: 'You do not have enough credits to publish question.'

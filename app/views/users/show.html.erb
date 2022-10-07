@@ -5,6 +5,8 @@
 
   <div><%= current_user.name %></div>
   <div><%= current_user.email %></div>
+  <div>Your Credits: <%= current_user.credits %></div>
+  <%= link_to 'Your credits history', credit_transactions_user_path %>
   <br />
   <div>Your Topic of interests</div>
   <div class="topics-container">
