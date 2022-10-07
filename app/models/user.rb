@@ -5,7 +5,7 @@ class User < ApplicationRecord
   before_create :generate_confirmation_token
   after_create_commit :send_verification_mail
   before_update :reward_verification_credits, if: :verified_at_changed?
-  before_update :generate_auth_token, if: :verified_at_previously_changed?
+  before_update :generate_auth_token, if: :verified_at_changed?
 
   enum role: {
     admin: 0,
