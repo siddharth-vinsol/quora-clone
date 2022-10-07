@@ -12,6 +12,10 @@
     </div>
     <%= render partial: 'shared/form_field_error', locals: { model_object: question, attribute: :content } %>
 
+    <div class="topics-container">
+      <%= render partial: 'topics/form', locals: { form: form, entity: question } %>
+    </div>
+
     <div class="upload-button">
       <%= form.label :attachment, 'Attach PDF file' %>
       <%= form.file_field :attachment, accept: 'application/pdf' %>

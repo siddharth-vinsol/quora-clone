@@ -66,6 +66,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    acts-as-taggable-on (9.0.1)
+      activerecord (>= 6.0, < 7.1)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     bcrypt (3.1.18)
@@ -193,6 +195,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    select2-rails (4.0.13)
     selenium-webdriver (4.4.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -239,6 +242,7 @@ PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 9.0)
   bcrypt (~> 3.1.7)
   bootsnap
   capybara
@@ -251,6 +255,7 @@ DEPENDENCIES
   rails (~> 7.0.3, >= 7.0.3.1)
   ransack (~> 3.2.1)
   sassc-rails
+  select2-rails
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)

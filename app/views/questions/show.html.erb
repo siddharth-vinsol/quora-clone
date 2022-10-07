@@ -18,6 +18,10 @@
   <div class="question-content">
     <div class="question-field-value"><%= @question.content %></div>
   </div>
+  <div class="question-topics">
+    Related Topics:
+    <%= render partial: 'topics/topic', collection: @question.topics %>
+  </div>
   <div class="uploaded-file">
     <% if @question.file_attached? %>
       <div>File attached: <%= filename_from_file(@question.attachment) %></div>
