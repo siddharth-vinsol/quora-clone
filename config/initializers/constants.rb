@@ -14,4 +14,8 @@ module QuoraClone
   module Token
     TOKEN_EXPIRATION_TIME = 1.day
   end
+  
+  module AbuseReport
+    ABUSE_REPORT_THRESHOLD = 1
+  end
 end

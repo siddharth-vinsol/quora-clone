@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
     if @question.publish
       redirect_to questions_path, notice: t('publish_success')
     else
-      render :index, status: :unprocessable_entity
+      redirect_to questions_path, notice: @question.errors[:published_at].first
     end
   end
 
@@ -41,7 +41,7 @@ class QuestionsController < ApplicationController
     @new_comment = @question.comments.build
 
     @question.sorted_answers.each do |answer|
-      answer.comments.build
+      answer.sorted_comments.build
     end
   end
 
@@ -77,6 +77,6 @@ class QuestionsController < ApplicationController
   end
 
   private def load_question_with_answer_comment
-    @question = Question.includes({ sorted_answers: [:user, :rich_text_content] }, { comments: [:user] }, :topics).find_by_permalink(params[:permalink])
+    @question = Question.includes({ sorted_answers: [:user, :rich_text_content] }, { sorted_comments: [:user] }, :topics).find_by_permalink(params[:permalink])
   end
 end

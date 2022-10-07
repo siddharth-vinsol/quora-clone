@@ -1,6 +1,8 @@
 class Answer < ApplicationRecord
+  include CommonScopes
   include VoteHandler
   include CommentsHandler
+  include AbuseReportsHandler
 
   after_create_commit :send_answer_posted_mail
 
