@@ -3,3 +3,4 @@ en:
   verify_before_continue: 'Please verify your account using link sent on your email before moving further.'
   invalid_email_password: 'Wrong email and password combination. Please try again!'
   logout_success: 'Logged out successfully.'
+  disabled_account: 'Your account has been disabled on %{disable_day}.'

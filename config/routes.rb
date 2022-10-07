@@ -44,4 +44,12 @@ Rails.application.routes.draw do
 
   get 'verify_email', to: 'registrations#verify_email'
   get '/:token/password/reset', to: 'passwords#reset', as: 'reset_password'
+
+  resource :admin, only: [:show], module: :admin do
+    get 'users'
+    get 'questions'
+    get 'answers'
+    get 'comments'
+    patch 'disable_entity'
+  end
 end

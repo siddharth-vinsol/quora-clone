@@ -1,0 +1,15 @@
+<h2>List of Questions</h2>
+
+<div class="entities-container">
+  <% @questions.each do |question| %>
+    <div class="entity-container">
+      <div class="entity-container-left">
+        <%= render partial: 'questions/question_details', locals: { question: question } %>
+      </div>
+      <div class="entity-container-right">
+        <%= link_to 'View Question', question_path(question.permalink, scroll_to: question.scrollable_id) %>
+        <%= render partial: 'disable_entity_form', locals: { entity: question } %>
+      </div>
+    </div>
+  <% end %>
+</div>

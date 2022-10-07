@@ -9,11 +9,7 @@ class SessionsController < ApplicationController
 
   def create
     if @user.is_verified?
-      cookies.encrypted[:user_id] = { 
-        value: @user.id,
-        expires: cookie_expiration_time
-      }
-      redirect_to user_path
+      handle_logged_in_user
     else
       redirect_to login_url, notice: t('verify_before_continue')
     end
@@ -34,6 +30,28 @@ class SessionsController < ApplicationController
     unless @user.authenticate(params[:password])
       redirect_to login_url, notice: t('invalid_email_password')
     end
+  end
+
+  private def handle_logged_in_user
+    case
+    when @user.banned?
+      redirect_to login_url, notice: t('disabled_account.', disable_day: @user.disabled_at.to_date)
+    when @user.admin?
+      create_auth_cookie
+      redirect_to admin_path
+    when @user.is_verified?
+      create_auth_cookie
+      redirect_to user_path
+    else
+      redirect_to login_url, notice: t('verify_before_continue')
+    end
+  end
+
+  private def create_auth_cookie
+    cookies.encrypted[:user_id] = { 
+      value: @user.id,
+      expires: cookie_expiration_time
+    }
   end
 
   private def cookie_expiration_time

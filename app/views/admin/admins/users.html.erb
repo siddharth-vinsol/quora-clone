@@ -1,0 +1,17 @@
+<h3>List of Users</h3>
+
+<div class="entities-container">
+  <% @users.each do |user| %>
+    <div class="entity-container">
+      <div class="entity-container-left">
+        <div>Name: <%= user.name %></div>
+        <div>Email: <%= user.email %></div>
+        <div>Role: <%= user.role %></div>
+      </div>
+      <div class="entity-container-right">
+        <%= link_to 'View User', user_profile_path(user.username) %>
+        <%= render partial: 'disable_entity_form', locals: { entity: user } %>
+      </div>
+    </div>
+  <% end %>
+</div>

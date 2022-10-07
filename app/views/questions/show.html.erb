@@ -1,10 +1,11 @@
 <% content_for :head do %>
   <%= javascript_include_tag 'scripts/vote_handler', defer: true %>
+  <%= javascript_include_tag 'scripts/auto_scroll_handler', defer: true %>
 <% end %>
 
 <div class="page-heading">Question Page</div>
 
-<div class="question" data-ref="voteable-container">
+<div class="question" data-ref="voteable-container" data-scroll_id="<%= @question.scrollable_id %>">
   <div class="question-header">
     <div>
       <%= render partial: 'shared/vote_buttons', locals: { resource: @question } %>

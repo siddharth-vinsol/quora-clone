@@ -1,5 +1,5 @@
 <% if comment.user.present? %>
-  <div class="comment">
+  <div class="comment" data-scroll_id="<%= comment.scrollable_id %>">
     <%= render partial: 'shared/vote_buttons', locals: { resource: comment } %>
     <div><b><%= comment.user.name %> </b>Commented: </div>
     <%= comment.content %>

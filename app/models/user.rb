@@ -7,8 +7,8 @@ class User < ApplicationRecord
   before_update :reward_verification_credits, if: :verified_at_changed?
 
   enum role: {
-    'admin' => 0,
-    'user' => 1
+    admin: 0,
+    user: 1
   }
 
   has_secure_password
@@ -25,6 +25,10 @@ class User < ApplicationRecord
   validates :email, format: { with: QuoraClone::RegexConstants::EMAIL_REGEX }, allow_blank: true
   validates :profile_image, attached_file_type: { types: VALID_IMAGE_MIME_TYPES }, allow_blank: true
   validates :credits, numericality: true
+
+  def is_verified?
+    verified_at?
+  end
 
   def update_password_reset_token
     if update(password_reset_token: TokenHandler.generate_token, reset_password_sent_at: Time.current)
@@ -62,12 +66,16 @@ class User < ApplicationRecord
     followees.exists?(user.id)
   end
 
+  def banned?
+    disabled_at?
+  end
+
   private def send_verification_mail
     UserMailer.verification(self).deliver_later
   end
 
   private def send_password_reset_mail
-    UserMailer.reset_password(self).deliver_later
+    UserMailer.verification(self).deliver_now unless admin?
   end
 
   private def generate_confirmation_token

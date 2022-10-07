@@ -13,24 +13,20 @@
   <% @questions.each do |question| %>
     <div class="question-container">
       <div class="question-container-left">
-        <div class="votes-count"> Net Votes: <%= net_vote_count(question) %> </div>
-        <div>Title: <%= question.title %></div>
-        <div>Content: <%= truncate_action_text(question.content, 100) %></div>
-        <%= render_filelink_if_exists question.attachment %>
-        <div class="notice"><%= t('draft_question') unless question.published_at? %></div>
-        <div class="question-topics">
-          Related Topics:
-          <%= render partial: 'topics/topic', collection: question.topics %>
-        </div>
+        <%= render partial: 'question_details', locals: { question: question } %>
       </div>
       <div class="question-container-right">
         <%= button_to 'View', question_path(question.permalink), method: :get, class: 'view-button' %>
-        <% if question.editable? %>
-          <%= button_to 'Edit', edit_question_path(question.permalink), method: :get, class: 'edit-button' %>
-          <%= button_to 'Delete', question_path(question.permalink), method: :delete, class: 'delete-button' %>
-        <% end %>
-        <% unless question.published_at? %>
-          <%= button_to 'Publish', publish_question_path(question.permalink), method: :post, class: 'publish-button' %>
+        <% if question.disabled_at? %>
+          <div>Disabled by admin on <%= question.disabled_at.to_date %></div>
+        <% else %>
+          <% if question.editable? %>
+            <%= button_to 'Edit', edit_question_path(question.permalink), method: :get, class: 'edit-button' %>
+            <%= button_to 'Delete', question_path(question.permalink), method: :delete, class: 'delete-button' %>
+          <% end %>
+          <% unless question.published_at? %>
+            <%= button_to 'Publish', publish_question_path(question.permalink), method: :post, class: 'publish-button' %>
+          <% end %>
         <% end %>
       </div>
     </div>

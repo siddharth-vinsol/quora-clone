@@ -1,0 +1,10 @@
+<%= form_with url: disable_entity_admin_path, method: :patch do |form| %>
+  <%= form.hidden_field :entity_id, value: entity.id %>
+  <%= form.hidden_field :entity_type, value: entity.class %>
+  <% if entity.disabled_at? %>
+    <%= form.submit "Enable #{entity.class.name}" %>
+  <% else %>
+    <%= form.hidden_field :should_disable, value: 1 %>
+    <%= form.submit "Disable #{entity.class.name}" %>
+  <% end %>
+<% end %>

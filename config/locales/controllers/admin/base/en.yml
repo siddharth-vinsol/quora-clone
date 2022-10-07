@@ -1,0 +1,4 @@
+en:
+  not_authorized: 'You are not authorized to access this.'
+  entity_disable_success: '%{entity} has been disabled.'
+  entity_enable_success: '%{entity} has been enabled.'

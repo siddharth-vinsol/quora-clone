@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_21_161459) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_24_051952) do
   create_table "abuse_reports", force: :cascade do |t|
     t.string "abuse_reportable_type", null: false
     t.integer "abuse_reportable_id", null: false
@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_161459) do
     t.integer "total_upvotes", default: 0
     t.integer "total_downvotes", default: 0
     t.datetime "published_at", precision: nil
+    t.datetime "disabled_at", precision: nil
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
@@ -82,6 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_161459) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "published_at", precision: nil
+    t.datetime "disabled_at", precision: nil
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -148,6 +150,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_161459) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "published_at", precision: nil
+    t.datetime "disabled_at", precision: nil
     t.index ["permalink"], name: "index_questions_on_permalink", unique: true
     t.index ["title"], name: "index_questions_on_title", unique: true
     t.index ["user_id"], name: "index_questions_on_user_id"
@@ -196,6 +199,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_161459) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "credits", default: 0, null: false
+    t.datetime "disabled_at", precision: nil
     t.string "username"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
