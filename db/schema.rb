@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_20_093353) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_21_161459) do
   create_table "abuse_reports", force: :cascade do |t|
     t.string "abuse_reportable_type", null: false
     t.integer "abuse_reportable_id", null: false
@@ -106,6 +106,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_20_093353) do
     t.index ["user_id"], name: "index_credit_transactions_on_user_id"
   end
 
+  create_table "follows", primary_key: ["followee_id", "follower_id"], force: :cascade do |t|
+    t.integer "followee_id", null: false
+    t.integer "follower_id", null: false
+    t.index ["followee_id"], name: "index_follows_on_followee_id"
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
+  end
+
   create_table "order_transactions", force: :cascade do |t|
     t.string "transaction_id", null: false
     t.decimal "amount", null: false
@@ -189,6 +196,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_20_093353) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "credits", default: 0, null: false
+    t.string "username"
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   create_table "votes", force: :cascade do |t|
@@ -209,6 +218,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_20_093353) do
   add_foreign_key "answers", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "credit_transactions", "users"
+  add_foreign_key "follows", "users", column: "followee_id"
+  add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "order_transactions", "orders"
   add_foreign_key "orders", "credit_packs"
   add_foreign_key "orders", "users"

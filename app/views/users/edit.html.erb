@@ -14,6 +14,11 @@
     </div>
     <%= render partial: 'shared/form_field_error', locals: { model_object: @user, attribute: :name } %>
 
+    <div class="form-field">
+      <%= form.label :username, 'Username' %>
+      <%= form.text_field :username %>
+    </div>
+
     <div class="form-topics">
       <%= render partial: 'topics/form', locals: { form: form, entity: current_user }%>
     </div>

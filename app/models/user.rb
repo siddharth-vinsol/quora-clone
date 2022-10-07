@@ -16,10 +16,12 @@ class User < ApplicationRecord
   has_many :questions, dependent: :restrict_with_error
   has_many :credit_transactions, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_and_belongs_to_many :followers, class_name: 'User', join_table: 'follows', association_foreign_key: 'follower_id', foreign_key: 'followee_id'
+  has_and_belongs_to_many :followees, class_name: 'User', join_table: 'follows', association_foreign_key: 'followee_id', foreign_key: 'follower_id'
 
-  validates :name, :email, presence: true
+  validates :name, :email, :username, presence: true
   validates :password, :password_confirmation, presence: true, if: :setting_password?
-  validates :email, uniqueness: true
+  validates :email, :username, uniqueness: true
   validates :email, format: { with: QuoraClone::RegexConstants::EMAIL_REGEX }, allow_blank: true
   validates :profile_image, attached_file_type: { types: VALID_IMAGE_MIME_TYPES }, allow_blank: true
   validates :credits, numericality: true
@@ -54,6 +56,10 @@ class User < ApplicationRecord
 
   def is_verified?
     verified_at.present?
+  end
+  
+  def follows?(user)
+    followees.exists?(user.id)
   end
 
   private def send_verification_mail

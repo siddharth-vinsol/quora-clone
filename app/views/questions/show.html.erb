@@ -13,7 +13,7 @@
     </div>
     <div>
       <div class="question-field-label">Asked By: </div>
-      <div class="question-field-value"><%= @question.user.name %></div>
+      <div class="question-field-value"><%= link_to @question.user.name, user_profile_path(@question.user.username) %></div>
     </div>
   </div>
   <div class="question-content">
