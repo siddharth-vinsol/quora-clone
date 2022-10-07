@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'scripts/vote_handler', defer: true %>
+<% end %>
+
 <div class="page-heading">Question Page</div>
 
 <div class="question">
@@ -20,5 +24,15 @@
       <%= render_filelink_if_exists(@question.attachment) %>
     <% end %>
   </div>
-  <h3>Answers by Users</h3>
+
+  <% if signed_in? %>
+    <%= render 'answers/form' %>
+  <% else %>
+    <div class="page-heading"><%= t('login_before_continue')%></div>
+  <% end%>
+  
+  <h3><u>Answers by other Users</u></h3>
+  <div class="answers-container" data-ref="answers-container">
+    <%= render @question.sorted_answers %>
+  </div>
 </div>

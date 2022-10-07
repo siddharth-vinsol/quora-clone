@@ -1,0 +1,5 @@
+<div class="answer">
+  <%= render partial: 'shared/vote_buttons', locals: { resource: answer } %>
+  <div><b><%= answer.user.name %> </b>Says: </div>
+  <%= answer.content %>
+</div>

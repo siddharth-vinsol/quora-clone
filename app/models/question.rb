@@ -4,6 +4,8 @@ class Question < ApplicationRecord
   attr_accessor :should_publish
 
   belongs_to :user
+  has_many :answers, dependent: :restrict_with_error
+  has_many :sorted_answers, -> { by_most_upvoted }, class_name: 'Answer'
   has_rich_text :content
   has_one_attached :attachment
 
@@ -23,6 +25,10 @@ class Question < ApplicationRecord
 
   def file_attached?
     attachment.present?
+  end
+  
+  def editable?
+    answers.blank?
   end
 
   private def assign_permalink

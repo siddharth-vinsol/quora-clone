@@ -69,6 +69,7 @@ body {
     text-align: center;
     font-weight: bold;
     font-size: 32px;
+    width: 100%;
   }
 }
 a {
@@ -129,11 +130,6 @@ a {
     font-weight: 400;
     font-size: 16px;
     box-shadow: 0 4px 14px 0 rgb(173, 86, 19);
-    transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
-    :hover{
-        background: rgba(0,118,255,0.9);
-        box-shadow: 0 6px 20px rgb(173, 86, 19);
-    }
   }
   .form-footer {
     margin-top: 10px;
@@ -154,11 +150,6 @@ button {
   font-weight: 400;
   font-size: 16px;
   box-shadow: 0 4px 14px 0 rgb(173, 86, 19);
-  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
-  :hover{
-      background: rgba(0,118,255,0.9);
-      box-shadow: 0 6px 20px rgb(173, 86, 19);
-  }
 }
 .form-field-error {
   color: red;
@@ -170,4 +161,7 @@ button {
   display: flex;
   flex-direction: row;
   font-weight: bolder;
+}
+.trix-button-row {
+  overflow-x: unset !important;
 }

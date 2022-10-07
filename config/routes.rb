@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     get 'login'
     get 'logout'
   end
+  scope controller: :votes, path: 'vote' do
+    post 'upvote'
+    post 'downvote'
+  end
 
   resource :session, only: [:create, :destroy]
   resource :registration, path: 'signup', only: [:create] do
@@ -22,6 +26,7 @@ Rails.application.routes.draw do
   resources :questions, param: :permalink do
     post 'publish', on: :member
   end
+  resource :answer, only: [:create]
   
   get 'verify_email', to: 'registrations#verify_email'
   get '/:token/password/reset', to: 'passwords#reset', as: 'reset_password'

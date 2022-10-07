@@ -9,6 +9,8 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <%= yield :head %>
   </head>
 
   <body>
@@ -27,7 +29,7 @@
     </header>
 
     <main class="<%= controller.controller_name %>">
-      <div class="notice">
+      <div class="notice" id="notice">
         <%= notice if notice %>
       </div>
       <%= yield %>

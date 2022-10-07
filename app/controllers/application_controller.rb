@@ -1,9 +1,12 @@
 class ApplicationController < ActionController::Base
   before_action :authorize
 
-  private def authorize
+  def authorize
     unless signed_in?
-      redirect_to login_path, notice: t('login_before_continue')
+      respond_to do |format|
+        format.html { redirect_to login_path, notice: t('login_before_continue') }
+        format.json { render json: { error: t('login_before_continue') }, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -12,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   private def validate_current_user_resource
-    redirect_to '/404' unless current_user.id == @resource.user_id
+    redirect_to '/404' unless current_user.id == resource.user_id
   end
 
   private def current_user
