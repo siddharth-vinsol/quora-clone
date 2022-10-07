@@ -59,4 +59,11 @@ Rails.application.routes.draw do
     post 'mark_sent'
     patch 'mark_all_read'
   end
+
+  namespace :api do
+    namespace :v1 do
+      get 'feed', to: 'users#feed', format: true, constraints: { format: :json }
+      resources :topics, only: [:index, :show], param: :topic
+    end
+  end
 end
