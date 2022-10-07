@@ -1,6 +1,7 @@
 class Question < ApplicationRecord
   include CommonScopes
   include VoteHandler
+  include CommentsHandler
   
   attr_accessor :should_publish
 
@@ -31,7 +32,7 @@ class Question < ApplicationRecord
   end
   
   def editable?
-    answers.blank? && votes.blank?
+    answers.blank? && votes.blank? && comments.blank?
   end
 
   private def assign_permalink

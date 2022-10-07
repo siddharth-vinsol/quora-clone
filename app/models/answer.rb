@@ -1,5 +1,6 @@
 class Answer < ApplicationRecord
   include VoteHandler
+  include CommentsHandler
 
   after_create_commit :send_answer_posted_mail
 

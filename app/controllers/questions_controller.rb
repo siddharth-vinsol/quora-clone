@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:publish, :edit, :update, :destroy]
-  before_action :set_question_with_answers, only: [:show]
+  before_action :load_question_with_answer_comment, only: [:show]
   before_action :validate_current_user_resource, only: [:publish, :edit, :update, :destroy]
   skip_before_action :authorize, only: [:show]
 
@@ -38,6 +38,11 @@ class QuestionsController < ApplicationController
 
   def show
     @new_answer = @question.answers.build
+    @new_comment = @question.comments.build
+
+    @question.sorted_answers.each do |answer|
+      answer.comments.build
+    end
   end
 
   def update
@@ -70,8 +75,8 @@ class QuestionsController < ApplicationController
   private def set_question
     @question = Question.find_by_permalink(params[:permalink])
   end
-  
-  private def set_question_with_answers
-    @question = Question.includes(:sorted_answers).find_by_permalink(params[:permalink])
+
+  private def load_question_with_answer_comment
+    @question = Question.includes({ sorted_answers: [:user, :rich_text_content] }, { comments: [:user] }, :topics).find_by_permalink(params[:permalink])
   end
 end

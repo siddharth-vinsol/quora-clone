@@ -2,4 +2,9 @@
   <%= render partial: 'shared/vote_buttons', locals: { resource: answer } %>
   <div><b><%= answer.user.name %> </b>Says: </div>
   <%= answer.content %>
+
+  <div class="divider"></div>
+  <h3>User comments on this answer</h3>
+  <%= render answer.comments %>
+  <%= render partial: 'comments/form', locals: { commentable: answer, new_comment: answer.comments.last } %>
 </div>
