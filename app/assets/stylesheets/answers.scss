@@ -28,34 +28,5 @@
     border-radius: 20px;
     word-wrap: break-word;
     color: #49494A;
-    .vote-buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 10px;
-      width: fit-content;
-      margin-left: 0;
-      .button_to {
-        margin: 0;
-      }
-      .vote-button {
-        border-color: #333232;
-        background-color: #E0E0E0;
-        box-shadow: none;
-        color: #333232;
-        margin: 10px;
-        font-size: 10px;
-        padding: 10px;
-        line-height: 0;
-        width: auto;
-        height: auto;
-      }
-      .upvote {
-        background-color: #C6EDBB;
-      }
-      .downvote {
-        background-color: #F5C9C9;
-      }
-    }
   }
 }

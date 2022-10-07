@@ -1,13 +1,12 @@
 class VoteHandler {
   constructor(container) {
-    this.answersContainer = container;
+    this.voteableContainer = container;
   }
 
   init() {
-    this.answersContainer.addEventListener('click', async event => {
-      event.preventDefault();
-
+    this.voteableContainer.addEventListener('click', async event => {
       if (event.target.classList.contains('vote-button')) {
+        event.preventDefault();
         const voteButton = event.target;
         const formData = this.generateDataForRequest(voteButton.form);
         const data = await this.handleVoteRequests(voteButton, formData);
@@ -66,5 +65,5 @@ class VoteHandler {
   }
 };
 
-const voteHandler = new VoteHandler(document.querySelector('[data-ref="answers-container"]'));
+const voteHandler = new VoteHandler(document.querySelector('[data-ref="voteable-container"]'));
 voteHandler.init();
