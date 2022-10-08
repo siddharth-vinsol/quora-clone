@@ -82,4 +82,5 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 5.1.2'
   gem 'factory_bot_rails', '~>6.2.0'
+  gem 'shoulda', '~> 4.0.0'
 end
