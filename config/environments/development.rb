@@ -71,4 +71,10 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  config.stripe = {
+    publishable_key: Rails.application.secrets.stripe_publishable_key,
+    secret_key: Rails.application.secrets.stripe_secret_key
+  }
+  Stripe.api_key = Rails.configuration.stripe[:secret_key]
 end
