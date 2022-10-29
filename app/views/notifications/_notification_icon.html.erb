@@ -1,0 +1,13 @@
+<div class="notifications-container" data-ref="notification-bell-container">
+  <div class="red-box hide"></div>
+  <%= image_tag 'notification_bell.png', class: 'notification-bell' %>
+
+  <div class="notification-box hide" data-ref="notification-container">
+    <div class="notifications-list" data-ref="notification-list"></div>
+    <div class="divider"></div>
+    <div class="notifications-footer">
+      <%= link_to 'Show all notifications', notifications_path %>
+      <%= button_to 'Mark All as read', mark_all_read_notifications_path, method: :patch, class: 'button-link' %>
+    </div>
+  </div>
+</div>

@@ -5,3 +5,4 @@ import "trix"
 import "@rails/actiontext"
 import "jquery"
 import 'select2'
+import "channels"

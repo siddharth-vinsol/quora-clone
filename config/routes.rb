@@ -52,4 +52,11 @@ Rails.application.routes.draw do
     get 'comments'
     patch 'disable_entity'
   end
+
+  resource :notifications, only: [:show] do
+    get 'unsent'
+    get 'unread'
+    post 'mark_sent'
+    patch 'mark_all_read'
+  end
 end

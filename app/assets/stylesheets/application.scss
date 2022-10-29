@@ -193,6 +193,9 @@ button {
   font-size: 16px;
   box-shadow: 0 4px 14px 0 rgb(173, 86, 19);
 }
+.notification-highlight {
+  background-color: #FFE8E4;
+}
 .highlight {
   animation-name: highlight-fadeout;
   animation-duration: 5s;
@@ -200,4 +203,15 @@ button {
 @keyframes highlight-fadeout {
   from { background-color: #FFE8E4; }
   to { background-color: transparent; }
+}
+.pop-up-notification {
+  background-color: lightgreen;
+  position: absolute;
+  top: 85px;
+  left: 100px;
+  padding: 10px;
+  display: block;
+  border-radius: 10px;
+  border: 2px dashed pink;
+  cursor: pointer;
 }

@@ -1,0 +1,16 @@
+<div class="page-heading">All Notifications</div>
+
+<div class="notifications-list-container">
+  <% @notifications.each do |notification| %>
+    <% if notification.read_at? %>
+    <div class="notification">
+    <% else %>
+    <div class="notification notification-highlight">
+    <% end %>
+      <a href="<%= notification.redirect_link %>">
+        <div class="notification-text"><%= notification.content %></div>
+        <div class="notification-text"><%= time_ago_in_words(notification.created_at) %></div>
+      </a>
+    </div>
+  <% end %>
+</div>

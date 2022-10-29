@@ -6,13 +6,13 @@
       <%= form.label :profile_image, 'Upload New Profile Picture' %>
       <%= form.file_field :profile_image, accept: User::VALID_IMAGE_MIME_TYPES.join(', ') %>
     </div>
-    <%= render partial: 'shared/form_field_error', locals: { model_object: @user, attribute: :profile_image } %>
+    <%= render partial: 'shared/form_field_error', locals: { model_object: current_user, attribute: :profile_image } %>
 
     <div class="form-field">
       <%= form.label :name, 'New name' %>
       <%= form.text_field :name %>
     </div>
-    <%= render partial: 'shared/form_field_error', locals: { model_object: @user, attribute: :name } %>
+    <%= render partial: 'shared/form_field_error', locals: { model_object: current_user, attribute: :name } %>
 
     <div class="form-field">
       <%= form.label :username, 'Username' %>

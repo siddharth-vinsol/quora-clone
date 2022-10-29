@@ -1,0 +1,38 @@
+class NotificationsController < ApplicationController
+  include SerializeHandler
+
+  skip_before_action :verify_authenticity_token
+  
+  before_action :load_notifications
+
+  def show
+  end
+
+  def unsent
+    render json: { status: 200, notifications: serialize_array_of_objects(@notifications.where(sent: false), NotificationSerializer) }
+  end
+  
+  def unread
+    render json: { status: 200, notifications: serialize_array_of_objects(@notifications.where(read_at: nil), NotificationSerializer) }
+  end
+
+  def mark_sent
+    if @notifications.update(sent: true)
+      render json: { status: 200 }
+    else
+      render json: { status: 400 }
+    end
+  end
+
+  def mark_all_read
+    if @notifications.update(read_at: Time.now)
+      render json: { status: 200 }
+    else
+      render json: { status: 400 }
+    end
+  end
+
+  private def load_notifications
+    @notifications = current_user.notifications.by_recently_created
+  end
+end
