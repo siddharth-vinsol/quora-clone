@@ -1,3 +1,7 @@
+<%= content_for :head do %>
+  <%= javascript_include_tag 'scripts/attachment_purge_handler', defer: true %>
+<% end %>
+
 <div class="form">
   <%= form_with(model: question, url: url) do |form| %>
     <div class="field">
@@ -24,6 +28,7 @@
         <% if question.file_attached? && question.persisted? %>
           <div>File attached: <%= filename_from_file(question.attachment) %></div>
           <%= render_filelink_if_exists(question.attachment) %>
+          <%= image_tag 'cross.png', style: 'cursor: pointer', data: { ref: 'attachment-remove-button', permalink: question.permalink } %>
         <% end %>
       </div>
     </div>

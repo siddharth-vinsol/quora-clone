@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :validate_old_password, only: [:update_password]
+  before_action :check_old_new_password, only: [:update_password]
   before_action :set_user, only: [:show, :follow]
 
   def profile
@@ -47,6 +48,11 @@ class UsersController < ApplicationController
     redirect_to user_profile_path(@other_user.username), notice: notice
   end
 
+  def remove_photo
+    current_user.profile_image.purge
+    redirect_to user_path, notice: t('profile_image_deleted')
+  end
+
   private def user_params
     params.require(:user).permit(:name, :username, :profile_image, :password, :password_confirmation, topic_list: [])
   end
@@ -61,5 +67,9 @@ class UsersController < ApplicationController
     unless @other_user = User.find_by(username: params[:username])
       redirect_to user_path, notice: ('profile_not_found')
     end
+  end
+
+  private def check_old_new_password
+    redirect_to password_user_path, notice: t('same_old_new_password') if params[:user][:old_password] == params[:user][:password] 
   end
 end

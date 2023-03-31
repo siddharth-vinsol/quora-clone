@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include NotificationsHandler
+  
   VALID_IMAGE_MIME_TYPES = ['image/png', 'image/jpeg']
   acts_as_taggable_on :topics
 
@@ -6,6 +8,7 @@ class User < ApplicationRecord
   after_create_commit :send_verification_mail
   before_update :reward_verification_credits, if: :verified_at_changed?
   before_update :generate_auth_token, if: :verified_at_changed?
+  after_update :generate_verification_notification, if: :verified_at_previously_changed?
 
   enum role: {
     admin: 0,
@@ -22,7 +25,9 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   validates :name, :email, :username, presence: true
-  validates :password, :password_confirmation, presence: true, if: :setting_password?
+  validates :password, format: { with: QuoraClone::RegexConstants::PASSWORD_REGEX, message: I18n.t('invalid_password') }, allow_blank: true
+  validates :password, presence: true, if: :setting_password?
+  validates :password, confirmation: true, allow_blank: true, if: :setting_password?
   validates :email, :username, uniqueness: true
   validates :email, format: { with: QuoraClone::RegexConstants::EMAIL_REGEX }, allow_blank: true
   validates :profile_image, attached_file_type: { types: VALID_IMAGE_MIME_TYPES }, allow_blank: true
@@ -72,12 +77,16 @@ class User < ApplicationRecord
     disabled_at?
   end
 
+  def redirect_link
+    user_path
+  end
+
   private def send_verification_mail
-    UserMailer.verification(self).deliver_later
+    UserMailer.verification(self).deliver_later unless admin?
   end
 
   private def send_password_reset_mail
-    UserMailer.verification(self).deliver_now unless admin?
+    UserMailer.reset_password(self).deliver_now
   end
 
   private def generate_confirmation_token
@@ -95,5 +104,9 @@ class User < ApplicationRecord
 
   private def generate_auth_token
     self.auth_token = TokenHandler.generate_token
+  end
+
+  private def generate_verification_notification
+    notifications.build(content: 'Your account has been verified and 5 credits have been rewarded.', notifiable: self)
   end
 end

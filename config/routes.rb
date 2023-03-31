@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get 'password'
     patch 'password', action: :update_password
     get 'credit_transactions'
+    delete 'remove_photo'
   end
   resources :users, only: [:show], param: :username, as: 'user_profile' do
     post 'follow', on: :member
@@ -30,10 +31,11 @@ Rails.application.routes.draw do
   end
   resources :questions, param: :permalink do
     post 'publish', on: :member
+    delete 'remove_attachment', on: :member
   end
-  resource :answer, only: [:create]
-  resource :comment, only: [:create]
-  resource :abuse_report, only: [:new, :create]
+  resources :answers, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy]
+  resources :abuse_reports, only: [:new, :create]
   resources :credit_packs, only: [:index]
   resource :order_transactions, only: [:create]
   resources :orders, only: [:create], param: :code do
